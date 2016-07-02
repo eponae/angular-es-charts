@@ -1,4 +1,4 @@
-# Demo - Angular 1.5
+# Angular-ES-Charts - Angular 1.5
 
 ## Usage
 ### Requirements
