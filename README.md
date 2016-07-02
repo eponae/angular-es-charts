@@ -20,7 +20,7 @@ Gulp tasks are defined in `gulpfile.js`. You can change those tasks to improve y
 
 #### External Modules
 
-[`rdash-angular`](http://startbootstrap.com/template-overviews/sb-admin-2/)
+[`sb-admin-2`](http://startbootstrap.com/template-overviews/sb-admin-2/)
 [`ui.bootstrap`](http://angular-ui.github.io/bootstrap/)
 [`ui.router`](https://github.com/angular-ui/ui-router)
 [`ngAnimate`](https://docs.angularjs.org/api/ngAnimate)
