@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <h3 class="page-header">Les conservatoires d'Ile de France</h3>
+    </div>
+    <div ng-id="totalItems > 0" class="col-lg-12 col-md-12 col-xs-12">
+      <table id="table" class="table table-responsive table-bordered">
+          <thead>
+              <tr>
+                  <th>Dénomination sociale</th>
+                  <th>Ville</th>
+                  <th>Détails</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="conservatory in conservatories">
+                  <td ng-bind="conservatory._source.fields.denomination_sociale"></td>
+                  <td ng-bind="conservatory._source.fields.ville"></td>
+                  <td class="text-center"><a><i class="fa fa-lg fa-map-marker clickable" ng-click="openDetails(conservatory)" aria-hidden="true"></i></a></td>
+              </tr>
+          </tbody>
+      </table>
+      <uib-pagination id="custPagination" class="pagination-sm" direction-links="true" boundary-links="true" boundary-link-numbers="true" total-items="totalItems" num-pages="numPages" max-size="maxSize" ng-model="currentPage"
+          ng-change="changePage(currentPage)" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="itemsPerPage"></uib-pagination>
+    </div>
+</div>

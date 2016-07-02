@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <form id="modalForm" class="form-inline">
+        <div class="pull-right">
+            <button class="btn btn-xs btn-danger" ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        <h4 class="modal-title" ng-bind="conservatory.denomination_sociale"></h4>
+    </form>
+</div>
+<div class="modal-body">
+    <ui-gmap-google-map ng-if="showMap" center="marker.coord" zoom="marker.zoom">
+        <ui-gmap-marker idKey="marker.id" coords="marker.coord">
+            <ui-gmap-window show="marker.show" closeClick="!marker.show" templateUrl="templateUrl" templateParameter="conservatory">
+            </ui-gmap-window>
+            </ui-gmap-markers>
+    </ui-gmap-google-map>
+</div>

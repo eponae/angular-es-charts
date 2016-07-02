@@ -1,0 +1,16 @@
+{
+  "node" : true,
+  "curly"   : true,
+  "eqeqeq"  : true,
+  "undef"   : true,
+  "jquery"  : true,
+  "globals": {
+    "angular"   : false,
+    "$"         : false,
+    "_"         : false,
+    "module"    : false,
+    "Highcharts" : false,
+    "EventSource": false,
+    "moment": false
+  }
+}

@@ -1,0 +1,19 @@
+@import 'src/modules/dashboard/sass/dashboard';
+@import 'src/modules/conservatory/sass/conservatory';
+
+$font-stack: arial;
+@mixin margins($top, $bottom, $left) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+    margin-left: $left;
+}
+* {
+    font-family: $font-stack;
+    font-size: small;
+}
+body {
+    background-color: #FFF;
+}
+#wrapper {
+    background-color: #f8f8f8;
+}

@@ -1,0 +1,10 @@
+#table {
+    margin: 0;
+}
+#custPagination {
+    margin: 0;
+    color: black;
+    & > li > a,a:hover {
+        color: black;
+    }
+}
