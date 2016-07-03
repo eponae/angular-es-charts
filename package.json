@@ -25,7 +25,7 @@
     "description": "## Usage ### Requirements * [NodeJS](http://nodejs.org/) (with [NPM](https://www.npmjs.org/)) * [Bower](http://bower.io) * [Gulp](http://gulpjs.com)",
     "main": "gulpfile.js",
     "scripts": {
-        "bower": "./node_modules/.bin/bower install --allow-root",
+        "bower": "./node_modules/.bin/bower install",
         "gulp": "./node_modules/.bin/gulp build-dist",
         "build": "npm install && npm run bower && npm run gulp"
     },
