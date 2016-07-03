@@ -15,8 +15,6 @@
 4. Run the gulp build task: `gulp build`.
 5. Run the gulp default task: `gulp`. This will build any changes made automatically, and also run a live reload server on (http://localhost:8888).
 
-Ensure your preferred web server points towards the `dist` directory.
-
 ### Development
 Gulp tasks are defined in `gulpfile.js`. You can change those tasks to improve your development workflow.
 
@@ -33,7 +31,7 @@ Gulp tasks are defined in `gulpfile.js`. You can change those tasks to improve y
 
 If you'd like to include any additional modules/packages not included, add them to your `bower.json` file and then update the `src/index.html` file, to include them in the minified distribution output. You must perform `bower install`.
 
-#### Project Structure
+## Project
 ### Modules
 Modules are declared in `src/app/modules.js`
 
