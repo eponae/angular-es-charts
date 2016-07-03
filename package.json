@@ -18,14 +18,16 @@
         "gulp-usemin": "latest",
         "gulp-watch": "4.3.6",
         "gulp-jshint": "2.0.1",
-        "gulp-notify" : "2.2.0",
+        "gulp-notify": "2.2.0",
         "jshint-stylish": "2.2.0",
         "run-sequence": "1.2.1"
     },
     "description": "## Usage ### Requirements * [NodeJS](http://nodejs.org/) (with [NPM](https://www.npmjs.org/)) * [Bower](http://bower.io) * [Gulp](http://gulpjs.com)",
     "main": "gulpfile.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "bower": "./node_modules/.bin/bower install --allow-root",
+        "gulp": "./node_modules/.bin/gulp build-dist",
+        "build": "npm install && npm run bower && npm run gulp"
     },
     "author": "",
     "license": "ISC"
