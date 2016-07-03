@@ -18,6 +18,11 @@ angular.module('basics').config(['$stateProvider', '$urlRouterProvider', '$httpP
                 url: '/charts',
                 templateUrl: 'templates/charts/templates/charts.html',
                 controller: 'ChartsCtrl'
+            })
+            .state('init', {
+                url: '/init',
+                templateUrl: 'templates/initES/templates/initES.html',
+                controller: 'InitESCtrl'
             });
     }
 ]);

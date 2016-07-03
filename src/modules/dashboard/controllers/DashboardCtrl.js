@@ -7,13 +7,29 @@ angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibM
     $scope.maxSize = 4;
     $scope.numPages = 5;
     $scope.itemsPerPage = 10;
-    $scope.currentIndex = 0;
+    var currentIndex = 0;
     $scope.totalItems = 0;
     $scope.conservatories = [];
 
+    var orders = {
+        'denomination_sociale': 'asc',
+        'ville': 'asc'
+    };
+    var currentCriteria = 'denomination_sociale';
+
+    $scope.sortByColumn = function(criteria) {
+        currentCriteria = criteria;
+        if (orders[currentCriteria] === 'asc') {
+            orders[currentCriteria] = 'desc';
+        } else {
+            orders[currentCriteria] = 'asc';
+        }
+        $scope.changePage($scope.currentPage);
+    };
+
     $scope.changePage = function(page) {
-        $scope.currentIndex = $scope.itemsPerPage * (page - 1);
-        var request = 'conservatory_index/conservatories/_search?source={"size":' + $scope.itemsPerPage + ',"from":' + $scope.currentIndex + '}';
+        currentIndex = $scope.itemsPerPage * (page - 1);
+        var request = 'conservatory_index/conservatories/_search?source={"size":' + $scope.itemsPerPage + ',"from":' + currentIndex + ',"sort":[{"fields.' + currentCriteria + '.folded":{"order":"' + orders[currentCriteria] + '"}}]}';
 
         esServ.getData(request, {
             then: function(response) {
@@ -31,13 +47,12 @@ angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibM
         });
     };
 
-    $scope.changePage($scope.currentPage);
+    $scope.changePage($scope.currentPage, 'denomination_sociale');
 
     $scope.openDetails = function(conservatory) {
         var modalInstance = $uibModal.open({
             templateUrl: 'templates/conservatory/templates/conservatoryDetails.html',
             controller: 'ConservatoryDetailsCtrl',
-            size: 'lg',
             resolve: {
                 conservatory: function() {
                     return conservatory._source.fields;
@@ -45,8 +60,7 @@ angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibM
             }
         });
 
-        modalInstance.result.then(function(selectedItem) {
-        }, function() {});
+        modalInstance.result.then(function(selectedItem) {}, function() {});
     };
 
 }]);

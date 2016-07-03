@@ -1,6 +1,5 @@
 @import 'src/modules/dashboard/sass/dashboard';
 @import 'src/modules/conservatory/sass/conservatory';
-
 $font-stack: arial;
 @mixin margins($top, $bottom, $left) {
     margin-top: $top;
@@ -16,4 +15,7 @@ body {
 }
 #wrapper {
     background-color: #f8f8f8;
+}
+.clickable {
+    cursor: pointer;
 }
