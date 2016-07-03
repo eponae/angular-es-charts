@@ -1,5 +1,7 @@
 # Angular-ES-Charts - Angular 1.5
 
+[![Build Status](https://travis-ci.org/lili1725/angular-es-charts.svg?branch=master)](https://travis-ci.org/lili1725/angular-es-charts)
+
 ## Usage
 ### Requirements
 * [NodeJS](http://nodejs.org/) (with [NPM](https://www.npmjs.org/))
