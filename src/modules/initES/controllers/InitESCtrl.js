@@ -75,7 +75,7 @@ angular.module('basics').controller('InitESCtrl', ['$scope', 'esServ', 'jsonData
                         },
                         "denomination_sociale": {
                             "type": "string",
-                            "index": "analyzed"
+                            "index": "analyzed",
                             "fields": {
                                 "folded": {
                                     "type": "string",

@@ -1,6 +1,6 @@
 # Angular-ES-Charts - Angular 1.5
 
-[![Build Status](https://travis-ci.org/lili1725/angular-es-charts.svg?branch=develop)](https://travis-ci.org/lili1725/angular-es-charts)
+[![Build Status](https://travis-ci.org/lili1725/angular-es-charts.svg?branch=c1)](https://travis-ci.org/lili1725/angular-es-charts)
 
 ## Usage
 ### Requirements
