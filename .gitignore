@@ -1,4 +1,6 @@
-dist/
-node_modules/
-bower_components/
-src/assets/css/
+/dist/
+/node_modules/
+/bower_components/*
+!/bower_components/startbootstrap-sb-admin-2
+/src/assets/css/
+/nbproject/

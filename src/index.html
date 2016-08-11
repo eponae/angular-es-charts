@@ -9,9 +9,9 @@
     <!-- build:css lib/css/main.min.css -->
     <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../bower_components/metisMenu/dist/metisMenu.min.css">
-    <link rel="stylesheet" type="text/css" href="../bower_components/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/startbootstrap-sb-admin-2/bower_components/metisMenu/dist/metisMenu.min.css">
     <link rel="stylesheet" type="text/css" href="../bower_components/startbootstrap-sb-admin-2/dist/css/timeline.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css">
     <!-- endbuild -->
 
     <!-- Custom Styles -->
@@ -22,6 +22,7 @@
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-i18n/angular-locale_fr-fr.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="../bower_components/lodash/dist/lodash.min.js"></script>
     <script type="text/javascript" src="../bower_components/highstock-release/highstock.js"></script>
     <script type="text/javascript" src="../bower_components/highstock-release/highcharts-more.js"></script>
@@ -32,11 +33,10 @@
     <script type="text/javascript" src="../bower_components/angular-spinner/angular-spinner.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-animate/angular-animate.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script type="text/javascript" src="../bower_components/startbootstrap-sb-admin-2/bower_components/metisMenu/dist/metisMenu.js"></script>
     <script type="text/javascript" src="../bower_components/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script>
     <script type="text/javascript" src="../bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
-    <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <!-- endbuild -->
 
 </head>
@@ -48,24 +48,24 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span class="navbar-brand" href="index.html">Angular - Charts - ES</span>
+                <span class="navbar-brand" href="index.html">ANGULAR - CHARTS - ES</span>
             </div>
 
 
             <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
+                <div class="sidebar-nav navbar-collapse collapse" uib-collapse="navCollapsed">
+                    <ul class="nav in" id="side-menu">
                         <li>
-                            <a ui-sref="dashboard" ui-sref-active="active"><i class="fa fa-dashboard fa-fw" aria-hidden="true"></i> Conservatoires</a>
+                            <a ui-sref="dashboard" ui-sref-active="active"><i class="fa fa-dashboard fa-fw" aria-hidden="true"></i> CONSERVATOIRES</a>
                         </li>
                         <li>
-                            <a ui-sref="charts" ui-sref-active="active"><i class="fa fa-bar-chart" aria-hidden="true"></i> Analyse</a>
+                            <a ui-sref="charts" ui-sref-active="active"><i class="fa fa-bar-chart" aria-hidden="true"></i> ANALYSE</a>
                         </li>
                     </ul>
                 </div>
