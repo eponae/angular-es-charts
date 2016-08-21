@@ -25,8 +25,8 @@ Gulp tasks are defined in `gulpfile.js`. You can change those tasks to improve y
 [`ui.router`](https://github.com/angular-ui/ui-router)
 [`ngAnimate`](https://docs.angularjs.org/api/ngAnimate)
 [`angularSpinner`](https://github.com/urish/angular-spinner)
-[`angular-i18n`](https://docs.angularjs.org/guide/i18n)
-[`highcharts-ng`](https://github.com/pablojim/highcharts-ng https://github.com/highslide-software/highstock-release)
+[`highcharts-ng`](https://github.com/pablojim/highcharts-ng)
+[`highcharts`] (https://github.com/highslide-software/highstock-release)
 [`lodash`](https://lodash.com/)
 
 If you'd like to include any additional modules/packages not included, add them to your `bower.json` file and then update the `src/index.html` file, to include them in the minified distribution output. You must perform `bower install`.

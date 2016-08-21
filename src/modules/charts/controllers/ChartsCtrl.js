@@ -10,7 +10,7 @@ angular.module('basics').controller('ChartsCtrl', ['$scope', 'esServ', '$timeout
         $scope.title = "Departments";
 
         var loadDeps = function (fieldName) {
-            var request = 'conservatory_index/conservatories/_search?source={"aggs":{"_res":{"terms":{"field":"' + fieldName + '"}}}}&pretty=true';
+            var request = 'conservatory_index/conservatories/_search?source={"aggs":{"_res":{"terms":{"field":"' + fieldName + '","size":0}}}}';
 
             esServ.getData(request, {
                 then: function (response) {
@@ -57,7 +57,7 @@ angular.module('basics').controller('ChartsCtrl', ['$scope', 'esServ', '$timeout
                 if (!drilldown) {
                     return;
                 } else {
-                    var request = 'conservatory_index/conservatories/_search?source={"aggs":{"dep_cp":{"filter":{"term":{"fields.dep":"' + drilldown + '"}},"aggs":{"_res":{"terms":{"field":"fields.cp"}}}}}}';
+                    var request = 'conservatory_index/conservatories/_search?source={"aggs":{"dep_cp":{"filter":{"term":{"fields.dep":"' + drilldown + '"}},"aggs":{"_res":{"terms":{"field":"fields.cp","size":0}}}}}}';
 
                     esServ.getData(request, {
                         then: function (response) {
