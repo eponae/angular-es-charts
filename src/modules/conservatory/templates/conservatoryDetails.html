@@ -7,7 +7,7 @@
     </form>
 </div>
 <div class="modal-body">
-    <ui-gmap-google-map ng-if="showMap" center="marker.coord" zoom="marker.zoom">
+    <ui-gmap-google-map class="fullwidth" ng-if="showMap" center="marker.coord" zoom="marker.zoom">
         <ui-gmap-marker idKey="marker.id" coords="marker.coord">
             <ui-gmap-window show="marker.show" closeClick="!marker.show" templateUrl="templateUrl" templateParameter="conservatory">
             </ui-gmap-window>
