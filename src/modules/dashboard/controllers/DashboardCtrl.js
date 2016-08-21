@@ -12,10 +12,11 @@ angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibM
     $scope.conservatories = [];
 
     var orders = {
-        'denomination_sociale': 'asc',
-        'ville': 'asc'
+        'denomination_sociale.folded': 'asc',
+        'ville.folded': 'asc',
+        'cp': 'asc'
     };
-    var currentCriteria = 'denomination_sociale';
+    var currentCriteria = 'cp';
 
     $scope.sortByColumn = function(criteria) {
         currentCriteria = criteria;
@@ -29,7 +30,7 @@ angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibM
 
     $scope.changePage = function(page) {
         currentIndex = $scope.itemsPerPage * (page - 1);
-        var request = 'conservatory_index/conservatories/_search?source={"size":' + $scope.itemsPerPage + ',"from":' + currentIndex + ',"sort":[{"fields.' + currentCriteria + '.folded":{"order":"' + orders[currentCriteria] + '"}}]}';
+        var request = 'conservatory_index/conservatories/_search?source={"size":' + $scope.itemsPerPage + ',"from":' + currentIndex + ',"sort":[{"fields.' + currentCriteria + '":{"order":"' + orders[currentCriteria] + '"}}]}';
 
         esServ.getData(request, {
             then: function(response) {
@@ -47,7 +48,7 @@ angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibM
         });
     };
 
-    $scope.changePage($scope.currentPage, 'denomination_sociale');
+    $scope.changePage($scope.currentPage, 'cp');
 
     $scope.openDetails = function(conservatory) {
         var modalInstance = $uibModal.open({

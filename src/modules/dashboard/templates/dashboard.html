@@ -8,6 +8,7 @@
                 <tr>
                     <th>COMPANY NAME</th>
                     <th>TOWN</th>
+                    <th>POSTCODE</th>
                     <th>DETAILS</th>
                 </tr>
             </thead>
@@ -15,6 +16,7 @@
                 <tr ng-repeat="conservatory in conservatories">
                     <td ng-bind="conservatory._source.fields.denomination_sociale"></td>
                     <td ng-bind="conservatory._source.fields.ville"></td>
+                    <td ng-bind="conservatory._source.fields.cp"></td>
                     <td class="text-center"><a><i class="fa fa-lg fa-map-marker clickable" ng-click="openDetails(conservatory)" aria-hidden="true"></i></a></td>
                 </tr>
             </tbody>
