@@ -1,6 +1,6 @@
 .angular-google-map-container {
     height: 80%;
-    width: 50%;
+    width: 80%;
 }
 #mapWindow {
     height: 100%;
@@ -8,4 +8,9 @@
 }
 #modalForm {
     margin: 0;
+}
+.fullwidth {
+    .angular-google-map-container {
+        width: 100%;
+    }
 }
