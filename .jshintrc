@@ -11,6 +11,7 @@
     "module"    : false,
     "Highcharts" : false,
     "EventSource": false,
-    "moment": false
+    "moment": false,
+    "insert": false
   }
 }
