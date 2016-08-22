@@ -1,4 +1,4 @@
-# Angular-ES-Charts - Angular 1.5
+# Angular-ES-Charts - Angular 1.5 - ElasticSearch 2.3 - Charts
 
 [![Build Status](https://travis-ci.org/lili1725/angular-es-charts.svg?branch=master)](https://travis-ci.org/lili1725/angular-es-charts)
 

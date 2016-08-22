@@ -2,15 +2,15 @@
     <div class="col-lg-12 col-md-12 col-xs-12">
         <h1 class="page-header">ANALYSIS</h1>
     </div>
-    <div class="col-lg-12 col-md-12 col-xs-12" hidden="true">
+    <div class="col-lg-12 col-md-12 col-xs-12">
         <form class="col-lg-6 col-md-6 col-xs-6">
             <div class="form-group">
-                <label for="depSelect" ng-bind="chooseDep"></label>
-                <select class="form-control" id="depSelect" type="number" min="0" ng-model="dep" ng-options="depName for depName in deps"></select>
+                <label for="typeSelect" ng-bind="chooseType"></label>
+                <select class="form-control" id="typeSelect" type="text" ng-model="type" ng-options="type for type in types"></select>
             </div>
         </form>
     </div>
     <div class="col-lg-12 col-md-12 col-xs-12">
-        <custom-drilldown add-new-series="addNewSeries" remove-series="removeSeries" type="type" title="title" drilldown="addDrilldown"></custom-drilldown>
+        <custom-drilldown add-new-series="addNewSeries" remove-series="removeSeries" type="type" title="title" drilldown="addDrilldown" load-data="loadDeps"></custom-drilldown>
     </div>
 </div>
