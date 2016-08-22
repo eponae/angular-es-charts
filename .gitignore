@@ -5,3 +5,4 @@
 !/bower_components/libs
 /src/assets/css/
 /nbproject/
+**/npm-debug.log
