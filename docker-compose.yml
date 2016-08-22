@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  charts:
+    image: lili1725/charts
+    command: --domain "elasticsearch.vibioh.fr *.googleapis.com *.gstatic.com"
+    labels:
+      traefik.frontend.passHostHeader: 'true'
+      traefik.frontend.rule: 'Host: charts.${DOMAIN}'
+      traefik.port: '1080'
+    logging:
+      driver: json-file
+      options:
+        max-size: '50m'
+    restart: 'no'
+    read_only: true
+
+networks:
+  default:
+    external:
+      name: traefik
+

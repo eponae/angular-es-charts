@@ -1,7 +1,12 @@
 language: node_js
+sudo: required
+services:
+  - docker
 node_js:
-- "6.2.2"
+- 6.2.2
 script:
- - "npm run build"
+- npm run build
+- docker login -e ${DOCKER_EMAIL} -u ${DOCKER_USER} -p ${DOCKER_PASS}
+- docker push ${DOCKER_USER}/charts
 notifications:
  email: false
