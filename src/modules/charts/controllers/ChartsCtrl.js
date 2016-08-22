@@ -3,27 +3,16 @@
 angular.module('basics').controller('ChartsCtrl', ['$scope', 'esServ', '$timeout', function ($scope, esServ, $timeout) {
 
         $scope.type = 'pie';
+        $scope.types = ['pie', 'column'];
         $scope.dep = 0;
 
         $scope.chooseDep = "Select a department";
+        $scope.chooseType = "Select chart type";
+
         $scope.deps = [];
         $scope.title = "Departments";
 
-        var loadDeps = function (fieldName) {
-            var request = 'conservatory_index/conservatories/_search?source={"aggs":{"_res":{"terms":{"field":"' + fieldName + '","size":0}}}}';
-
-            esServ.getData(request, {
-                then: function (response) {
-                    if (response.data && response.data.hasOwnProperty("aggregations")) {
-                        var data = response.data.aggregations._res.buckets || [];
-                        formatDeps(data);
-                    }
-                },
-                catch : function () {
-
-                }
-            });
-        };
+        $scope.firstLevel = "fields.dep";
 
         var formatDeps = function (tmpDeps) {
             $scope.deps = [];
@@ -40,7 +29,7 @@ angular.module('basics').controller('ChartsCtrl', ['$scope', 'esServ', '$timeout
                 insert(tmpDeps[depIndex].key, deps);
                 var key = (tmpDeps[depIndex].hasOwnProperty('key_as_string')) ? tmpDeps[depIndex].key_as_string : tmpDeps[depIndex].key.toString();
                 chartSeries[0].data.push({
-                    name: key,
+                    name: "Department " + key,
                     y: tmpDeps[depIndex].doc_count,
                     drilldown: key
                 });
@@ -48,6 +37,23 @@ angular.module('basics').controller('ChartsCtrl', ['$scope', 'esServ', '$timeout
             $scope.deps = deps;
             $scope.addNewSeries(chartSeries);
 
+        };
+
+        $scope.loadDeps = function () {
+            var request = 'conservatory_index/conservatories/_search?source={"aggs":{"_res":{"terms":{"field":"' + $scope.firstLevel + '","size":0}}}}';
+
+            esServ.getData(request, {
+                then: function (response) {
+                    if (response.data && response.data.hasOwnProperty("aggregations")) {
+                        var data = response.data.aggregations._res.buckets || [];
+                        formatDeps(data);
+                        $scope.title = data.length + " departments";
+                    }
+                },
+                catch : function () {
+
+                }
+            });
         };
 
         //Add serie as drilldown dynamically
@@ -61,7 +67,8 @@ angular.module('basics').controller('ChartsCtrl', ['$scope', 'esServ', '$timeout
 
                     esServ.getData(request, {
                         then: function (response) {
-                            var drillData = response.data.aggregations.dep_cp._res.buckets;
+                            var drillData = response.data.aggregations.dep_cp._res.buckets || [];
+                            var docCount = response.data.aggregations.dep_cp.doc_count || 0;
                             var chart = $('#containerDrill').highcharts();
                             var series = {
                                 name: 'Aggregation of postcodes filtered by department: ' + e.point.drilldown,
@@ -72,7 +79,7 @@ angular.module('basics').controller('ChartsCtrl', ['$scope', 'esServ', '$timeout
                             for (var ind = 0; ind < drillData.length; ind++) {
                                 var key = (drillData[ind].hasOwnProperty('key_as_string')) ? drillData[ind].key_as_string : drillData[ind].key.toString();
                                 series.data.push({
-                                    name: key,
+                                    name: "Postcode " + key,
                                     y: drillData[ind].doc_count
                                 });
                             }
@@ -80,6 +87,7 @@ angular.module('basics').controller('ChartsCtrl', ['$scope', 'esServ', '$timeout
                             $timeout(function () {
                                 chart.hideLoading();
                                 chart.addSeriesAsDrilldown(e.point, series);
+                                $scope.title = series.name + "<br>" + docCount + " postcodes";
                                 chart.redraw();
                             }, 500);
                         },
@@ -90,6 +98,6 @@ angular.module('basics').controller('ChartsCtrl', ['$scope', 'esServ', '$timeout
             }
         };
 
-        loadDeps("fields.dep");
+        $scope.loadDeps();
 
     }]);
