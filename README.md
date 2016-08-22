@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/lili1725/angular-es-charts.svg?branch=master)](https://travis-ci.org/lili1725/angular-es-charts)
 
+## Demo
+charts.lili1725.fr
+
 ## Usage
 ### Requirements
 * [NodeJS](http://nodejs.org/) (with [NPM](https://www.npmjs.org/))
