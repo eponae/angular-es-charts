@@ -6,6 +6,7 @@ node_js:
 - 6.2.2
 script:
 - npm run build
+- docker build -t ${DOCKER_USER}/charts .
 - docker login -e ${DOCKER_EMAIL} -u ${DOCKER_USER} -p ${DOCKER_PASS}
 - docker push ${DOCKER_USER}/charts
 notifications:
