@@ -12,8 +12,6 @@ angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibM
     $scope.conservatories = [];
 
     var orders = {
-        'denomination_sociale.folded': 'asc',
-        'ville.folded': 'asc',
         'cp': 'asc'
     };
     var currentCriteria = 'cp';

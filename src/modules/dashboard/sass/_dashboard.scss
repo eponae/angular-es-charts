@@ -8,3 +8,12 @@
         color: black;
     }
 }
+.clickable {
+    cursor: pointer;
+}
+
+th.clickable {
+    &:hover {
+        background-color: grey;
+    }
+}
