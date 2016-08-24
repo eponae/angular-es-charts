@@ -1,8 +1,6 @@
 # Angular-ES-Charts - Angular 1.5 - ElasticSearch 2.3 - Charts
 
-[![Build Status](https://travis-ci.org/lili1725/angular-es-charts.svg?branch=master)](https://travis-ci.org/lili1725/angular-es-charts)
-
-[Demo](https://charts.lili1725.fr)
+[![Build Status](https://travis-ci.org/lili1725/angular-es-charts.svg?branch=develop)](https://travis-ci.org/lili1725/angular-es-charts)
 
 ## Usage
 ### Requirements
@@ -25,8 +23,6 @@ Gulp tasks are defined in `gulpfile.js`. You can change those tasks to improve y
 [`sb-admin-2`](http://startbootstrap.com/template-overviews/sb-admin-2/)
 [`ui.bootstrap`](http://angular-ui.github.io/bootstrap/)
 [`ui.router`](https://github.com/angular-ui/ui-router)
-[`ngAnimate`](https://docs.angularjs.org/api/ngAnimate)
-[`angularSpinner`](https://github.com/urish/angular-spinner)
 [`highcharts-ng`](https://github.com/pablojim/highcharts-ng)
 [`highcharts`] (https://github.com/highslide-software/highstock-release)
 [`lodash`](https://lodash.com/)
