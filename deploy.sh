@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 function readVariableIfRequired() {
   if [ -z "${!1}" ]; then
     read -p "${1}=" $1
@@ -10,21 +8,30 @@ function readVariableIfRequired() {
   fi
 }
 
-if [ ${#} -eq 0 ]; then
-  echo Usage ${0} [DOMAIN] [PROJECT_NAME]
-fi
+function docker-compose-deploy() {
+  PROJECT_NAME=${1}
+  readVariableIfRequired "PROJECT_NAME"
 
-DOMAIN=${1}
-readVariableIfRequired "DOMAIN"
+  DOMAIN=${2}
+  readVariableIfRequired "DOMAIN"
 
-PROJECT_NAME=${2}
+  export DOMAIN=${DOMAIN}
+  
+  docker-compose -p ${PROJECT_NAME} pull
+  docker-compose -p ${PROJECT_NAME} stop
+  docker-compose -p ${PROJECT_NAME} rm --all -f -v
+  docker-compose -p ${PROJECT_NAME} up -d --force-recreate
+  
+  docker rmi `docker images --filter dangling=true -q 2>/dev/null` 2>/dev/null
+}
+
+PROJECT_NAME=${1}
 readVariableIfRequired "PROJECT_NAME"
 
-export DOMAIN=${DOMAIN}
+PROJECT_URL=${2}
+readVariableIfRequired "PROJECT_URL"
 
-docker-compose -p ${PROJECT_NAME} pull
-docker-compose -p ${PROJECT_NAME} stop
-docker-compose -p ${PROJECT_NAME} rm --all -f -v
-docker-compose -p ${PROJECT_NAME} up -d --force-recreate
-
-docker rmi `docker images --filter dangling=true -q 2>/dev/null` 2>/dev/null
+rm -rf ${PROJECT_NAME}
+git clone ${PROJECT_URL} ${PROJECT_NAME}
+cd ${PROJECT_NAME}
+docker-compose-deploy ${PROJECT_NAME} ${3}

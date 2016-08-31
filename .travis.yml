@@ -1,7 +1,7 @@
 language: node_js
 sudo: required
 services:
-  - docker
+- docker
 node_js:
 - 6.2.2
 script:
@@ -10,4 +10,21 @@ script:
 - docker login -e ${DOCKER_EMAIL} -u ${DOCKER_USER} -p ${DOCKER_PASS}
 - docker push ${DOCKER_USER}/charts
 notifications:
- email: false
+  email: false
+before_install:
+- openssl aes-256-cbc -K $encrypted_afb3f4a0fd37_key -iv $encrypted_afb3f4a0fd37_iv
+  -in deploy_rsa.enc -out deploy_rsa -d
+addons:
+  ssh_known_hosts: "${PROD_NAME}"
+before_deploy:
+- eval "$(ssh-agent -s)"
+- chmod 600 $TRAVIS_BUILD_DIR/deploy_rsa
+- ssh-add $TRAVIS_BUILD_DIR/deploy_rsa
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} "bash -s" -- < ./deploy.sh
+    charts https://github.com/lili1725/angular-es-charts.git lili1725.fr
+  on:
+    branch: master
+
