@@ -18,7 +18,7 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} "bash -s" -- < ./deploy.sh charts https://github.com/lili1725/angular-es-charts.git lili1725.fr
+  script: ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} "bash -s" 2>/dev/null -- < ./deploy.sh charts https://github.com/lili1725/angular-es-charts.git lili1725.fr
   on:
     branch: master
 before_install:
