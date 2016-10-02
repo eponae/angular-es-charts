@@ -1,16 +1,17 @@
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-xs-12">
-        <h1 class="page-header">ANALYSIS</h1>
+    <div class="col-lg-12 col-md-12 col-xs-12 page-header">
+        <h1 class="col-lg-4 col-md-4 col-xs-12">
+            ANALYSIS 
+        </h1>
     </div>
     <div class="col-lg-12 col-md-12 col-xs-12">
         <form class="col-lg-6 col-md-6 col-xs-6">
             <div class="form-group">
-                <label for="typeSelect" ng-bind="chooseType"></label>
-                <select class="form-control" id="typeSelect" type="text" ng-model="type" ng-options="type for type in types"></select>
-            </div>
+                <select class="form-control" id="typeSelect" type="text" ng-model="type" ng-options="type as type.name for type in types"></select>
+            </div>    
         </form>
     </div>
     <div class="col-lg-12 col-md-12 col-xs-12">
-        <custom-drilldown add-new-series="addNewSeries" remove-series="removeSeries" type="type" title="title" drilldown="addDrilldown" load-data="loadDeps"></custom-drilldown>
+        <custom-drilldown add-new-series="addNewSeries" remove-series="removeSeries" type="type.code" title="title" drilldown="addDrilldown" load-data="loadDeps"></custom-drilldown>
     </div>
 </div>

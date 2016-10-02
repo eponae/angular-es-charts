@@ -12,6 +12,7 @@
         "gulp-angular-filesort": "latest",
         "gulp-clean-css": "latest",
         "gulp-htmlmin": "latest",
+        "gulp-imagemin": "latest",
         "gulp-rename": "latest",
         "gulp-sass": "2.3.1",
         "gulp-uglify": "latest",

@@ -12,7 +12,6 @@ angular.module('basics').controller('ConservatoryDetailsCtrl', ['$scope', '$time
             latitude: coordsMarker[0],
             longitude: coordsMarker[1]
         },
-        icon: "https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png",
         id: 0,
         show: false,
         zoom: 11

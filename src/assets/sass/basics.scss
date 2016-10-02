@@ -1,6 +1,10 @@
 @import 'src/modules/dashboard/sass/dashboard';
 @import 'src/modules/conservatory/sass/conservatory';
+@import 'src/modules/charts/sass/charts';
+
 $font-stack: arial;
+$main-color: #8B668B;
+
 @mixin margins($top, $bottom, $left) {
     margin-top: $top;
     margin-bottom: $bottom;
@@ -18,4 +22,20 @@ body {
 }
 .clickable {
     cursor: pointer;
+}
+a {
+    color: $main-color;
+}
+
+.popup-img {
+    max-height: 150px;
+    max-width: 150px;
+}
+.header-img {
+    max-height: 250px;
+    max-width: 200px;
+}
+
+.center {
+    text-align: center;
 }
