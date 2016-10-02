@@ -42,7 +42,8 @@ angular.module('basics').directive('customDrilldown', ['$timeout', function ($ti
                         marginTop: 50
                     },
                     title: {
-                        text: scope.title
+                        text: scope.title,
+                        margin: 50
                     },
                     xAxis: {
                         labels: {

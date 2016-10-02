@@ -1,6 +1,11 @@
 <div id="mapWindow">
-    <p><b ng-bind="parameter.categorie"></b></p>
-    <p ng-bind="parameter.rue_1 || parameter.rue_2 || parameter.rue_3"></p>
-    <p ng-bind="parameter.cp + ' ' + parameter.ville"></p>
-    <p ng-bind="parameter.tel"></p>
+    <div class="col-lg-6 col-md-6 col-xs-6 conservatory-details">
+        <p><b ng-bind="parameter.categorie"></b></p>
+        <p ng-bind="parameter.rue_1 || parameter.rue_2 || parameter.rue_3"></p>
+        <p ng-bind="parameter.cp + ' ' + parameter.ville"></p>
+        <p ng-bind="parameter.tel"></p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-6 center conservatory-img">                            
+        <img class="popup-img" src="assets/img/instruments_musique_guitare.svg">
+    </div>
 </div>

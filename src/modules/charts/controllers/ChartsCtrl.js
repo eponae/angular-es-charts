@@ -2,8 +2,8 @@
 
 angular.module('basics').controller('ChartsCtrl', ['$scope', 'esServ', '$timeout', function ($scope, esServ, $timeout) {
 
-        $scope.type = 'pie';
-        $scope.types = ['pie', 'column'];
+        $scope.types = [{name: 'Pie chart', code: 'pie'}, {name: 'Column chart', code: 'column'}];
+        $scope.type = $scope.types[0];
         $scope.dep = 0;
 
         $scope.chooseDep = "Select a department";

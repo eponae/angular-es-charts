@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     minifyCss = require('gulp-clean-css'),
     minifyHTML = require('gulp-htmlmin'),
     minifyJs = require('gulp-uglify'),
+    minifyImg = require('gulp-imagemin'),
     usemin = require('gulp-usemin'),
     rename = require('gulp-rename'),
     runSequence = require('run-sequence'),
@@ -23,6 +24,7 @@ var paths = {
     sassFiles: ['src/assets/sass/**/*.scss', 'src/modules/**/sass/*.scss'],
     templates: 'src/modules/**/*.html',
     index: 'src/index.html',
+    img: 'src/assets/img/*',
     bower_fonts: 'bower_components/**/*.{ttf,woff,eof,svg,woff2}'
 };
 
@@ -128,6 +130,12 @@ gulp.task('custom-js-dist', function() {
         .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('imagemin', function() {
+    gulp.src(paths.img)
+        .pipe(minifyImg())
+        .pipe(gulp.dest('dist/assets/img'))
+});
+
 // check JS code quality
 gulp.task('jshint', function() {
     return gulp.src(paths.scripts)
@@ -151,7 +159,7 @@ gulp.task('custom-js', function(callback) {
 });
 
 gulp.task('build-assets', function(callback) {
-    runSequence('custom-json', 'copy-bower_fonts', callback);
+    runSequence('custom-json', 'copy-bower_fonts', 'imagemin', callback);
 });
 
 gulp.task('build-custom', function(callback) {

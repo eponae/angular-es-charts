@@ -1,27 +1,34 @@
 <div class="row">
     <div class="col-lg-12 col-md-12 col-xs-12">
-        <h3 class="page-header">ILE DE FRANCE'S CONSERVATORIES</h3>
+        <h3 class="page-header">ILE DE FRANCE'S CONSERVATORIES                    
+        </h3>
     </div>
-    <div ng-id="totalItems > 0" class="col-lg-12 col-md-12 col-xs-12">
-        <table id="table" class="table table-responsive table-bordered">
-            <thead>
-                <tr>
-                    <th>COMPANY NAME</th>
-                    <th>TOWN</th>
-                    <th class="clickable" ng-click="sortByColumn('cp')">POSTCODE</th>
-                    <th>DETAILS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="conservatory in conservatories">
-                    <td ng-bind="conservatory._source.fields.denomination_sociale"></td>
-                    <td ng-bind="conservatory._source.fields.ville"></td>
-                    <td ng-bind="conservatory._source.fields.cp"></td>
-                    <td class="text-center"><a><i class="fa fa-lg fa-map-marker clickable" ng-click="openDetails(conservatory)" aria-hidden="true"></i></a></td>
-                </tr>
-            </tbody>
-        </table>
-        <uib-pagination id="custPagination" class="pagination-sm" direction-links="true" boundary-links="true" boundary-link-numbers="true" total-items="totalItems" num-pages="numPages" max-size="maxSize" ng-model="currentPage" ng-change="changePage(currentPage)"
-            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="itemsPerPage"></uib-pagination>
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <div ng-id="totalItems > 0" class="col-lg-8 col-md-8 col-xs-12">
+            <table id="table" class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>COMPANY NAME</th>
+                        <th>TOWN</th>
+                        <th class="clickable" ng-click="sortByColumn('cp')">POSTCODE</th>
+                        <th>DETAILS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="conservatory in conservatories">
+                        <td ng-bind="conservatory._source.fields.denomination_sociale"></td>
+                        <td ng-bind="conservatory._source.fields.ville"></td>
+                        <td ng-bind="conservatory._source.fields.cp"></td>
+                        <td class="text-center"><a><i class="fa fa-lg fa-map-marker clickable" ng-click="openDetails(conservatory)" aria-hidden="true"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <uib-pagination id="custPagination" class="pagination-sm" direction-links="true" boundary-links="true" boundary-link-numbers="true" total-items="totalItems" num-pages="numPages" max-size="maxSize" ng-model="currentPage" ng-change="changePage(currentPage)"
+                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="itemsPerPage"></uib-pagination>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12 center">
+            <img class="header-img" src="assets/img/instruments_musique_trompette.svg">
+            <img class="header-img" src="assets/img/instruments_musique_piano.svg">
+        </div>
     </div>
 </div>
