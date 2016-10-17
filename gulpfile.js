@@ -25,6 +25,7 @@ var paths = {
     templates: 'src/modules/**/*.html',
     index: 'src/index.html',
     img: 'src/assets/img/*',
+    icons: 'src/assets/favicon/*',
     bower_fonts: 'bower_components/**/*.{ttf,woff,eof,svg,woff2}'
 };
 
@@ -107,12 +108,12 @@ gulp.task('custom-js-default', function() {
     var target = gulp.src(paths.index);
     var sources = gulp.src(paths.scripts)
         .pipe(angularFilesort())
-        .pipe(gulp.dest('./dist/scripts'));
+        .pipe(gulp.dest('dist/scripts'));
 
     return target.pipe(inject(sources, {
             ignorePath: 'dist'
         }))
-        .pipe(gulp.dest('./dist'))
+        .pipe(gulp.dest('dist'))
         .pipe(connect.reload());
 });
 
@@ -121,7 +122,7 @@ gulp.task('custom-js-dist', function() {
         .pipe(angularFilesort())
         .pipe(concat('basics.min.js'))
         .pipe(minifyJs())
-        .pipe(gulp.dest('./dist/scripts'));
+        .pipe(gulp.dest('dist/scripts'));
 
     return gulp.src(paths.index)
         .pipe(inject(appStream, {
@@ -134,6 +135,11 @@ gulp.task('imagemin', function() {
     gulp.src(paths.img)
         .pipe(minifyImg())
         .pipe(gulp.dest('dist/assets/img'))
+});
+
+gulp.task('copy-icons', function() {
+    gulp.src(paths.icons)
+        .pipe(gulp.dest('dist/'))
 });
 
 // check JS code quality
@@ -159,7 +165,7 @@ gulp.task('custom-js', function(callback) {
 });
 
 gulp.task('build-assets', function(callback) {
-    runSequence('custom-json', 'copy-bower_fonts', 'imagemin', callback);
+    runSequence('custom-json', 'copy-bower_fonts', 'imagemin', 'copy-icons', callback);
 });
 
 gulp.task('build-custom', function(callback) {

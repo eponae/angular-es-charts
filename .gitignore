@@ -6,3 +6,4 @@
 /src/assets/css/
 /nbproject/
 **/npm-debug.log
+.idea/
