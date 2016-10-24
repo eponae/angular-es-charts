@@ -8,8 +8,13 @@ angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibM
     $scope.numPages = 5;
     $scope.itemsPerPage = 10;
     var currentIndex = 0;
-    $scope.totalItems = 0;
-    $scope.conservatories = [];
+
+    var clearResults = function() {
+        $scope.totalItems = 0;
+        $scope.conservatories = [];
+    };
+
+    clearResults();
 
     var orders = {
         'cp': 'asc'
@@ -23,12 +28,12 @@ angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibM
         } else {
             orders[currentCriteria] = 'asc';
         }
-        $scope.changePage($scope.currentPage);
+        $scope.changePage($scope.currentPage, $scope.searchedConserv);
     };
 
-    $scope.changePage = function(page) {
+    $scope.changePage = function(page, value) {
         currentIndex = $scope.itemsPerPage * (page - 1);
-        var request = 'conservatory_index/conservatories/_search?source={"size":' + $scope.itemsPerPage + ',"from":' + currentIndex + ',"sort":[{"fields.' + currentCriteria + '":{"order":"' + orders[currentCriteria] + '"}}]}';
+        var request = 'conservatory_index/conservatories/_search?source={"size":' + $scope.itemsPerPage + ',"from":' + currentIndex + ',"sort":[{"fields.' + currentCriteria + '":{"order":"' + orders[currentCriteria] + '"}}] ' + ((value) ? ',"query":{"match":{"_all":"' +  value + '"}}' : "") + '}';
 
         esServ.getData(request, {
             then: function(response) {
@@ -36,17 +41,16 @@ angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibM
                     $scope.totalItems = response.data.hits.total;
                     $scope.conservatories = response.data.hits.hits;
                 } else {
-                    $scope.totalItems = 0;
-                    $scope.conservatories = [];
+                    clearResults();
                 }
             },
             catch: function() {
-
+                clearResults();
             }
         });
     };
 
-    $scope.changePage($scope.currentPage, 'cp');
+    $scope.changePage($scope.currentPage, "");
 
     $scope.openDetails = function(conservatory) {
         var modalInstance = $uibModal.open({
