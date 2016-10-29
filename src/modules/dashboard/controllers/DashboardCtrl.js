@@ -33,7 +33,8 @@ angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibM
 
     $scope.changePage = function(page, value) {
         currentIndex = $scope.itemsPerPage * (page - 1);
-        var request = 'conservatory_index/conservatories/_search?source={"size":' + $scope.itemsPerPage + ',"from":' + currentIndex + ',"sort":[{"fields.' + currentCriteria + '":{"order":"' + orders[currentCriteria] + '"}}] ' + ((value) ? ',"query":{"match":{"_all":"' +  value + '"}}' : "") + '}';
+        var request = 'conservatory_index/conservatories/_search?source={"size":' + $scope.itemsPerPage + ',"from":' + currentIndex + ',"sort":[{"fields.' + currentCriteria + '":{"order":"' + orders[currentCriteria] + '"}}] '
+            + ((value) ? ',"query":{"multi_match":{"query":"' + value + '","type":"cross_fields","fields":["fields.cp","fields.denomination_sociale","fields.dep","fields.ville"],"operator":"and"}}}' : '}');
 
         esServ.getData(request, {
             then: function(response) {
