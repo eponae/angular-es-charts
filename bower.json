@@ -10,20 +10,20 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.5.0",
-    "angular-i18n": "~1.5.0",
-    "angular-bootstrap": "~1.0.3",
-    "angular-ui-router": "^0.2.15",
-    "bootstrap": "~3.3.6",
+    "angular": "latest",
+    "angular-i18n": "latest",
+    "angular-bootstrap": "latest",
+    "angular-ui-router": "latest",
+    "bootstrap": "latest",
     "font-awesome": "latest",
-    "angular-animate": "~1.5.0",
-    "highstock-release": "4.2.4",
-    "highcharts-ng": "0.0.11",
-    "angular-spinner": "0.7.0",
-    "lodash": "4.15.0",
+    "angular-animate": "latest",
+    "highstock-release": "latest",
+    "highcharts-ng": "latest",
+    "angular-spinner": "latest",
+    "lodash": "latest",
     "angular-google-maps": "latest"
   },
   "resolutions": {
-    "angular": "~1.5.0"
+    "angular": "latest"
   }
 }

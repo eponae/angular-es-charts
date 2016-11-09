@@ -26,7 +26,6 @@ body {
 a {
     color: $main-color;
 }
-
 .popup-img {
     max-height: 150px;
     max-width: 150px;
@@ -35,7 +34,11 @@ a {
     max-height: 250px;
     max-width: 200px;
 }
-
 .center {
     text-align: center;
+}
+#alert {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
 }

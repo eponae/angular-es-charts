@@ -1,11 +1,13 @@
-angular.module('basics').service('ErrorInterceptor', function () {
+angular.module('basics').service('ErrorInterceptor', ['$rootScope', function ($rootScope) {
+	var addAlert = function (alert) {
+		$rootScope.alerts.push(alert);
+	};
+
 	var service = this;
 	service.requestError = function (config) {
-		//add alert
-		console.log("error in request");
+		addAlert({type: 'danger', msg: 'An error occurred'});
 	};
-	service.responseError = function (response) {
-		//add alert
-		console.log("error in response");
+	service.responseError = function (respone) {
+		addAlert({type: 'danger', msg: 'An error occurred'});
 	};
-});
+}]);
