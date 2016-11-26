@@ -5,10 +5,10 @@ services:
 node_js:
 - 6.7.0
 script:
-- npm run build
-- docker build -t ${DOCKER_USER}/charts .
 - docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
-- docker push ${DOCKER_USER}/charts
+- npm run build &&
+  docker build -t ${DOCKER_USER}/charts . &&
+  docker push ${DOCKER_USER}/charts
 notifications:
   email: false
 before_install:
