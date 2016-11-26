@@ -7,6 +7,7 @@ angular.module('basics').config(['$stateProvider', '$urlRouterProvider', '$httpP
             libraries: 'geometry,visualization' //Librairies supplémentaires
         });
         $urlRouterProvider.otherwise('/dashboard');
+        $httpProvider.interceptors.push('ErrorInterceptor');
 
         $stateProvider
             .state('dashboard', {

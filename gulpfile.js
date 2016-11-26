@@ -38,7 +38,7 @@ gulp.task('usemin-dist', function() {
             jslib: [minifyJs(), 'concat'],
             css: [minifyCss({
                 keepSpecialComments: 0
-            }), 'concat'],
+            }), 'concat']
         }))
         .pipe(gulp.dest('dist'));
 });
@@ -113,8 +113,7 @@ gulp.task('custom-js-default', function() {
     return target.pipe(inject(sources, {
             ignorePath: 'dist'
         }))
-        .pipe(gulp.dest('dist'))
-        .pipe(connect.reload());
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('custom-js-dist', function() {
@@ -195,7 +194,7 @@ gulp.task('watch', function() {
     gulp.watch([paths.json], ['custom-json']);
     gulp.watch([paths.sassFiles], ['custom-sass']);
     gulp.watch([paths.styles], ['custom-css']);
-    gulp.watch([paths.scripts], ['custom-js']);
+    gulp.watch([paths.scripts], ['custom-js', 'usemin']);
     gulp.watch([paths.templates], ['custom-templates']);
     gulp.watch([paths.index], ['usemin']);
 });

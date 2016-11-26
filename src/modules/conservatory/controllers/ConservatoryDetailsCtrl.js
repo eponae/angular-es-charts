@@ -17,6 +17,18 @@ angular.module('basics').controller('ConservatoryDetailsCtrl', ['$scope', '$time
         zoom: 11
     };
 
+    $scope.windowOptions = {
+        visible: false
+    };
+
+    $scope.onMarkerClick = function() {
+        $scope.windowOptions.visible = !$scope.windowOptions.visible;
+    };
+
+    $scope.closeClick = function() {
+        $scope.windowOptions.visible = false;
+    };
+
     $scope.close = function() {
         $uibModalInstance.dismiss('closed');
     };

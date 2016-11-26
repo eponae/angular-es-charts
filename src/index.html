@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=11" />
-        
+
         <title>Conservatories</title>
 
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -58,8 +58,10 @@
 
         <div id="wrapper">
 
+            <div uib-alert id="alert" dismiss-on-timeout="3000" ng-repeat="alert in alerts" close="closeAlert($index)" ng-bind="alert.msg"></div></div>
+
             <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <nav class="navbar navbar-default navbar-static-top" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
                         <span class="sr-only">Toggle navigation</span>
