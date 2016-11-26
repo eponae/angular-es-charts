@@ -3,7 +3,9 @@
 angular.module('basics').controller('ConservatoryDetailsCtrl', ['$scope', '$timeout', 'conservatory', '$uibModalInstance', function($scope, $timeout, conservatory, $uibModalInstance) {
     $scope.conservatory = conservatory;
     var coordsMarker = $scope.conservatory.lat_lon;
+
     $scope.showMap = false;
+    $scope.showWindow = false;
 
     $scope.templateUrl = "templates/conservatory/templates/markerWindow.html";
 
@@ -17,16 +19,19 @@ angular.module('basics').controller('ConservatoryDetailsCtrl', ['$scope', '$time
         zoom: 11
     };
 
-    $scope.windowOptions = {
-        visible: false
+    $scope.map = {
+        coord: {
+            latitude: coordsMarker[0],
+            longitude: coordsMarker[1]
+        }
     };
 
     $scope.onMarkerClick = function() {
-        $scope.windowOptions.visible = !$scope.windowOptions.visible;
+        $scope.showWindow = !$scope.showWindow;
     };
 
     $scope.closeClick = function() {
-        $scope.windowOptions.visible = false;
+        $scope.showWindow = false;
     };
 
     $scope.close = function() {
