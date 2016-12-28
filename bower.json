@@ -24,6 +24,6 @@
     "angular-google-maps": "latest"
   },
   "resolutions": {
-    "angular": "latest"
+    "angular": "1.6.1"
   }
 }
