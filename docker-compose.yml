@@ -1,12 +1,12 @@
 version: '2'
 
 services:
-  charts:
+  site:
     image: lili1725/charts
     command: -domain "elasticsearch.vibioh.fr *.googleapis.com *.gstatic.com"
     labels:
       traefik.frontend.passHostHeader: 'true'
-      traefik.frontend.rule: 'Host: charts.${DOMAIN}'
+      traefik.frontend.rule: 'Host: charts.lili1725.fr'
       traefik.port: '1080'
     logging:
       driver: json-file
