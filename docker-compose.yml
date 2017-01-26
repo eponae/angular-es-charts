@@ -3,7 +3,9 @@ version: '2'
 services:
   site:
     image: lili1725/charts
-    command: -domain "elasticsearch.vibioh.fr *.googleapis.com *.gstatic.com"
+    command:
+    - -csp
+    - default-src 'self' elasticsearch.vibioh.fr *.googleapis.com *.gstatic.com
     labels:
       traefik.frontend.passHostHeader: 'true'
       traefik.frontend.rule: 'Host: charts.lili1725.fr'
