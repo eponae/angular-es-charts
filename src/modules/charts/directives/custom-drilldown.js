@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('basics').directive('customDrilldown', ['$timeout', function ($timeout) {
-    var directive = {
+angular.module('basics').directive('customDrilldown', [function () {
+    return {
         restrict: 'E',
         scope: {
             addNewSeries: '=',
@@ -14,7 +14,6 @@ angular.module('basics').directive('customDrilldown', ['$timeout', function ($ti
         template: '<div id="containerDrill" style="min-width: 310px; height: 600px; margin: 0 auto"></div>',
         link: function (scope, element, attr) {
             var series = [];
-            var timer1, timer2;
 
             var updateTitle = function () {
                 var chart = $('#containerDrill').highcharts();
@@ -36,7 +35,7 @@ angular.module('basics').directive('customDrilldown', ['$timeout', function ($ti
                     events: {
                         drilldown: scope.drilldown,
                         drillup: function () {
-                            $timeout(updateTitle, 100);
+                            scope.$evalAsync(updateTitle);
                         }
                     },
                     marginTop: 50
@@ -97,10 +96,7 @@ angular.module('basics').directive('customDrilldown', ['$timeout', function ($ti
                             chart.drillUp();
                         }
                     }
-                    if (timer1) {
-                        $timeout.cancel(timer1);
-                    }
-                    timer1 = $timeout(function () {
+                    scope.$evalAsync(function () {
                         while (chart.series.length > 0) {
                             chart.series[0].remove();
                         }
@@ -121,10 +117,7 @@ angular.module('basics').directive('customDrilldown', ['$timeout', function ($ti
                             chart.drillUp();
                         }
                     }
-                    if (timer2) {
-                        $timeout.cancel(timer2);
-                    }
-                    timer2 = $timeout(function () {
+                    scope.$evalAsync(function () {
                         for (var newi = 0; newi < newValue.length; newi++) {
                             chart.addSeries(newValue[newi], false, true);
                         }
@@ -155,12 +148,6 @@ angular.module('basics').directive('customDrilldown', ['$timeout', function ($ti
                     }
                 }
             });
-
-            scope.$on('$destroy', function () {
-                $timeout.cancel(timer1);
-                $timeout.cancel(timer2);
-            });
         }
     };
-    return directive;
 }]);

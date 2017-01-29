@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('basics').controller('ConservatoryDetailsCtrl', ['$scope', '$timeout', 'conservatory', '$uibModalInstance', function($scope, $timeout, conservatory, $uibModalInstance) {
+angular.module('basics').controller('ConservatoryDetailsCtrl', ['$scope', 'conservatory', '$uibModalInstance', 'uiGmapIsReady', function ($scope, conservatory, $uibModalInstance, uiGmapIsReady) {
+    $scope.myMap = {};
+
     $scope.conservatory = conservatory;
     var coordsMarker = $scope.conservatory.lat_lon;
 
@@ -26,19 +28,19 @@ angular.module('basics').controller('ConservatoryDetailsCtrl', ['$scope', '$time
         }
     };
 
-    $scope.onMarkerClick = function() {
+    $scope.onMarkerClick = function () {
         $scope.showWindow = !$scope.showWindow;
     };
 
-    $scope.closeClick = function() {
+    $scope.closeClick = function () {
         $scope.showWindow = false;
     };
 
-    $scope.close = function() {
+    $scope.close = function () {
         $uibModalInstance.dismiss('closed');
     };
 
-    $timeout(function() {
-      $scope.showMap = true;
-    }, 500);
+    uiGmapIsReady.promise(1).then(function () {
+       $scope.myMap.refresh();
+    });
 }]);
