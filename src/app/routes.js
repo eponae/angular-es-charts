@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('basics').config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'uiGmapGoogleMapApiProvider',
-    function($stateProvider, $urlRouterProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
+    function ($stateProvider, $urlRouterProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
         uiGmapGoogleMapApiProvider.configure({
             key: "AIzaSyDOaHhIXyhaoX9I692e6YUBVYCicLvED5A", //Clé pour utiliser l'API
             libraries: 'geometry,visualization' //Librairies supplémentaires
@@ -19,6 +19,11 @@ angular.module('basics').config(['$stateProvider', '$urlRouterProvider', '$httpP
                 url: '/charts',
                 templateUrl: 'templates/charts/templates/charts.html',
                 controller: 'ChartsCtrl'
+            })
+            .state('contact', {
+                url: '/contact',
+                templateUrl: 'templates/contact/templates/contact.html',
+                controller: 'ContactCtrl'
             })
             .state('init', {
                 url: '/init',
