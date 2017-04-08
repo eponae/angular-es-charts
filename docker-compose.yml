@@ -5,7 +5,7 @@ services:
     image: lili1725/charts
     command:
     - -csp
-    - default-src 'self' elasticsearch.vibioh.fr *.googleapis.com *.gstatic.com
+    - default-src 'self' elasticsearch.vibioh.fr *.googleapis.com *.gstatic.com; script-src 'self' 'unsafe-inline' maps.googleapis.com; style-src 'self' 'unsafe-inline'
     labels:
       traefik.frontend.passHostHeader: 'true'
       traefik.frontend.rule: 'Host: charts.lili1725.fr'
