@@ -120,7 +120,7 @@ gulp.task('custom-js-dist', function() {
     var appStream = gulp.src(paths.scripts)
         .pipe(angularFilesort())
         .pipe(concat('basics.min.js'))
-        .pipe(minifyJs())
+        //.pipe(minifyJs())
         .pipe(gulp.dest('dist/scripts'));
 
     return gulp.src(paths.index)
