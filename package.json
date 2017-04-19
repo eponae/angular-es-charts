@@ -29,7 +29,8 @@
     "bower": "./node_modules/.bin/bower install",
     "gulp": "./node_modules/.bin/gulp build-dist",
     "start": "./node_modules/.bin/gulp",
-    "build": "npm install && npm run bower && npm run gulp"
+    "build": "npm install && npm run bower && npm run gulp",
+    "test": "karma start karma.conf.js"
   },
   "author": "",
   "license": "ISC"

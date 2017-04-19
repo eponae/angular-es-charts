@@ -88,7 +88,7 @@ angular.module('basics').controller('ChartsCtrl', ['$scope', 'esServ', function 
                             chart.addSeriesAsDrilldown(e.point, series);
                             $scope.title = series.name + "<br>" + docCount + " postcodes";
                             chart.redraw();
-                        }, 500);
+                        });
                     },
                     catch: function () {
                     }

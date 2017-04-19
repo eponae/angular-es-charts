@@ -10,7 +10,7 @@ angular.module('basics').component('customDrilldownCompo', {
         type: '<'
     },
     template: '<div id="containerDrill" style="min-width: 310px; height: 600px; margin: 0 auto"></div>',
-    controller: ['$timeout', function customDrilldownCompoCtrl($timeout) {
+    controller: ['$scope', function customDrilldownCompoCtrl($scope) {
         var series = [];
 
         var updateTitle = function () {
@@ -35,7 +35,7 @@ angular.module('basics').component('customDrilldownCompo', {
                     events: {
                         drilldown: this.drilldown,
                         drillup: function () {
-                            $timeout(updateTitle);
+                            $scope.$evalAsync(updateTitle);
                         }
                     },
                     marginTop: 50
@@ -96,7 +96,7 @@ angular.module('basics').component('customDrilldownCompo', {
                             chart.drillUp();
                         }
                     }
-                    $timeout(function () {
+                    $scope.$evalAsync(function () {
                         while (chart.series.length > 0) {
                             chart.series[0].remove();
                         }
@@ -117,7 +117,7 @@ angular.module('basics').component('customDrilldownCompo', {
                             chart.drillUp();
                         }
                     }
-                    $timeout(function () {
+                    $scope.$evalAsync(function () {
                         for (var newi = 0; newi < newValue.length; newi++) {
                             chart.addSeries(newValue[newi], false, true);
                         }
