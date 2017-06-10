@@ -62,7 +62,7 @@ gulp.task('clean', function() {
 gulp.task('copy-bower_fonts', function() {
     return gulp.src(paths.bower_fonts)
         .pipe(rename({
-            dirname: '/fonts'
+            dirname: 'fonts'
         }))
         .pipe(gulp.dest('dist/lib'))
         .pipe(connect.reload());
