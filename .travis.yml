@@ -18,6 +18,6 @@ notifications:
 deploy:
   provider: script
   skip_cleanup: true
-  script: curl -u ${DEPLOY_USER}:${DEPLOY_PASS} -X POST https://dashboard-api.vibioh.fr/containers/charts/ --data-binary @docker-compose.yml
+  script: 'curl -H "Authorization: GitHub ${GITHUB_OAUTH_TOKEN}" -X POST https://dashboard-api.vibioh.fr/containers/cv/ --data-binary @docker-compose.yml'
   on:
     branch: master
