@@ -1,8 +1,8 @@
 # Angular-ES-Charts - Angular 1.6 - ElasticSearch 5 - Charts
 
-[![Build Status](https://travis-ci.org/lili1725/angular-es-charts.svg?branch=master)](https://travis-ci.org/lili1725/angular-es-charts)
+[![Build Status](https://travis-ci.org/eponae/angular-es-charts.svg?branch=master)](https://travis-ci.org/eponae/angular-es-charts)
 
-[Find a conservatory in Paris](https://charts.lili1725.fr)
+[Find a conservatory in Paris](https://charts.eponae.fr)
 
 ## Usage
 ### Requirements
