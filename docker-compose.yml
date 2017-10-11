@@ -2,7 +2,7 @@ version: '2'
 
 services:
   site:
-    image: lili1725/charts
+    image: eponae/charts
     command:
     - -csp
     - default-src 'self' elasticsearch.vibioh.fr *.googleapis.com *.gstatic.com; script-src 'self' 'unsafe-inline' maps.googleapis.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com
