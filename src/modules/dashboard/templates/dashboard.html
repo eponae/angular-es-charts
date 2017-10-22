@@ -39,7 +39,12 @@
                 <ul uib-pagination id="custPagination" class="pagination-sm" boundary-links="true"
                     boundary-link-numbers="true" total-items="totalItems" num-pages="numPages"
                     max-size="maxSize" ng-model="currentPage"
-                    ng-change="changePage(currentPage, searchedConserv)"
+                    ng-change="changePage({
+                           page: currentPage,
+                           sort: currentCriteria,
+                           order: orders[currentCriteria],
+                           filter: filter
+                           })"
                     previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
                     items-per-page="itemsPerPage"></ul>
             </div>

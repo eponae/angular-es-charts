@@ -4,10 +4,7 @@ angular.module('basics').component('customDrilldown', {
     template: '<div>' +
     '<zingchart id="myChart" zc-json="chartData" zc-height="100%" zc-width="100%">' +
     '</zingchart></div>',
-    controller: ['$scope', 'deprecatedConservatoryService', function customDrilldownCompoCtrl($scope, deprecatedConservatoryService) {
-
-        var firstLevel = 'fields.dep';
-        //var request = 'conservatory_index/conservatories/_search?source={"aggs":{"dep_cp":{"filter":{"term":{"fields.dep":"' + drilldown + '"}},"aggs":{"_res":{"terms":{"field":"fields.cp","size":10000}}}}}}';
+    controller: ['$scope', 'conservatoryService', function customDrilldownCompoCtrl($scope, conservatoryService) {
 
         $scope.chartData = {
             type: "bar",
@@ -31,32 +28,26 @@ angular.module('basics').component('customDrilldown', {
 
         var formatData = function (results) {
             var series = [];
-            var resultsLength = results.length;
 
-            for (var resIndex = 0; resIndex < resultsLength; resIndex++) {
-                var key = results[resIndex].key;
+            var resultsKeys = Object.keys(results);
 
+            resultsKeys.forEach(function(key) {
                 series.push({
-                    "values": [results[resIndex].doc_count],
+                    "values": [results[key]],
                     "text": 'Dep ' + key.toString(),
                     "data-id": key
                 });
-            }
+            });
 
             $scope.chartData.series = series;
-            $scope.chartData.title.text = resultsLength + " departments";
+            $scope.chartData.title.text = resultsKeys.length + " departments";
         };
 
         this.$onInit = function () {
-            var request = 'conservatory_index/conservatories/_search?source={"aggs":{"_res":{"terms":{"field":"' + firstLevel + '","size":10000}}}}';
 
-            deprecatedConservatoryService.getData(request, {
+            conservatoryService.getAggregateByDepartment({
                 then: function (response) {
-                    if (response.data && response.data.hasOwnProperty("aggregations")) {
-
-                        var results = response.data.aggregations._res.buckets || [];
-                        formatData(results);
-                    }
+                    formatData(response.data || {});
                 },
                 catch: function () {
 
@@ -66,10 +57,6 @@ angular.module('basics').component('customDrilldown', {
             zingchart.node_click = function (p) {
                 console.log('click', p);
             };
-        };
-
-        this.$onChanges = function (changes) {
-
         };
     }]
 });

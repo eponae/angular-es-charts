@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('basics').controller('DashboardCtrl', ['$scope', 'deprecatedConservatoryService', '$uibModal', 'conservatoryService',
-    function ($scope, deprecatedConservatoryService, $uibModal, conservatoryService) {
+angular.module('basics').controller('DashboardCtrl', ['$scope', '$uibModal', 'conservatoryService',
+    function ($scope, $uibModal, conservatoryService) {
 
         /* Parameters for pagination */
         $scope.currentPage = 1;

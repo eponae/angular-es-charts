@@ -18,7 +18,6 @@ module.exports = function (config) {
             'node_modules/angular/angular.min.js',
             'node_modules/angular-i18n/angular-locale_fr-fr.js',
             'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
-            'node_modules/lodash/lodash.min.js',
             'node_modules/zingchart/client/zingchart.min.js',
             'node_modules/zingchart-angularjs/src/zingchart-angularjs.js',
             'node_modules/angular-spinner/dist/angular-spinner.js',
