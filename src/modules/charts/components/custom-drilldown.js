@@ -1,49 +1,71 @@
 'use strict';
 
 angular.module('basics').component('customDrilldown', {
-    template: '<div ng-bind="title"></div><div><canvas id="bar" class="chart chart-bar"' +
-    '  chart-data="data" chart-labels="labels" chart-series="series"' +
-    '</canvas></div>',
-    controller: ['$scope', 'conservatoryService', function customDrilldownCompoCtrl($scope, conservatoryService) {
-
-        $scope.title = 'Departments';
+    template: '<div>' +
+    '<zingchart id="myChart" zc-json="chartData" zc-height="100%" zc-width="100%">' +
+    '</zingchart></div>',
+    controller: ['$scope', 'deprecatedConservatoryService', function customDrilldownCompoCtrl($scope, deprecatedConservatoryService) {
 
         var firstLevel = 'fields.dep';
         //var request = 'conservatory_index/conservatories/_search?source={"aggs":{"dep_cp":{"filter":{"term":{"fields.dep":"' + drilldown + '"}},"aggs":{"_res":{"terms":{"field":"fields.cp","size":10000}}}}}}';
 
-        $scope.data = [];
-        $scope.labels = [];
-        $scope.series = ['Number of departments'];
+        $scope.chartData = {
+            type: "bar",
+            title: {
+                backgroundColor: "transparent",
+                fontColor: "black",
+                text: 'Departments'
+            },
+            backgroundColor: "transparent",
+            plot: {
+                cursor: 'pointer',
+                valueBox: {
+                    text: '%t'
+                }
+            },
+            series: [],
+            scaleX: {
+                item: {visible: false}
+            }
+        };
 
-        var formatDeps = function (results, resultsLength) {
-            var data = [];
-            var labels = [];
+        var formatData = function (results) {
+            var series = [];
+            var resultsLength = results.length;
 
             for (var resIndex = 0; resIndex < resultsLength; resIndex++) {
-                data.push(results[resIndex].doc_count);
-                labels.push(results[resIndex].key);
+                var key = results[resIndex].key;
+
+                series.push({
+                    "values": [results[resIndex].doc_count],
+                    "text": 'Dep ' + key.toString(),
+                    "data-id": key
+                });
             }
-            $scope.data = [data];
-            $scope.labels = labels;
+
+            $scope.chartData.series = series;
+            $scope.chartData.title.text = resultsLength + " departments";
         };
 
         this.$onInit = function () {
             var request = 'conservatory_index/conservatories/_search?source={"aggs":{"_res":{"terms":{"field":"' + firstLevel + '","size":10000}}}}';
 
-            conservatoryService.getData(request, {
+            deprecatedConservatoryService.getData(request, {
                 then: function (response) {
                     if (response.data && response.data.hasOwnProperty("aggregations")) {
-                        var results = response.data.aggregations._res.buckets || [];
-                        var resultsLength = results.length;
 
-                        formatDeps(results, resultsLength);
-                        $scope.title = resultsLength + " departments";
+                        var results = response.data.aggregations._res.buckets || [];
+                        formatData(results);
                     }
                 },
                 catch: function () {
 
                 }
             });
+
+            zingchart.node_click = function (p) {
+                console.log('click', p);
+            };
         };
 
         this.$onChanges = function (changes) {

@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('basics', ['ui.bootstrap', 'ui.router', 'chart.js', 'angularSpinner', 'ngAnimate', 'uiGmapgoogle-maps']);
+angular.module('basics', ['ui.bootstrap', 'ui.router', 'zingchart-angularjs', 'angularSpinner', 'ngAnimate', 'uiGmapgoogle-maps']);

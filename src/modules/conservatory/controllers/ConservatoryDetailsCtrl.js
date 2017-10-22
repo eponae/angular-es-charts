@@ -4,7 +4,6 @@ angular.module('basics').controller('ConservatoryDetailsCtrl', ['$scope', 'conse
     $scope.myMap = {};
 
     $scope.conservatory = conservatory;
-    var coordsMarker = $scope.conservatory.lat_lon;
 
     $scope.showMap = false;
     $scope.showWindow = false;
@@ -13,8 +12,8 @@ angular.module('basics').controller('ConservatoryDetailsCtrl', ['$scope', 'conse
 
     $scope.marker = {
         coord: {
-            latitude: coordsMarker[0],
-            longitude: coordsMarker[1]
+            latitude: $scope.conservatory.lat,
+            longitude: $scope.conservatory.lng
         },
         id: 0,
         show: false,
@@ -23,8 +22,8 @@ angular.module('basics').controller('ConservatoryDetailsCtrl', ['$scope', 'conse
 
     $scope.map = {
         coord: {
-            latitude: coordsMarker[0],
-            longitude: coordsMarker[1]
+            latitude: $scope.conservatory.lat,
+            longitude: $scope.conservatory.lng
         }
     };
 
