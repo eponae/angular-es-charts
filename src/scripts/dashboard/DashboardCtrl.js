@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('basics').controller('DashboardCtrl', ['$scope', '$uibModal', 'conservatoryService',
+angular.module('conservatories').controller('DashboardCtrl', ['$scope', '$uibModal', 'conservatoryService',
     function ($scope, $uibModal, conservatoryService) {
 
         /* Parameters for pagination */

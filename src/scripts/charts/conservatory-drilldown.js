@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('basics').component('customDrilldown', {
+angular.module('conservatories').component('conservatoryDrilldown', {
     template: '<div>' +
     '<zingchart id="myChart" zc-json="chartData" zc-height="100%" zc-width="100%">' +
     '</zingchart></div>',

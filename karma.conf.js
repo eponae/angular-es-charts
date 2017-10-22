@@ -26,12 +26,10 @@ module.exports = function (config) {
             'node_modules/angular-simple-logger/dist/angular-simple-logger.min.js',
             'node_modules/angular-google-maps/dist/angular-google-maps.min.js',
             'node_modules/angular-mocks/angular-mocks.js',
-            'src/app/module.js',
-            'src/app/routes.js',
-            'src/app/constants.js',
-            'src/app/ErrorInterceptor.js',
-            'src/app/MasterCtrl.js',
-            'src/modules/**/*.js',
+            'src/scripts/app.js',
+            'src/scripts/interceptor/ErrorInterceptor.js',
+            'src/scripts/home/MasterCtrl.js',
+            'src/scripts/**/*.js',
             'src/tests/**/*.test.js'
         ],
 

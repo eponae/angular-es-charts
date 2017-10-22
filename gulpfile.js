@@ -1,199 +1,169 @@
-var gulp = require('gulp'),
-    del = require('del'),
-    concat = require('gulp-concat'),
-    connect = require('gulp-connect'),
-    inject = require('gulp-inject'),
-    angularFilesort = require('gulp-angular-filesort'),
-    minifyCss = require('gulp-clean-css'),
-    minifyHTML = require('gulp-htmlmin'),
-    minifyJs = require('gulp-uglify'),
-    minifyImg = require('gulp-imagemin'),
-    usemin = require('gulp-usemin'),
-    rename = require('gulp-rename'),
-    runSequence = require('run-sequence'),
-    sass = require('gulp-sass'),
-    watch = require('gulp-watch'),
-    jshint = require('gulp-jshint'),
-    stylish = require('jshint-stylish');
+var gulp = require('gulp');
+var del = require('del');
+var runSequence = require('run-sequence');
+var babelify = require('babelify');
+var browserify = require('browserify');
+var vinylSourceStream = require('vinyl-source-stream');
+var vinylBuffer = require('vinyl-buffer');
+
+// Load all gulp plugins into the plugins object.
+var plugins = require('gulp-load-plugins')();
 
 var paths = {
-    scripts: ['src/app/**/*.js', 'src/modules/**/*.js'],
-    json: 'src/assets/json/**/*.json',
-    styles: 'src/assets/css/**/*.css',
-    sassFiles: ['src/assets/sass/**/*.scss', 'src/modules/**/sass/*.scss'],
-    templates: 'src/modules/**/*.html',
+    scripts: {
+        all: 'src/scripts/**/*.js',
+        app: 'src/scripts/app.js'
+    },
+    styles: 'src/assets/css/*.css',
+    sass: ['src/assets/sass/*.scss', 'src/scripts/**/*.scss'],
+    css: 'src/assets/css/',
+    templates: 'src/scripts/**/*.html',
     index: 'src/index.html',
     img: 'src/assets/img/*',
     icons: 'src/assets/favicon/*',
     fonts: 'node_modules/bootstrap/dist/fonts/*.{ttf,woff,eof,svg,woff2}'
 };
 
-/**
- * Handle bower components listed in index.html
- */
-gulp.task('usemin-dist', function() {
-    return gulp.src('dist/index.html')
-        .pipe(usemin({
-            jslib: [minifyJs(), 'concat'],
-            css: [minifyCss({
-                keepSpecialComments: 0
-            }), 'concat']
+var build = 'dist/';
+
+var out = {
+    lib: build + 'lib/',
+    scripts: {
+        file: 'app.min.js',
+        folder: build + 'scripts/'
+    },
+    css: {
+        file: 'app.min.css',
+        folder: build + 'assets/css/'
+    },
+    templates: build + 'templates/',
+    img: build + 'assets/img/',
+    fonts: 'fonts',
+    index: build + 'index.html'
+};
+
+/* The jshint task runs jshint with ES6 support. */
+gulp.task('jshint', function () {
+    return gulp.src(paths.scripts.all)
+        .pipe(plugins.jshint({
+            esnext: true // Enable ES6 support
         }))
-        .pipe(gulp.dest('dist'));
+        .pipe(plugins.jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('usemin', function() {
-    return gulp.src('dist/index.html')
-        .pipe(usemin())
-        .pipe(gulp.dest('dist'))
-        .pipe(connect.reload());
-});
+/* Compile all script files into one output minified JS file. */
+gulp.task('scripts', ['jshint'], function () {
 
-gulp.task('clean', function() {
-    return del([
-        'dist'
-    ]);
-});
+    var sources = browserify({
+        entries: paths.scripts.app,
+        debug: true // Build source maps
+    })
+        .transform(babelify.configure({
+            // You can configure babel here!
+            // https://babeljs.io/docs/usage/options/
+            presets: ["es2015"]
+        }));
 
-/**
- * Copy assets
- */
-gulp.task('copy-fonts', function() {
-    return gulp.src(paths.fonts)
-        .pipe(rename({
-            dirname: 'fonts'
+    return sources.bundle()
+        .pipe(vinylSourceStream(out.scripts.file))
+        .pipe(vinylBuffer())
+        .pipe(plugins.sourcemaps.init({
+            loadMaps: true // Load the sourcemaps browserify already generated
         }))
-        .pipe(gulp.dest('dist/lib'))
-        .pipe(connect.reload());
-});
-
-/* Transform SASS files into CSS stylesheets */
-gulp.task('custom-sass', function() {
-    return gulp.src(paths.sassFiles)
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('src/assets/css/'))
-        .pipe(connect.reload());
-});
-
-gulp.task('custom-css', function() {
-    return gulp.src(paths.styles)
-        .pipe(concat('basics.min.css'))
-        .pipe(gulp.dest('dist/assets/css'))
-        .pipe(connect.reload());
-});
-
-gulp.task('custom-css-dist', function() {
-    return gulp.src(paths.styles)
-        .pipe(concat('basics.min.css'))
-        .pipe(minifyCss())
-        .pipe(gulp.dest('dist/assets/css'));
-});
-
-gulp.task('custom-templates', function() {
-    return gulp.src(paths.templates)
-        .pipe(minifyHTML())
-        .pipe(gulp.dest('dist/templates'))
-        .pipe(connect.reload());
-});
-
-gulp.task('custom-json', function() {
-    return gulp.src(paths.json)
-        .pipe(gulp.dest('dist/assets/json'))
-        .pipe(connect.reload());
-});
-
-//Correct livereload for inject
-gulp.task('custom-js-default', function() {
-    var target = gulp.src(paths.index);
-    var sources = gulp.src(paths.scripts)
-        .pipe(angularFilesort())
-        .pipe(gulp.dest('dist/scripts'));
-
-    return target.pipe(inject(sources, {
-            ignorePath: 'dist'
+        .pipe(plugins.ngAnnotate())
+        .pipe(plugins.uglify())
+        .pipe(plugins.sourcemaps.write('./', {
+            includeContent: true
         }))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest(out.scripts.folder))
+        .pipe(plugins.connect.reload());
+
 });
 
-gulp.task('custom-js-dist', function() {
-    var appStream = gulp.src(paths.scripts)
-        .pipe(angularFilesort())
-        .pipe(concat('basics.min.js'))
-        .pipe(minifyJs())
-        .pipe(gulp.dest('dist/scripts'));
-
-    return gulp.src(paths.index)
-        .pipe(inject(appStream, {
-            ignorePath: 'dist'
-        }))
-        .pipe(gulp.dest('./dist'));
-});
-
-gulp.task('imagemin', function() {
-    gulp.src(paths.img)
-        .pipe(minifyImg())
-        .pipe(gulp.dest('dist/assets/img'))
-});
-
-gulp.task('copy-icons', function() {
-    gulp.src(paths.icons)
-        .pipe(gulp.dest('dist/'))
-});
-
-// check JS code quality
-gulp.task('jshint', function() {
-    return gulp.src(paths.scripts)
-        .pipe(jshint())
-        .pipe(jshint.reporter(stylish));
-});
-
-/**
- * Live reload server
- */
-gulp.task('webserver', function() {
-    connect.server({
-        root: 'dist',
+gulp.task('serve', ['build'], function () {
+    plugins.connect.server({
+        root: build,
+        port: 4242,
         livereload: true,
-        port: 8888
+        fallback: out.index
     });
 });
 
-gulp.task('custom-js', function(callback) {
-    runSequence('build-custom', 'usemin', callback);
+gulp.task('clean', function () {
+    return del([
+        build
+    ]);
 });
 
-gulp.task('build-assets', function(callback) {
-    runSequence('custom-json', 'copy-fonts', 'imagemin', 'copy-icons', callback);
+gulp.task('copy-fonts', function () {
+    return gulp.src(paths.fonts)
+        .pipe(plugins.rename({
+            dirname: out.fonts
+        }))
+        .pipe(gulp.dest(out.lib))
+        .pipe(plugins.connect.reload());
 });
 
-gulp.task('build-custom', function(callback) {
-    runSequence('custom-js-default', 'jshint', 'custom-sass', 'custom-css', 'custom-templates', callback);
+/* Transform SASS files into CSS stylesheets */
+gulp.task('sass', function () {
+    return gulp.src(paths.sass)
+        .pipe(plugins.sass().on('error', plugins.sass.logError))
+        .pipe(gulp.dest(paths.css))
+        .pipe(plugins.connect.reload());
 });
 
-gulp.task('build-custom-dist', function(callback) {
-    runSequence('custom-js-dist', 'jshint', 'custom-sass', 'custom-css-dist', 'custom-templates', callback);
+gulp.task('css', function () {
+    return gulp.src(paths.styles)
+        .pipe(plugins.concat(out.css.file))
+        .pipe(gulp.dest(out.css.folder))
+        .pipe(plugins.connect.reload());
 });
 
-gulp.task('build', function(callback) {
-    runSequence('clean', 'build-assets', 'build-custom', 'usemin', callback);
+gulp.task('templates', function () {
+    return gulp.src(paths.templates)
+        .pipe(gulp.dest(out.templates))
+        .pipe(plugins.connect.reload());
 });
 
-gulp.task('build-dist', function(callback) {
-    runSequence('clean', 'build-assets', 'build-custom-dist', 'usemin-dist', callback);
+gulp.task('index', function() {
+    return gulp.src(paths.index)
+        .pipe(plugins.usemin({
+            jslib: [plugins.uglify(), 'concat'],
+            css: [plugins.cleanCss({
+                keepSpecialComments: 0
+            }), 'concat']
+        }))
+        .pipe(gulp.dest(build));
 });
 
-gulp.task('default', function(callback) {
-    runSequence('build', 'webserver', 'watch', callback);
+gulp.task('imagemin', function () {
+    gulp.src(paths.img)
+        .pipe(plugins.imagemin())
+        .pipe(gulp.dest(out.img))
 });
+
+gulp.task('copy-icons', function () {
+    gulp.src(paths.icons)
+        .pipe(gulp.dest(build))
+});
+
+gulp.task('build-dist', function (callback) {
+    runSequence('clean', 'sass', 'css', 'imagemin', 'copy-fonts', 'scripts', 'templates', 'index', callback);
+});
+
+gulp.task('build', function (callback) {
+    runSequence('clean', 'sass', 'css', 'imagemin', 'copy-fonts', 'scripts', 'templates', 'index', 'watcher', callback);
+});
+
+gulp.task('default', ['serve']);
+
 
 /**
  * Watch custom files
  */
-gulp.task('watch', function() {
-    gulp.watch([paths.json], ['custom-json']);
-    gulp.watch([paths.sassFiles], ['custom-sass']);
-    gulp.watch([paths.styles], ['custom-css']);
-    gulp.watch([paths.scripts], ['custom-js', 'usemin']);
-    gulp.watch([paths.templates], ['custom-templates']);
-    gulp.watch([paths.index], ['usemin']);
+gulp.task('watcher', function () {
+    gulp.watch(paths.sass, ['sass']);
+    gulp.watch(paths.styles, ['css']);
+    gulp.watch(paths.scripts.all, ['scripts']);
+    gulp.watch(paths.templates, ['templates']);
 });

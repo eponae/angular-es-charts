@@ -1,7 +1,7 @@
 describe('Test DashboardCtrl', function() {
 
     /* Mock module */
-    beforeEach(module('basics'));
+    beforeEach(module('conservatories'));
 
     var $controller;
 
@@ -16,7 +16,7 @@ describe('Test DashboardCtrl', function() {
         beforeEach(function() {
             $scope = {
                 currentPage: 1,
-                searchedConserv: "CONSERVATOIRE DE PARIS",
+                filter: "CONSERVATOIRE DE PARIS",
                 changePage: function(page, value) {
 
                 }
@@ -26,7 +26,7 @@ describe('Test DashboardCtrl', function() {
 
         it('Expected changePage to be called', function() {
             spyOn($scope, 'changePage');
-            $scope.sortByColumn('cp');
+            $scope.sortByColumn('name');
             expect($scope.changePage).toHaveBeenCalledWith(1, "CONSERVATOIRE DE PARIS");
         });
 

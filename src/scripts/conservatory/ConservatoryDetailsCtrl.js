@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('basics').controller('ConservatoryDetailsCtrl', ['$scope', 'conservatory', '$uibModalInstance', 'uiGmapIsReady', function ($scope, conservatory, $uibModalInstance, uiGmapIsReady) {
+angular.module('conservatories').controller('ConservatoryDetailsCtrl', ['$scope', 'conservatory', '$uibModalInstance', 'uiGmapIsReady', function ($scope, conservatory, $uibModalInstance, uiGmapIsReady) {
     $scope.myMap = {};
 
     $scope.conservatory = conservatory;
