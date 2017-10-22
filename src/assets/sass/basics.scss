@@ -1,6 +1,5 @@
-@import 'src/modules/dashboard/sass/dashboard';
-@import 'src/modules/conservatory/sass/conservatory';
-@import 'src/modules/charts/sass/charts';
+@import '../../modules/dashboard/sass/dashboard';
+@import '../../modules/conservatory/sass/conservatory';
 
 $font-stack: arial;
 $main-color: #8B668B;
@@ -16,12 +15,35 @@ $main-color: #8B668B;
   font-size: small;
 }
 
-.navbar-static-top {
-  margin-bottom: 0;
-}
-
 body {
   background-color: #FFF;
+
+  height: 100%;
+  width: 100%;
+
+  .navbar {
+
+    display: inline-flex;
+    width: 100%;
+
+    @media screen and (max-width: 500px) {
+     flex-flow: column nowrap;
+    }
+    @media screen and (min-width: 500px) {
+      flex-flow: row nowrap;
+    }
+
+    .navbar-header, .navbar-default {
+      width: 100%;
+    }
+    .navbar-static-top {
+      margin-bottom: 0;
+    }
+  }
+
+  .padding-10 {
+    padding: 10px;
+  }
 }
 
 #wrapper {

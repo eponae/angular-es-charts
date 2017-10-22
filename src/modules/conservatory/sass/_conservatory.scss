@@ -2,6 +2,7 @@
     height: 80%;
     width: 80%;
 }
+
 #mapWindow {
     height: 100%;
     width: 90%;
@@ -14,8 +15,14 @@
         padding-left: 20px;
     }
 }
+
 #modalForm {
     margin: 0;
+    .btn-close {
+        background: none;
+        border: 0;
+        margin: 2px;
+    }
 }
 .fullwidth {
     .angular-google-map-container {

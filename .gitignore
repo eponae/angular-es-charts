@@ -1,8 +1,5 @@
 /dist/
 /node_modules/
-/bower_components/*
-!/bower_components/startbootstrap-sb-admin-2
-!/bower_components/libs
 /src/assets/css/
 /nbproject/
 **/npm-debug.log

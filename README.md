@@ -7,7 +7,6 @@
 ## Usage
 ### Requirements
 * [NodeJS](http://nodejs.org/) (with [NPM](https://www.npmjs.org/))
-* [Bower](http://bower.io)
 * [Gulp](http://gulpjs.com)
 
 ### Installation
@@ -22,14 +21,9 @@ Gulp tasks are defined in `gulpfile.js`. You can change those tasks to improve y
 
 #### External Modules
 
-[`sb-admin-2`](http://startbootstrap.com/template-overviews/sb-admin-2/)
 [`ui.bootstrap`](http://angular-ui.github.io/bootstrap/)
 [`ui.router`](https://github.com/angular-ui/ui-router)
-[`highcharts-ng`](https://github.com/pablojim/highcharts-ng)
-[`highcharts`] (https://github.com/highslide-software/highstock-release)
 [`lodash`](https://lodash.com/)
-
-If you'd like to include any additional modules/packages not included, add them to your `bower.json` file and then update the `src/index.html` file, to include them in the minified distribution output. You must perform `bower install`.
 
 ## Project
 ### Modules

@@ -3,8 +3,8 @@
 angular.module('basics').config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'uiGmapGoogleMapApiProvider',
     function ($stateProvider, $urlRouterProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
         uiGmapGoogleMapApiProvider.configure({
-            key: "AIzaSyDOaHhIXyhaoX9I692e6YUBVYCicLvED5A", //Clé pour utiliser l'API
-            libraries: 'geometry,visualization' //Librairies supplémentaires
+            key: "AIzaSyDOaHhIXyhaoX9I692e6YUBVYCicLvED5A",
+            libraries: 'geometry,visualization'
         });
         $urlRouterProvider.otherwise('/dashboard');
         $httpProvider.interceptors.push('ErrorInterceptor');
@@ -24,11 +24,6 @@ angular.module('basics').config(['$stateProvider', '$urlRouterProvider', '$httpP
                 url: '/contact',
                 templateUrl: 'templates/contact/templates/contact.html',
                 controller: 'ContactCtrl'
-            })
-            .state('init', {
-                url: '/init',
-                templateUrl: 'templates/initES/templates/initES.html',
-                controller: 'InitESCtrl'
             });
     }
 ]);

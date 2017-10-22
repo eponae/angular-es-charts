@@ -1,153 +1,55 @@
 'use strict';
 
-angular.module('basics').directive('customDrilldown', [function () {
-    return {
-        restrict: 'E',
-        scope: {
-            addNewSeries: '=',
-            removeSeries: '=',
-            loadData: "=",
-            drilldown: '=',
-            title: '=',
-            type: '='
-        },
-        template: '<div id="containerDrill" style="min-width: 310px; height: 600px; margin: 0 auto"></div>',
-        link: function (scope, element, attr) {
-            var series = [];
+angular.module('basics').component('customDrilldown', {
+    template: '<div ng-bind="title"></div><div><canvas id="bar" class="chart chart-bar"' +
+    '  chart-data="data" chart-labels="labels" chart-series="series"' +
+    '</canvas></div>',
+    controller: ['$scope', 'conservatoryService', function customDrilldownCompoCtrl($scope, conservatoryService) {
 
-            var updateTitle = function () {
-                var chart = $('#containerDrill').highcharts();
-                if (chart && chart.series[0]) {
-                    chart.setTitle({
-                        text: chart.series[0].data.length + " departments"
-                    });
-                }
-            };
+        $scope.title = 'Departments';
 
-            /*Remove old chart while leaving page and draw a new one*/
-            if (Highcharts.charts && Highcharts.charts.length > 0) {
-                Highcharts.charts.length = 0;
+        var firstLevel = 'fields.dep';
+        //var request = 'conservatory_index/conservatories/_search?source={"aggs":{"dep_cp":{"filter":{"term":{"fields.dep":"' + drilldown + '"}},"aggs":{"_res":{"terms":{"field":"fields.cp","size":10000}}}}}}';
+
+        $scope.data = [];
+        $scope.labels = [];
+        $scope.series = ['Number of departments'];
+
+        var formatDeps = function (results, resultsLength) {
+            var data = [];
+            var labels = [];
+
+            for (var resIndex = 0; resIndex < resultsLength; resIndex++) {
+                data.push(results[resIndex].doc_count);
+                labels.push(results[resIndex].key);
             }
+            $scope.data = [data];
+            $scope.labels = labels;
+        };
 
-            $('#containerDrill').highcharts({
-                chart: {
-                    type: scope.type,
-                    events: {
-                        drilldown: scope.drilldown,
-                        drillup: function () {
-                            scope.$evalAsync(updateTitle);
-                        }
-                    },
-                    marginTop: 50
-                },
-                drilldown: {
-                    drillUpButton: {
-                        relativeTo: "plotBox",
-                        position: "y"
-                    }
-                },
-                title: {
-                    text: scope.title,
-                    margin: 50,
-                    style: {
-                        'color': '#003399',
-                        'fontSize': '18px'
-                    }
-                },
-                xAxis: {
-                    labels: {
-                        enabled: false
-                    },
-                    title: {
-                        text: ""
-                    }
-                },
-                yAxis: {
-                    labels: {
-                        enabled: false
-                    },
-                    title: {
-                        text: ""
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}'
-                        }
-                    }
-                },
-                tooltip: {
-                    headerFormat: '',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span><br/>'
-                },
-                series: series
-            });
+        this.$onInit = function () {
+            var request = 'conservatory_index/conservatories/_search?source={"aggs":{"_res":{"terms":{"field":"' + firstLevel + '","size":10000}}}}';
 
-            scope.removeSeries = function () {
-                var chart = $('#containerDrill').highcharts();
-                if (chart) {
-                    if (chart.drilldownLevels && chart.drilldownLevels.length > 0) {
-                        while (chart.drilldownLevels.length > 0) {
-                            chart.drillUp();
-                        }
-                    }
-                    scope.$evalAsync(function () {
-                        while (chart.series.length > 0) {
-                            chart.series[0].remove();
-                        }
-                        if (chart.drillUpButton) {
-                            chart.drillUpButton = chart.drillUpButton.destroy();
-                        }
-                        chart.redraw();
-                    }, 200);
+            conservatoryService.getData(request, {
+                then: function (response) {
+                    if (response.data && response.data.hasOwnProperty("aggregations")) {
+                        var results = response.data.aggregations._res.buckets || [];
+                        var resultsLength = results.length;
 
-                }
-            };
-
-            scope.addNewSeries = function (newValue) {
-                var chart = $('#containerDrill').highcharts();
-                if (chart) {
-                    if (chart.drilldownLevels && chart.drilldownLevels.length > 0) {
-                        while (chart.drilldownLevels.length > 0) {
-                            chart.drillUp();
-                        }
+                        formatDeps(results, resultsLength);
+                        $scope.title = resultsLength + " departments";
                     }
-                    scope.$evalAsync(function () {
-                        for (var newi = 0; newi < newValue.length; newi++) {
-                            chart.addSeries(newValue[newi], false, true);
-                        }
-                        chart.redraw();
-                    }, 200);
-                }
-            };
+                },
+                catch: function () {
 
-            scope.$watch('title', function (newValue, oldValue) {
-                if (newValue !== oldValue) {
-                    var chart = $('#containerDrill').highcharts();
-                    if (chart) {
-                        chart.setTitle({
-                            text: newValue
-                        });
-                    }
                 }
             });
+        };
 
-            scope.$watch('type', function (newValue, oldValue) {
-                if (newValue !== oldValue) {
-                    var chart = $('#containerDrill').highcharts();
-                    if (chart) {
-                        chart.options.chart.type = newValue;
-                        scope.removeSeries();
-                        scope.loadData();
-                        chart.redraw();
-                    }
-                }
-            });
-        }
-    };
-}]);
+        this.$onChanges = function (changes) {
+
+        };
+    }]
+});
+
+

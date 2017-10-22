@@ -18,11 +18,7 @@
 
         <!-- STYLES -->
         <!-- build:css lib/css/main.min.css -->
-        <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="../bower_components/startbootstrap-sb-admin-2/bower_components/metisMenu/dist/metisMenu.min.css">
-        <link rel="stylesheet" type="text/css" href="../bower_components/startbootstrap-sb-admin-2/dist/css/timeline.css">
-        <link rel="stylesheet" type="text/css" href="../bower_components/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css">
+        <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
         <!-- endbuild -->
 
         <!-- Custom Styles -->
@@ -30,26 +26,17 @@
 
         <!-- SCRIPTS -->
         <!-- build:jslib lib/js/main.min.js -->
-        <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
-        <script type="text/javascript" src="../bower_components/angular-i18n/angular-locale_fr-fr.js"></script>
-        <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-        <script type="text/javascript" src="../bower_components/lodash/dist/lodash.min.js"></script>
-        <script type="text/javascript" src="../bower_components/highstock-release/highstock.js"></script>
-        <script type="text/javascript" src="../bower_components/highstock-release/highcharts-more.js"></script>
-        <script type="text/javascript" src="../bower_components/highstock-release/modules/exporting.js"></script>
-        <script type="text/javascript" src="../bower_components/highstock-release/modules/drilldown.js"></script>
-        <script type="text/javascript" src="../bower_components/highcharts-ng/dist/highcharts-ng.min.js"></script>
-        <!--<script type="text/javascript" src="../bower_components/spin.js/spin.min.js"></script>-->
-        <script type="text/javascript" src="../bower_components/angular-spinner/dist/angular-spinner.js"></script>
-        <script type="text/javascript" src="../bower_components/angular-animate/angular-animate.min.js"></script>
-        <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-        <script type="text/javascript" src="../bower_components/startbootstrap-sb-admin-2/bower_components/metisMenu/dist/metisMenu.js"></script>
-        <script type="text/javascript" src="../bower_components/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script>
-        <script type="text/javascript" src="../bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
-        <script type="text/javascript" src="../bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
-        <script type="text/javascript" src="../bower_components/libs/dichotomic.js"></script>
-
+        <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+        <script type="text/javascript" src="../node_modules/angular-i18n/angular-locale_fr-fr.js"></script>
+        <script type="text/javascript" src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+        <script type="text/javascript" src="../node_modules/lodash/lodash.min.js"></script>
+        <script type="text/javascript" src="../node_modules/chart.js/dist/Chart.min.js"></script>
+        <script type="text/javascript" src="../node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+        <script type="text/javascript" src="../node_modules/angular-spinner/dist/angular-spinner.js"></script>
+        <script type="text/javascript" src="../node_modules/angular-animate/angular-animate.min.js"></script>
+        <script type="text/javascript" src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="../node_modules/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+        <script type="text/javascript" src="../node_modules/angular-google-maps/dist/angular-google-maps.min.js"></script>
         <!-- endbuild -->
 
     </head>
@@ -69,21 +56,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <span class="navbar-brand" href="index.html">ANGULAR - CHARTS - ES</span>
+                    <span class="navbar-brand" href="index.html">CONSERVATORIES</span>
                 </div>
 
 
-                <div class="navbar-default sidebar" role="navigation">
+                <div class="navbar-default" role="navigation">
                     <div class="sidebar-nav navbar-collapse collapse" uib-collapse="navCollapsed">
                         <ul class="nav in" id="side-menu">
                             <li>
-                                <a ui-sref="dashboard" ui-sref-active="active"><i class="fa fa-table" aria-hidden="true"></i> CONSERVATORIES</a>
+                                <a ui-sref="dashboard" ui-sref-active="active"><i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i> CONSERVATORIES</a>
                             </li>
                             <li>
-                                <a ui-sref="charts" ui-sref-active="active"><i class="fa fa-bar-chart" aria-hidden="true"></i> ANALYSIS</a>
+                                <a ui-sref="charts" ui-sref-active="active"><i class="glyphicon glyphicon-signal" aria-hidden="true"></i> ANALYSIS</a>
                             </li>
                             <li>
-                                <a ui-sref="contact" ui-sref-active="active"><i class="fa fa-user-plus" aria-hidden="true"></i> CONTACT</a>
+                                <a ui-sref="contact" ui-sref-active="active"><i class="glyphicon glyphicon-user" aria-hidden="true"></i> CONTACT</a>
                             </li>
                         </ul>
                     </div>

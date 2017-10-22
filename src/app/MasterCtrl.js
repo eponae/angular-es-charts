@@ -9,11 +9,4 @@ angular.module('basics').controller('MasterCtrl', ['$scope', '$rootScope', funct
     $scope.closeAlert = function(index) {
         $rootScope.alerts.splice(index, 1);
     };
-
-    /* Initialise Highcharts graphs properties */
-    Highcharts.setOptions({
-        global: {
-            useUTC: false
-        }
-    });
 }]);

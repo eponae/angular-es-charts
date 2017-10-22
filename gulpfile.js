@@ -14,8 +14,7 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     watch = require('gulp-watch'),
     jshint = require('gulp-jshint'),
-    stylish = require('jshint-stylish'),
-    notify = require('gulp-notify');
+    stylish = require('jshint-stylish');
 
 var paths = {
     scripts: ['src/app/**/*.js', 'src/modules/**/*.js'],
@@ -26,7 +25,7 @@ var paths = {
     index: 'src/index.html',
     img: 'src/assets/img/*',
     icons: 'src/assets/favicon/*',
-    bower_fonts: 'bower_components/**/*.{ttf,woff,eof,svg,woff2}'
+    fonts: 'node_modules/bootstrap/dist/fonts/*.{ttf,woff,eof,svg,woff2}'
 };
 
 /**
@@ -59,8 +58,8 @@ gulp.task('clean', function() {
 /**
  * Copy assets
  */
-gulp.task('copy-bower_fonts', function() {
-    return gulp.src(paths.bower_fonts)
+gulp.task('copy-fonts', function() {
+    return gulp.src(paths.fonts)
         .pipe(rename({
             dirname: 'fonts'
         }))
@@ -164,7 +163,7 @@ gulp.task('custom-js', function(callback) {
 });
 
 gulp.task('build-assets', function(callback) {
-    runSequence('custom-json', 'copy-bower_fonts', 'imagemin', 'copy-icons', callback);
+    runSequence('custom-json', 'copy-fonts', 'imagemin', 'copy-icons', callback);
 });
 
 gulp.task('build-custom', function(callback) {

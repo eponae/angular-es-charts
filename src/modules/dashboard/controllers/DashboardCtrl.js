@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibModal', function($scope, esServ, $uibModal) {
+angular.module('basics').controller('DashboardCtrl', ['$scope', 'conservatoryService', '$uibModal', function($scope, conservatoryService, $uibModal) {
 
     /* Parameters for pagination */
     $scope.currentPage = 1;
-    $scope.maxSize = 4;
+    $scope.maxSize = 2;
     $scope.numPages = 5;
     $scope.itemsPerPage = 10;
     var currentIndex = 0;
@@ -35,7 +35,7 @@ angular.module('basics').controller('DashboardCtrl', ['$scope', 'esServ', '$uibM
         currentIndex = $scope.itemsPerPage * (page - 1);
         var request = 'conservatory_index/conservatories/_search?source={"size":' + $scope.itemsPerPage + ',"from":' + currentIndex + ',"sort":[{"fields.' + currentCriteria + '":{"order":"' + orders[currentCriteria] + '"}}] ' + ((value) ? ',"query":{"multi_match":{"query":"' + value + '","type":"cross_fields","fields":["fields.cp","fields.denomination_sociale","fields.dep","fields.ville"],"operator":"and"}}}' : '}');
 
-        esServ.getData(request, {
+        conservatoryService.getData(request, {
             then: function(response) {
                 if (response.data && response.data.hasOwnProperty("hits")) {
                     $scope.totalItems = response.data.hits.total;
