@@ -15,16 +15,16 @@ export default function routing($stateProvider, $urlRouterProvider, $httpProvide
         .state('dashboard', {
             url: '/dashboard',
             templateUrl: 'dashboard/dashboard.html',
-            controller: 'DashboardCtrl'
+            controller: 'dashboardController'
         })
         .state('charts', {
             url: '/charts',
             templateUrl: 'charts/charts.html',
-            controller: 'ChartsCtrl'
+            controller: 'chartsController'
         })
         .state('contact', {
             url: '/contact',
             templateUrl: 'contact/contact.html',
-            controller: 'ContactCtrl'
+            controller: 'contactController'
         });
 }
