@@ -1,31 +1,36 @@
 'use strict';
 
-angular.module('conservatories', ['ui.bootstrap', 'ui.router', 'zingchart-angularjs', 'angularSpinner', 'ngAnimate', 'uiGmapgoogle-maps'])
-    .constant("API_URL", "https://charts-api.vibioh.fr/conservatories/")
-    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'uiGmapGoogleMapApiProvider',
-        function ($stateProvider, $urlRouterProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
-            uiGmapGoogleMapApiProvider.configure({
-                key: "AIzaSyDOaHhIXyhaoX9I692e6YUBVYCicLvED5A",
-                libraries: 'geometry,visualization'
-            });
-            $urlRouterProvider.otherwise('/dashboard');
-            $httpProvider.interceptors.push('ErrorInterceptor');
+import angular from 'angular';
+import routing from 'app-routing';
+import HomeController from "home/home-controller";
 
-            $stateProvider
-                .state('dashboard', {
-                    url: '/dashboard',
-                    templateUrl: 'templates/dashboard/templates/dashboard.html',
-                    controller: 'DashboardCtrl'
-                })
-                .state('charts', {
-                    url: '/charts',
-                    templateUrl: 'templates/charts/templates/charts.html',
-                    controller: 'ChartsCtrl'
-                })
-                .state('contact', {
-                    url: '/contact',
-                    templateUrl: 'templates/contact/templates/contact.html',
-                    controller: 'ContactCtrl'
-                });
-        }
-    ]);
+import conservatoryConserv from 'conservatory/_conservatory-module';
+import conservatoryDashboard from 'dashboard/_dashboard-module';
+import conservatoryCharts from 'charts/_charts-module';
+import conservatoryContact from 'contact/_contact-module';
+
+import uirouter from 'angular-ui-router';
+import uibootstrap from 'angular-ui-bootstrap';
+import zingchart from 'zingchart';
+import zingchartangular from 'zingchart-angularjs';
+import spinner from 'angular-spinner';
+import animate from 'angular-animate';
+import uiGmapgooglemaps from 'angular-google-maps';
+
+angular.module('conservatories', [
+        conservatoryConserv,
+        conservatoryCharts,
+        conservatoryDashboard,
+        conservatoryContact,
+        uibootstrap,
+        uirouter,
+        zingchart,
+        zingchartangular,
+        spinner,
+        animate,
+        uiGmapgooglemaps
+    ]
+)
+    .constant("API_URL", "https://charts-api.vibioh.fr/conservatories/")
+    .controller('homeController', HomeController)
+    .config(routing);
