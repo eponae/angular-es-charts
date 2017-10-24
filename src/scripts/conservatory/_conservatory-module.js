@@ -1,4 +1,4 @@
-'use strict';
+
 
 import angular from 'angular';
 import ConservatoryDrilldownController from 'conservatory-drilldown-controller';

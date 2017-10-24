@@ -16,14 +16,12 @@
 4. Run tests: `npm test`
 
 ### Development
-Gulp tasks are defined in `gulpfile.js`. You can change those tasks to improve your development workflow.
 
 #### External Modules
 
 [`ui.bootstrap`](http://angular-ui.github.io/bootstrap/)
 [`zingchart-angularjs`](https://www.zingchart.com/)
 [`ui.router`](https://github.com/angular-ui/ui-router)
-[`lodash`](https://lodash.com/)
 
 ## Project
 ### Modules, Routes

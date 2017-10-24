@@ -1,7 +1,6 @@
-'use strict';
+
 
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', 'uiGmapGoogleMapApiProvider'];
-
 
 export default function routing($stateProvider, $urlRouterProvider, $httpProvider, uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({

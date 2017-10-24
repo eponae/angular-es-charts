@@ -1,4 +1,4 @@
-'use strict';
+
 
 import angular from 'angular';
 import DashboardController from 'dashboard-controller';

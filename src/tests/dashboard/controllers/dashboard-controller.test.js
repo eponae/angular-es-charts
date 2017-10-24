@@ -3,11 +3,8 @@ describe('Test DashboardCtrl', function() {
     /* Mock module */
     beforeEach(module('conservatories'));
 
-    var $controller;
-
-    beforeEach(inject(function(_$controller_){
-        // The injector unwraps the underscores (_) from around the parameter names when matching
-        $controller = _$controller_;
+    beforeEach(inject(function($componentController){
+        this.$controller = $componentController;
     }));
 
     describe('Test sortByColumn', function() {
@@ -21,7 +18,7 @@ describe('Test DashboardCtrl', function() {
 
                 }
             };
-            controller = $controller('DashboardCtrl', { $scope: $scope });
+            controller = this.$controller('dashboard', { $scope: $scope });
         });
 
         it('Expected changePage to be called', function() {
