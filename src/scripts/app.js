@@ -1,35 +1,47 @@
-import angular from 'angular';
-import routing from 'app-routing';
-import HomeController from "home/home-controller";
+import _ from '../../node_modules/lodash/lodash.min.js';
 
-import conservatoryConserv from 'conservatory/_conservatory-module';
-import conservatoryDashboard from 'dashboard/_dashboard-module';
-import conservatoryCharts from 'charts/_charts-module';
-import conservatoryContact from 'contact/_contact-module';
+import angular from '../../node_modules/angular/angular.min.js';
+import uirouter from '../../node_modules/angular-ui-router/release/angular-ui-router.min.js';
+import uibootstrap from '../../node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js';
+import zingchartangular from '../../node_modules/zingchart-angularjs/src/zingchart-angularjs.js';
+import uiGmapgooglemaps from '../../node_modules/angular-google-maps/dist/angular-google-maps.min.js';
 
-import uirouter from 'angular-ui-router';
-import uibootstrap from 'angular-ui-bootstrap';
-import zingchart from 'zingchart';
-import zingchartangular from 'zingchart-angularjs';
-import uiGmapgooglemaps from 'angular-google-maps';
-import angulari18n from 'angular-i18n';
+import routing from './app-routing.js';
 
-import bootstrapStyle from '../../node_modules/bootstrap/dist/css/bootstrap.css';
-import style from '../assets/sass/basics.scss';
+import '../assets/sass/app.scss';
 
-/* Add lodash, angular spinner and animate if missing */
+import conservatoryDetails from './conservatory/conservatory-details-component.js';
+import conservatoryDrilldown from './conservatory/conservatory-drilldown-component.js';
+import conservatoryService from './conservatory/conservatory-service.js';
+import dashboard from './dashboard/dashboard-component.js';
+import charts from './charts/charts-component.js';
+import contact from './contact/contact-component.js';
 
-angular.module('conservatories', [
-    conservatoryConserv,
-    conservatoryCharts,
-    conservatoryDashboard,
-    conservatoryContact,
-    uibootstrap,
-    uirouter,
-    zingchart,
-    zingchartangular,
-    uiGmapgooglemaps
-])
-    .constant('API_URL', 'https://charts-api.vibioh.fr/conservatories/')
-    .controller('homeController', HomeController)
-    .config(routing);
+let conservatoryModule = angular.module('conservatories.conservatory', []);
+conservatoryModule.component('conservatoryDetails', conservatoryDetails);
+conservatoryModule.component('conservatoryDrilldown', conservatoryDrilldown);
+conservatoryModule.service('conservatoryService', conservatoryService);
+
+let contactModule = angular.module('conservatories.contact', []);
+contactModule.component('contact', contact);
+
+let dashboardModule = angular.module('conservatories.dashboard', []);
+dashboardModule.component('dashboard', dashboard);
+
+let chartsModule = angular.module('conservatories.charts', []);
+chartsModule.component('charts', charts);
+
+let conservatories = angular.module('conservatories', [
+  conservatoryModule,
+  chartsModule,
+  dashboardModule,
+  contactModule,
+  uibootstrap,
+  uirouter,
+  zingchartangular,
+  uiGmapgooglemaps
+]);
+conservatories.config(routing);
+conservatories.constant('API_URL', 'https://charts-api.vibioh.fr/conservatories/');
+
+export default conservatories;

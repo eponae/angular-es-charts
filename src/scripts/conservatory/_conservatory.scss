@@ -1,31 +1,32 @@
 .angular-google-map-container {
-    height: 80%;
-    width: 80%;
+  height: 80%;
+  width: 80%;
 }
 
 #mapWindow {
-    height: 100%;
-    width: 90%;
-    
-    .conservatory-details {
-        padding-top: 15px;
-        padding-left: 20px;
-    }
-    .conservatory-img {
-        padding-left: 20px;
-    }
+  height: 100%;
+  width: 90%;
+
+  .conservatory-details {
+    padding-top: 15px;
+    padding-left: 20px;
+  }
+  .conservatory-img {
+    padding-left: 20px;
+  }
 }
 
 #modalForm {
-    margin: 0;
-    .btn-close {
-        background: none;
-        border: 0;
-        margin: 2px;
-    }
+  margin: 0;
+  .btn-close {
+    background: none;
+    border: 0;
+    margin: 2px;
+  }
 }
+
 .fullwidth {
-    .angular-google-map-container {
-        width: 100%;
-    }
+  .angular-google-map-container {
+    width: 100%;
+  }
 }

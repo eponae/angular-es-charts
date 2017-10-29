@@ -1,67 +1,67 @@
 <html lang="en" ng-app="conservatories" ng-strict-di="true">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="IE=11" />
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 
-        <title>Conservatories</title>
+    <title>Conservatories</title>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-        <link rel="manifest" href="/manifest.json">
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="apple-mobile-web-app-title" content="Conservatories">
-        <meta name="application-name" content="Conservatories">
-        <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="apple-mobile-web-app-title" content="Conservatories">
+    <meta name="application-name" content="Conservatories">
+    <meta name="theme-color" content="#ffffff">
 
-        <link rel="stylesheet" type="text/css" href="bundle.css">
+</head>
 
+<body>
 
-    </head>
-
-    <body>
-
-        <div id="wrapper">
-
-            <div uib-alert id="alert" dismiss-on-timeout="3000" ng-repeat="alert in alerts" close="closeAlert($index)" ng-bind="alert.msg"></div></div>
-
-            <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <span class="navbar-brand" href="index.html">CONSERVATORIES</span>
-                </div>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" ng-init="navCollapsed = true"
+                ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <span class="navbar-brand" href="index.html">CONSERVATORIES</span>
+    </div>
 
 
-                <div class="navbar-default" role="navigation">
-                    <div class="sidebar-nav navbar-collapse collapse" uib-collapse="navCollapsed">
-                        <ul class="nav in" id="side-menu">
-                            <li>
-                                <a ui-sref="dashboard" ui-sref-active="active"><i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i> CONSERVATORIES</a>
-                            </li>
-                            <li>
-                                <a ui-sref="charts" ui-sref-active="active"><i class="glyphicon glyphicon-signal" aria-hidden="true"></i> ANALYSIS</a>
-                            </li>
-                            <li>
-                                <a ui-sref="contact" ui-sref-active="active"><i class="glyphicon glyphicon-user" aria-hidden="true"></i> CONTACT</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <div id="page-wrapper">
-                <div ui-view></div>
-            </div>
+    <div class="navbar-default" role="navigation">
+        <div class="sidebar-nav navbar-collapse collapse" uib-collapse="navCollapsed">
+            <ul class="nav in" id="side-menu">
+                <li>
+                    <a ui-sref="dashboard" ui-sref-active="active"><i
+                            class="glyphicon glyphicon-list-alt"
+                            aria-hidden="true"></i> CONSERVATORIES</a>
+                </li>
+                <li>
+                    <a ui-sref="charts" ui-sref-active="active"><i
+                            class="glyphicon glyphicon-signal"
+                            aria-hidden="true"></i> ANALYSIS</a>
+                </li>
+                <li>
+                    <a ui-sref="contact" ui-sref-active="active"><i class="glyphicon glyphicon-user"
+                                                                    aria-hidden="true"></i> CONTACT</a>
+                </li>
+            </ul>
         </div>
+    </div>
+</nav>
+<div id="page-wrapper">
+    <div ui-view></div>
+</div>
+</div>
 
-        <script src="bundle.js"></script>
-    </body>
+<script src="bundle.js"></script>
+</body>
 
 </html>

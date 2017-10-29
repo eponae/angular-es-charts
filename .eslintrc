@@ -1,4 +1,7 @@
 {
   "extends": "airbnb-base/legacy",
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "rules": {
+    "no-unused-vars": "warn"
+  }
 }
