@@ -17,11 +17,11 @@ export default function routing(
     })
     .state('charts', {
       url: '/charts',
-      templateUrl: '<charts></charts>'
+      template: '<charts></charts>'
     })
     .state('contact', {
       url: '/contact',
-      templateUrl: '<contact></contact>'
+      template: '<contact></contact>'
     });
 }
 

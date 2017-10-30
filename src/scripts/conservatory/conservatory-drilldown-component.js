@@ -44,9 +44,11 @@ class ConservatoryDrilldownController {
   $onInit() {
     this.conservatoryService.getAggregateByDepartment()
       .then((response) => this.formatData(response.data || {}));
-    zingchart.node_click = (p) => p;
+    zingchart.node_click = (p) => console.log(p);
   }
 }
+
+ConservatoryDrilldownController.$inject = ['conservatoryService'];
 
 const conservatoryDrilldown = {
   templateUrl: './templates/conservatory-drilldown.html',

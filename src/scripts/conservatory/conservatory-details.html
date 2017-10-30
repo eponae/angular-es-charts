@@ -11,7 +11,7 @@
 </div>
 <div class="modal-body">
     <ui-gmap-google-map class="fullwidth" center="$ctrl.map.coord" zoom="$ctrl.marker.zoom"
-                        control="myMap">
+                        control="$ctrl.myMap">
         <ui-gmap-marker idKey="$ctrl.marker.id" coords="$ctrl.marker.coord"
                         click="$ctrl.onMarkerClick()">
             <ui-gmap-window show="$ctrl.showWindow" closeClick="$ctrl.closeWindow()"

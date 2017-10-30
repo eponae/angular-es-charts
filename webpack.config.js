@@ -38,23 +38,7 @@ module.exports = {
       },
       {
         test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
-        loader: 'file-loader?name=[name].[ext]&publicPath=/fonts/&outputPath=/fonts/'
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'file-loader?name=/img/[name].[ext]'
-      },
-      {
-        test: /\.(json)$/,
-        loader: 'file-loader?name=[path][name].[ext]'
-      },
-      {
-        test: /\.(xml)$/,
-        loader: 'file-loader?name=[path][name].[ext]'
-      },
-      {
-        test: /\.(html)$/,
-        loader: 'file-loader?name=[path][name].[ext]'
+        loader: 'file-loader?name=[name].[ext]&outputPath=/fonts/'
       },
       {
         test: /\.scss$/,

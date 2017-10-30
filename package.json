@@ -19,11 +19,7 @@
     "sass": "1.0.0-beta.2",
     "node-sass": "4.5.3",
     "sass-loader": "6.0.6",
-    "file-loader": "1.1.5",
-    "jasmine-core": "2.8.0",
-    "karma": "1.7.1",
-    "karma-chrome-launcher": "2.2.0",
-    "karma-jasmine": "1.1.0"
+    "file-loader": "1.1.5"
   },
   "description": "## Usage ### Requirements * [NodeJS](http://nodejs.org/) (with [NPM](https://www.npmjs.org/)) * [Gulp](http://gulpjs.com)",
   "main": "gulpfile.js",
@@ -31,16 +27,15 @@
     "webpack": "node_modules/webpack/bin/webpack.js",
     "format": "prettier-eslint \"src/**/*.js\"",
     "clean": "rm -fr ./dist && mkdir ./dist",
-    "copy-index": "cp ./src/index.html ./dist/",
     "copy-fonts": "cp -a ./node_modules/bootstrap/fonts/. ./dist/fonts/",
-    "copy-assets": "npm run copy-fonts && npm run copy-icon && npm run copy-img",
     "copy-icon": "cp -a ./src/assets/favicon/. ./dist/",
     "copy-img": "cp -a ./src/assets/img/. ./dist/img/",
+    "copy-assets": "npm run copy-fonts && npm run copy-icon && npm run copy-img",
     "copy-templates": "mkdir -p ./dist/templates && cp -Ra ./src/scripts/**/*.html ./dist/templates/",
+    "copy-index": "cp ./src/index.html ./dist/",
     "copy": "npm run copy-index && npm run copy-templates && npm run copy-assets",
-    "start": "npm run clean && npm run copy && npm run format && node_modules/.bin/webpack-dev-server --port 4242 --hot --content-base dist/",
-    "build": "npm install && npm run webpack",
-    "test": "node_modules/karma/bin/karma start karma.conf.js"
+    "start": "npm run clean && npm run copy && npm run format && node_modules/.bin/webpack-dev-server --port 4242 --content-base dist/",
+    "build": "npm install && npm run webpack"
   },
   "author": "Alice R",
   "license": "ISC",

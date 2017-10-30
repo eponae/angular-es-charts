@@ -1,15 +1,24 @@
 class ConservatoryDetailsController {
-  constructor($uibModalInstance, uiGmapIsReady) {
-    this.$uibModalInstance = $uibModalInstance;
+  constructor(uiGmapIsReady) {
     this.uiGmapIsReady = uiGmapIsReady;
+  }
+
+  $onInit() {
+    this.conservatory = this.resolve.conservatory;
+
+    this.showWindow = false;
+
+    this.templateUrl = 'templates/marker-window.html';
 
     this.myMap = {};
+
     this.map = {
       coord: {
         latitude: this.conservatory.lat,
         longitude: this.conservatory.lng
       }
     };
+
     this.marker = {
       coord: {
         latitude: this.conservatory.lat,
@@ -20,13 +29,6 @@ class ConservatoryDetailsController {
       zoom: 11
     };
 
-    this.showMap = false;
-    this.showWindow = false;
-
-    this.templateUrl = 'templates/marker-window.html';
-  }
-
-  $onInit() {
     this.uiGmapIsReady.promise(1).then(() => {
       this.myMap.refresh();
     });
@@ -41,14 +43,17 @@ class ConservatoryDetailsController {
   }
 }
 
+ConservatoryDetailsController.$inject = ['uiGmapIsReady'];
+
 const conservatoryDetails = {
-  templateUrl: './templates/conservatory-details.html',
   bindings: {
-    conservatory: '<',
-    close: '&'
+    resolve: '<',
+    close: '&',
+    dismiss: '&'
   },
   controllerAs: '$ctrl',
-  controller: ConservatoryDetailsController
+  controller: ConservatoryDetailsController,
+  templateUrl: './templates/conservatory-details.html'
 };
 
 export default conservatoryDetails;

@@ -10,38 +10,20 @@ import routing from './app-routing.js';
 
 import '../assets/sass/app.scss';
 
-import conservatoryDetails from './conservatory/conservatory-details-component.js';
-import conservatoryDrilldown from './conservatory/conservatory-drilldown-component.js';
-import conservatoryService from './conservatory/conservatory-service.js';
-import dashboard from './dashboard/dashboard-component.js';
-import charts from './charts/charts-component.js';
-import contact from './contact/contact-component.js';
+import conservatory from './conservatory/_conservatory-module.js';
+import dashboard from './dashboard/_dashboard-module.js';
+import contact from './contact/_contact-module.js';
+import charts from './charts/_charts-module.js';
 
-angular.module('conservatories.conservatory', [])
-  .service('conservatoryService', conservatoryService)
-  .component('conservatoryDetails', conservatoryDetails)
-  .component('conservatoryDrilldown', conservatoryDrilldown);
-
-angular.module('conservatories.contact', [])
-  .component('contact', contact);
-
-angular.module('conservatories.dashboard', [])
-  .component('dashboard', dashboard);
-
-angular.module('conservatories.charts', [])
-  .component('charts', charts);
-
-let conservatories = angular.module('conservatories', [
-  'conservatories.conservatory',
-  'conservatories.charts',
-  'conservatories.dashboard',
-  'conservatories.contact',
+export default angular.module('conservatories', [
   'ui.router',
   'ui.bootstrap',
   'zingchart-angularjs',
-  'uiGmapgoogle-maps'
+  'uiGmapgoogle-maps',
+  conservatory.name,
+  charts.name,
+  dashboard.name,
+  contact.name
 ])
   .config(routing)
-  .constant('API_URL', 'https://charts-api.vibioh.fr/conservatories/');
-
-export default conservatories;
+  .constant('API_URL', 'https://api.eponae.fr/conservatories/');

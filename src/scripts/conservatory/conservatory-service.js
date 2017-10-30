@@ -1,12 +1,12 @@
 export default class ConservatoryService {
-  /* @ngInject; */
   constructor($http, API_URL) {
     this.$http = $http;
     this.API_URL = API_URL;
   }
 
   getConservatories(params) {
-    return this.$http.get(this.API_URL + '?page=' + params.page + '&pageSize=10&sort=' + params.sort + '&order=' + params.order + '&q=' + params.filter)
+    return this.$http.get(this.API_URL + '?page=' + params.page + '&pageSize=10&sort=' +
+      params.sort + '&' + params.order + '&q=' + params.filter)
       .then((response) => response);
   }
 
@@ -20,3 +20,4 @@ export default class ConservatoryService {
       .then((response) => response);
   }
 }
+ConservatoryService.$inject = ['$http', 'API_URL'];

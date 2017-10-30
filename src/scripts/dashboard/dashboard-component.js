@@ -60,19 +60,25 @@ class DashboardController {
   }
 
   openDetails(conservatory) {
-    return this.$uibModal.open({
-      template: '<conservatory-details conservatory="conservatory" close="close()"></conservatory-details>',
-      controller: ['$scope', '$xlModalInstance', function modalController($scope, $xlModalInstance) {
-        $scope.conservatory = conservatory;
-
-        $scope.close = () => {
-          $xlModalInstance.close();
-          $scope.$destroy();
-        };
-      }]
+    const modalInstanceResult = this.$uibModal.open({
+      component: 'conservatoryDetails',
+      resolve: {
+        conservatory: function conservatoryObject() {
+          return conservatory;
+        }
+      }
     }).result;
+
+    modalInstanceResult.then(
+      function () {
+      },
+      function () {
+      }
+    );
   }
 }
+
+DashboardController.$inject = ['$uibModal', 'conservatoryService'];
 
 let dashboard = {
   templateUrl: './templates/dashboard.html',
@@ -80,5 +86,4 @@ let dashboard = {
   controller: DashboardController
 };
 
-dashboard.$inject = ['$scope', '$uibModal', 'conservatoryService'];
 export default dashboard;
