@@ -8,23 +8,20 @@ export default function routing(
   });
 
   $urlRouterProvider.otherwise('/dashboard');
-  $httpProvider.interceptors.push('ErrorInterceptor');
+  // $httpProvider.interceptors.push('ErrorInterceptor');
 
   $stateProvider
     .state('dashboard', {
       url: '/dashboard',
-      templateUrl: './templates/dashboard.html',
-      controller: 'dashboardController'
+      template: '<dashboard></dashboard>'
     })
     .state('charts', {
       url: '/charts',
-      templateUrl: './templates/charts.html',
-      controller: 'chartsController'
+      templateUrl: '<charts></charts>'
     })
     .state('contact', {
       url: '/contact',
-      templateUrl: './templates/contact.html',
-      controller: 'contactController'
+      templateUrl: '<contact></contact>'
     });
 }
 
