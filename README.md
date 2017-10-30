@@ -7,7 +7,7 @@
 ## Usage
 ### Requirements
 * [NodeJS](http://nodejs.org/) (with [NPM](https://www.npmjs.org/))
-* [Gulp](http://gulpjs.com)
+* [Webpack](https://webpack.github.io/docs/)
 
 ### Installation
 1. Clone the repository: `git clone ...`
@@ -25,8 +25,10 @@
 
 ## Project
 ### Modules, Routes
-Modules and Routes are declared in `src/scripts/app.js`
+Modules are declared in `src/scripts/app.js`
+Routes are declared in `src/scripts/app-routing.js`
 
 ### Ressources
 Go to `src/assets` :
-    - `sass` contains SASS stylesheets. If you want to override CSS for the project, write only into `sass/test.scss`. `css/test.css` will automatically be created and updated.
+    - `sass` contains SASS main stylesheet.
+    - `img` contains images.
