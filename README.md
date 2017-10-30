@@ -1,6 +1,6 @@
 # Conservatories in Ile de France - Angular 1.6
 
-[![Build Status](https://travis-ci.org/eponae/angular-es-charts.svg?branch=master)](https://travis-ci.org/eponae/angular-es-charts)
+[![Build Status](https://travis-ci.org/eponae/conservatories-charts.svg?branch=master)](https://travis-ci.org/eponae/conservatories-charts)
 
 [Find a conservatory in Ile de France](https://charts.eponae.fr)
 
