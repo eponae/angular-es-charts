@@ -34,8 +34,9 @@
     "copy-templates": "mkdir -p ./dist/templates && cp -Ra ./src/scripts/**/*.html ./dist/templates/",
     "copy-index": "cp ./src/index.html ./dist/",
     "copy": "npm run copy-index && npm run copy-templates && npm run copy-assets",
-    "start": "npm run clean && npm run copy && npm run format && node_modules/.bin/webpack-dev-server --port 4242 --content-base dist/",
-    "build": "npm install && npm run webpack"
+    "prebuild": "npm run clean && npm run copy && npm run format",
+    "start": "npm run prebuild && node_modules/.bin/webpack-dev-server --port 4242 --content-base dist/",
+    "build": "npm install && npm run prebuild && npm run webpack"
   },
   "author": "Alice R",
   "license": "ISC",
