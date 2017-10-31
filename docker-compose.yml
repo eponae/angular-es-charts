@@ -5,7 +5,7 @@ services:
     image: eponae/charts
     command:
     - -csp
-    - default-src 'self' elasticsearch.vibioh.fr *.googleapis.com *.gstatic.com; script-src 'self' 'unsafe-inline' maps.googleapis.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com
+    - default-src 'self' *.googleapis.com *.gstatic.com; script-src 'self' 'unsafe-inline' maps.googleapis.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; connect-src api.eponae.fr
     labels:
       traefik.frontend.passHostHeader: 'true'
       traefik.frontend.rule: 'Host: charts.eponae.fr'
@@ -13,7 +13,7 @@ services:
     logging:
       driver: json-file
       options:
-        max-size: '50m'
+        max-size: '10m'
     restart: on-failure:5
     read_only: true
     cpu_shares: 128
@@ -25,4 +25,3 @@ networks:
   default:
     external:
       name: traefik
-
