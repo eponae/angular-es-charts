@@ -1,7 +1,9 @@
+import chartTemplate from './charts.html';
+
 class ChartsController {}
 
 const charts = {
-  templateUrl: './templates/charts.html',
+  template: chartTemplate,
   controllerAs: '$ctrl',
   controller: ChartsController
 };

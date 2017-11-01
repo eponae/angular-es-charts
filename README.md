@@ -19,9 +19,10 @@
 
 #### External Modules
 
-[`ui.bootstrap`](http://angular-ui.github.io/bootstrap/)
+[`ui-bootstrap`](http://angular-ui.github.io/bootstrap/)
 [`zingchart-angularjs`](https://www.zingchart.com/)
-[`ui.router`](https://github.com/angular-ui/ui-router)
+[`ui-router`](https://github.com/angular-ui/ui-router)
+[`google-maps`](http://angular-ui.github.io/angular-google-maps/#!/)
 
 ## Project
 ### Modules, Routes

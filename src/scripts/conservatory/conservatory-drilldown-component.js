@@ -1,4 +1,5 @@
 import zingchart from '../../../node_modules/zingchart/client/zingchart.min.js';
+import conservatoryDrilldownTemplate from './conservatory-drilldown.html';
 
 class ConservatoryDrilldownController {
   constructor(conservatoryService) {
@@ -51,9 +52,9 @@ class ConservatoryDrilldownController {
 ConservatoryDrilldownController.$inject = ['conservatoryService'];
 
 const conservatoryDrilldown = {
-  templateUrl: './templates/conservatory-drilldown.html',
   controllerAs: '$ctrl',
-  controller: ConservatoryDrilldownController
+  controller: ConservatoryDrilldownController,
+  template: conservatoryDrilldownTemplate
 };
 
 export default conservatoryDrilldown;

@@ -1,7 +1,7 @@
 <div class="row padding-10">
     <div class="col-lg-12 col-md-12 col-xs-12">
         <div class="col-lg-12 col-md-12 col-xs-12">
-            <form class="col-lg-12 col-md-12 col-xs-12">
+            <form class="col-lg-6 col-md-12 col-xs-12">
                 <div class="form-group">
                     <input class="form-control" type="text" placeholder="Find conservatory"
                            ng-model="$ctrl.filter"
@@ -15,50 +15,50 @@
             </form>
         </div>
         <div class="col-lg-12 col-md-12 col-xs-12">
-            <div class="col-lg-8 col-md-8 col-xs-12">
-                <h3 ng-if="$ctrl.totalItems === 0">No result</h3>
-                <table id="table" ng-if="$ctrl.totalItems > 0"
-                       class="table table-responsive table-bordered">
-                    <thead>
-                    <tr>
-                        <th class="clickable" ng-click="$ctrl.sortByColumn('name')">COMPANY NAME
-                        </th>
-                        <th class="clickable" ng-click="$ctrl.sortByColumn('city')">TOWN</th>
-                        <th class="clickable" ng-click="$ctrl.sortByColumn('zip')">POSTCODE</th>
-                        <th>DETAILS</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="conservatory in $ctrl.conservatories">
-                        <td ng-bind="conservatory.name"></td>
-                        <td ng-bind="conservatory.city"></td>
-                        <td ng-bind="conservatory.zip"></td>
-                        <td class="text-center"><a><i
+            <h3 ng-if="$ctrl.totalItems === 0">No result</h3>
+            <table id="table" ng-if="$ctrl.totalItems > 0"
+                   class="table table-responsive table-bordered">
+                <thead>
+                <tr>
+                    <th class="clickable" ng-click="$ctrl.sortByColumn('name')">COMPANY NAME
+                    </th>
+                    <th class="clickable" ng-click="$ctrl.sortByColumn('city')">TOWN</th>
+                    <th class="clickable" ng-click="$ctrl.sortByColumn('zip')">POSTCODE</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="conservatory in $ctrl.conservatories">
+                    <td>
+                        <div ng-bind="conservatory.name"></div>
+                        <a><i
                                 class="glyphicon glyphicon-map-marker clickable"
                                 ng-click="$ctrl.openDetails(conservatory)"
-                                aria-hidden="true"></i></a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <ul uib-pagination id="custPagination" class="pagination-sm" boundary-links="true"
-                    boundary-link-numbers="true" total-items="$ctrl.totalItems"
-                    num-pages="$ctrl.numPages"
-                    max-size="$ctrl.maxSize" ng-model="$ctrl.currentPage"
-                    ng-change="$ctrl.changePage({
+                                aria-hidden="true">
+
+                        </i></a>
+                    </td>
+                    <td ng-bind="conservatory.city"></td>
+                    <td ng-bind="conservatory.zip"></td>
+                </tr>
+                </tbody>
+            </table>
+            <ul uib-pagination id="custPagination" class="pagination-sm" boundary-links="true"
+                boundary-link-numbers="true" total-items="$ctrl.totalItems"
+                num-pages="$ctrl.numPages"
+                max-size="$ctrl.maxSize" ng-model="$ctrl.currentPage"
+                ng-change="$ctrl.changePage({
                            page: $ctrl.currentPage,
                            sort: $ctrl.currentCriteria,
                            order: $ctrl.orders[$ctrl.currentCriteria],
                            filter: $ctrl.filter
                            })"
-                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
-                    last-text="&raquo;"
-                    items-per-page="$ctrl.itemsPerPage"></ul>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-12 center">
-                <img class="header-img" src="img/instruments_musique_trompette.svg">
-                <img class="header-img" src="img/instruments_musique_piano.svg">
-            </div>
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                last-text="&raquo;"
+                items-per-page="$ctrl.itemsPerPage"></ul>
+        </div>
+        <div class="col-lg-12 col-md-12 col-xs-12 center">
+            <img class="header-img" src="../../assets/img/instruments_musique_trompette.svg">
+            <img class="header-img" src="../../assets/img/instruments_musique_piano.svg">
         </div>
     </div>
 </div>

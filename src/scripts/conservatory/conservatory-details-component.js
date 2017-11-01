@@ -1,3 +1,5 @@
+import conservatoryDetailsTemplate from './conservatory-details.html';
+
 class ConservatoryDetailsController {
   constructor(uiGmapIsReady) {
     this.uiGmapIsReady = uiGmapIsReady;
@@ -53,7 +55,7 @@ const conservatoryDetails = {
   },
   controllerAs: '$ctrl',
   controller: ConservatoryDetailsController,
-  templateUrl: './templates/conservatory-details.html'
+  template: conservatoryDetailsTemplate
 };
 
 export default conservatoryDetails;

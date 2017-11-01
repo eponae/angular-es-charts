@@ -8,7 +8,7 @@ export default function routing(
   });
 
   $urlRouterProvider.otherwise('/dashboard');
-  // $httpProvider.interceptors.push('ErrorInterceptor');
+  $httpProvider.interceptors.push('errorInterceptor');
 
   $stateProvider
     .state('dashboard', {

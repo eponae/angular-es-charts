@@ -25,21 +25,18 @@
 
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" ng-init="navCollapsed = true"
-                ng-click="navCollapsed = !navCollapsed">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <span class="navbar-brand" href="index.html">CONSERVATORIES</span>
-    </div>
+    <button type="button" class="navbar-toggle" ng-init="navCollapsed = true"
+            ng-click="navCollapsed = !navCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
 
 
     <div class="navbar-default" role="navigation">
         <div class="sidebar-nav navbar-collapse collapse" uib-collapse="navCollapsed">
-            <ul class="nav in" id="side-menu">
+            <ul class="nav in menu-bar" id="side-menu">
                 <li>
                     <a ui-sref="dashboard" ui-sref-active="active"><i
                             class="glyphicon glyphicon-list-alt"

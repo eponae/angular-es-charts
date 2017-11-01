@@ -14,6 +14,8 @@ import conservatory from './conservatory/_conservatory-module.js';
 import dashboard from './dashboard/_dashboard-module.js';
 import contact from './contact/_contact-module.js';
 import charts from './charts/_charts-module.js';
+import ErrorInterceptor from './interceptor.js';
+
 
 export default angular.module('conservatories', [
   'ui.router',
@@ -25,5 +27,6 @@ export default angular.module('conservatories', [
   dashboard.name,
   contact.name
 ])
+  .service('errorInterceptor', ErrorInterceptor)
   .config(routing)
   .constant('API_URL', 'https://api.eponae.fr/conservatories/');

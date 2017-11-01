@@ -1,7 +1,9 @@
+import contactTemplate from './contact.html';
+
 class ContactController {}
 
 const contact = {
-  templateUrl: './templates/contact.html',
+  template: contactTemplate,
   controllerAs: '$ctrl',
   controller: ContactController
 };

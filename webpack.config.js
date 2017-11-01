@@ -1,5 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname, './src/scripts/app.js'),
@@ -10,7 +11,7 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     modules: ['node_modules'],
-    extensions: ['.js'],
+    extensions: ['.js']
   },
   module: {
     loaders: [
@@ -34,11 +35,20 @@ module.exports = {
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: 'css-loader'
-        }),
+        })
       },
       {
-        test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
+        test: /glyphicons-halflings-regular(\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?))/,
         loader: 'file-loader?name=[name].[ext]&outputPath=/fonts/'
+      },
+      {
+        test: /instruments_musique_.*(\.(jpe?g|png|gif|svg)$)/i,
+        loader: 'file-loader?name=[name].[ext]&outputPath=/img/'
+      },
+      {
+        test: /\.(html)$/,
+        exclude: /node_modules/,
+        loader: 'html-loader'
       },
       {
         test: /\.scss$/,
@@ -52,7 +62,7 @@ module.exports = {
             }
           ],
           fallback: 'style-loader'
-        }),
+        })
       }
     ]
   },
@@ -60,6 +70,14 @@ module.exports = {
     new ExtractTextPlugin({
       filename: 'bundle.css',
       allChunks: true
+    }),
+    new UglifyJSPlugin({
+      test: /\.js($|\?)/i,
+      exclude: '/node_modules/',
+      sourceMap: true,
+      uglifyOptions: {
+        ecma: 8
+      }
     })
   ]
 };

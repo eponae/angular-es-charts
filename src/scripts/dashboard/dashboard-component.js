@@ -1,3 +1,5 @@
+import dashboardTemplate from './dashboard.html';
+
 class DashboardController {
   constructor($uibModal, conservatoryService) {
     this.$uibModal = $uibModal;
@@ -7,7 +9,7 @@ class DashboardController {
     this.currentPage = 1;
     this.maxSize = 2;
     this.numPages = 5;
-    this.itemsPerPage = 10;
+    this.itemsPerPage = 5;
 
     this.filter = '';
 
@@ -81,9 +83,9 @@ class DashboardController {
 DashboardController.$inject = ['$uibModal', 'conservatoryService'];
 
 let dashboard = {
-  templateUrl: './templates/dashboard.html',
   controllerAs: '$ctrl',
-  controller: DashboardController
+  controller: DashboardController,
+  template: dashboardTemplate
 };
 
 export default dashboard;

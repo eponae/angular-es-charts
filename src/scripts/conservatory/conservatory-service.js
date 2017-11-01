@@ -5,7 +5,7 @@ export default class ConservatoryService {
   }
 
   getConservatories(params) {
-    return this.$http.get(this.API_URL + '?page=' + params.page + '&pageSize=10&sort=' +
+    return this.$http.get(this.API_URL + '?page=' + params.page + '&pageSize=5&sort=' +
       params.sort + '&' + params.order + '&q=' + params.filter)
       .then((response) => response);
   }
