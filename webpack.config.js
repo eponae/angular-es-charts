@@ -38,7 +38,7 @@ module.exports = {
         })
       },
       {
-        test: /glyphicons-halflings-regular(\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?))/,
+        test: /MaterialIcons-Regular(\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?))/,
         loader: 'file-loader?name=[name].[ext]&outputPath=/fonts/'
       },
       {

@@ -1,10 +1,13 @@
 import 'lodash';
 import 'angular';
 import 'angular-ui-router';
-import 'angular-ui-bootstrap';
 import 'zingchart-angularjs';
 import 'angular-simple-logger';
 import 'angular-google-maps';
+import 'angular-animate';
+import 'angular-aria';
+import 'angular-messages';
+import 'angular-material';
 
 import routing from './app-routing.js';
 
@@ -19,9 +22,9 @@ import ErrorInterceptor from './interceptor.js';
 
 export default angular.module('conservatories', [
   'ui.router',
-  'ui.bootstrap',
   'zingchart-angularjs',
   'uiGmapgoogle-maps',
+  'ngMaterial',
   conservatory.name,
   charts.name,
   dashboard.name,

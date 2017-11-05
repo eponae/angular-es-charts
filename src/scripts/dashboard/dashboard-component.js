@@ -1,9 +1,10 @@
 import dashboardTemplate from './dashboard.html';
 
 class DashboardController {
-  constructor($uibModal, conservatoryService) {
-    this.$uibModal = $uibModal;
+  constructor($mdDialog, conservatoryService, $mdToast) {
+    this.$mdDialog = $mdDialog;
     this.conservatoryService = conservatoryService;
+    this.$mdToast = $mdToast;
 
     /* Parameters for pagination */
     this.currentPage = 1;
@@ -58,29 +59,28 @@ class DashboardController {
     this.conservatoryService.getConservatories(params).then((response) => {
       this.totalItems = response.data.total;
       this.conservatories = response.data.results;
-    });
+    }).catch(() => this.$mdToast.showSimple('Une erreur est survenue.'));
   }
 
-  openDetails(conservatory) {
-    const modalInstanceResult = this.$uibModal.open({
-      component: 'conservatoryDetails',
-      resolve: {
-        conservatory: function conservatoryObject() {
-          return conservatory;
-        }
-      }
-    }).result;
+  openDetails($event, conservatory) {
+    this.conservatory = conservatory;
+    this.closeDialog = () => {
+      this.$mdDialog.cancel();
+    };
 
-    modalInstanceResult.then(
-      function () {
-      },
-      function () {
-      }
-    );
+    this.$mdDialog.show({
+      template: '<conservatory-details' +
+      ' conservatory="$ctrl.conservatory"' +
+      ' close-dialog="$ctrl.closeDialog()"></conservatory-details>',
+      targetEvent: $event,
+      clickOutsideToClose: true,
+      controller: () => this,
+      controllerAs: '$ctrl'
+    }).then(() => {}, () => {});
   }
 }
 
-DashboardController.$inject = ['$uibModal', 'conservatoryService'];
+DashboardController.$inject = ['$mdDialog', 'conservatoryService', '$mdToast'];
 
 let dashboard = {
   controllerAs: '$ctrl',

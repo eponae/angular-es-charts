@@ -6,8 +6,6 @@ class ConservatoryDetailsController {
   }
 
   $onInit() {
-    this.conservatory = this.resolve.conservatory;
-
     this.showWindow = false;
 
     this.templateUrl = 'templates/marker-window.html';
@@ -49,9 +47,8 @@ ConservatoryDetailsController.$inject = ['uiGmapIsReady'];
 
 const conservatoryDetails = {
   bindings: {
-    resolve: '<',
-    close: '&',
-    dismiss: '&'
+    conservatory: '<',
+    closeDialog: '&'
   },
   controllerAs: '$ctrl',
   controller: ConservatoryDetailsController,

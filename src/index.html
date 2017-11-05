@@ -1,4 +1,4 @@
-<html lang="en" ng-app="conservatories" ng-strict-di="true">
+<html lang="fr" ng-app="conservatories" ng-strict-di="true">
 
 <head>
     <base href="/">
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 
-    <title>Conservatories</title>
+    <title>Conservatoires</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
@@ -24,40 +24,19 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
-    <button type="button" class="navbar-toggle" ng-init="navCollapsed = true"
-            ng-click="navCollapsed = !navCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </button>
-
-
-    <div class="navbar-default" role="navigation">
-        <div class="sidebar-nav navbar-collapse collapse" uib-collapse="navCollapsed">
-            <ul class="nav in menu-bar" id="side-menu">
-                <li>
-                    <a ui-sref="dashboard" ui-sref-active="active"><i
-                            class="glyphicon glyphicon-list-alt"
-                            aria-hidden="true"></i> CONSERVATORIES</a>
-                </li>
-                <li>
-                    <a ui-sref="charts" ui-sref-active="active"><i
-                            class="glyphicon glyphicon-signal"
-                            aria-hidden="true"></i> ANALYSIS</a>
-                </li>
-                <li>
-                    <a ui-sref="contact" ui-sref-active="active"><i class="glyphicon glyphicon-user"
-                                                                    aria-hidden="true"></i> CONTACT</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<div id="page-wrapper">
+<md-nav-bar md-selected-nav-item="currentNavItem" aria-label="navigationBar">
+    <md-nav-item md-nav-sref="dashboard" name="dashboard" aria-label="dashboard">
+        Conservatoires
+    </md-nav-item>
+    <md-nav-item md-nav-sref="charts" name="charts" aria-label="charts">
+       Analyse
+    </md-nav-item>
+    <md-nav-item md-nav-sref="contact" name="contact" aria-label="contact">
+        Contact
+    </md-nav-item>
+</md-nav-bar>
+<div class="row layout-padding">
     <div ui-view></div>
-</div>
 </div>
 
 <script src="bundle.js"></script>

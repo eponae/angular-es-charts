@@ -29,11 +29,11 @@
     "webpack": "node_modules/webpack/bin/webpack.js",
     "format": "prettier-eslint \"src/**/*.js\"",
     "clean": "rm -fr ./dist && mkdir ./dist",
-    "copy-fonts": "cp -a ./node_modules/bootstrap/fonts/. ./dist/fonts/",
+    "copy-fonts": "mkdir -p ./dist/fonts && rsync -av ./node_modules/material-design-icons/iconfont/MaterialIcons-Regular.{eot,ijmap,svg,ttf,woff,woff2} ./dist/fonts/",
     "copy-icon": "cp -a ./src/assets/favicon/. ./dist/",
     "copy-img": "cp -a ./src/assets/img/. ./dist/img/",
     "copy-assets": "npm run copy-fonts && npm run copy-icon && npm run copy-img",
-    "copy-templates": "mkdir -p ./dist/templates && cp -Ra ./src/scripts/**/*.html ./dist/templates/",
+    "copy-templates": "mkdir -p ./dist/templates && cp ./src/scripts/**/**/marker-window.html ./dist/templates/marker-window.html",
     "copy-index": "cp ./src/index.html ./dist/",
     "copy": "npm run copy-index && npm run copy-templates && npm run copy-assets",
     "prebuild": "npm run clean && npm run copy && npm run format",
@@ -61,6 +61,11 @@
     "zingchart": "2.6.1",
     "zingchart-angularjs": "1.2.0",
     "angular-mocks": "1.6.6",
-    "angular-simple-logger": "0.1.7"
+    "angular-simple-logger": "0.1.7",
+    "angular-animate": "1.6.6",
+    "angular-aria": "1.6.6",
+    "angular-messages": "1.6.6",
+    "angular-material": "1.1.5",
+    "material-design-icons": "3.0.1"
   }
 }
