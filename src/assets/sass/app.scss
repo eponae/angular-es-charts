@@ -34,6 +34,18 @@ h2 {
   font-weight: bold;
 }
 
+.responsive-layout-lg {
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
+}
+
+.responsive-layout-xs {
+  @media screen and (min-width: 600px) {
+    display: none;
+  }
+}
+
 md-dialog {
   max-width: 100%;
 }

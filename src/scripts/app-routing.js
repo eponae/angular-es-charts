@@ -1,11 +1,16 @@
 export default function routing(
   $stateProvider, $urlRouterProvider, $httpProvider,
-  uiGmapGoogleMapApiProvider, $mdAriaProvider
+  uiGmapGoogleMapApiProvider, $mdAriaProvider, $mdThemingProvider
 ) {
   uiGmapGoogleMapApiProvider.configure({
     key: 'AIzaSyDOaHhIXyhaoX9I692e6YUBVYCicLvED5A',
     libraries: 'geometry,visualization'
   });
+
+  $mdThemingProvider.theme('altTheme')
+    .primaryPalette('purple')
+    .accentPalette('orange');
+  $mdThemingProvider.setDefaultTheme('altTheme');
 
   $mdAriaProvider.disableWarnings();
 
@@ -29,5 +34,5 @@ export default function routing(
 
 routing.$inject = [
   '$stateProvider', '$urlRouterProvider', '$httpProvider',
-  'uiGmapGoogleMapApiProvider', '$mdAriaProvider'
+  'uiGmapGoogleMapApiProvider', '$mdAriaProvider', '$mdThemingProvider'
 ];
