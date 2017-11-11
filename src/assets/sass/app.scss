@@ -8,12 +8,51 @@
 
 body {
 
+  background: transparent;
+
+  * {
+    font-family: $font-stack;
+    font-size: small;
+  }
+
   a {
     color: $main-color;
   }
 
-  h2 {
-    font-weight: bold;
+  md-dialog {
+    max-width: 100%;
+  }
+
+  &.main-view {
+    position: relative;
+
+    .fixed-bottom-left {
+      position: fixed;
+      right: 0px;
+      bottom: 0px;
+      width: 100%;
+    }
+  }
+
+  .overflow-hidden {
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .height-auto {
+    height: auto;
+  }
+
+  .overflow-auto {
+    overflow: auto;
+  }
+
+  .padding-10 {
+    padding: 10px;
+  }
+
+  .width-250 {
+    width: 250px;
   }
 
   .responsive-layout-lg {
@@ -28,10 +67,6 @@ body {
     }
   }
 
-  md-dialog {
-    max-width: 100%;
-  }
-
   .header-img {
     @media screen and (max-width: $responsive-width) {
       max-height: 200px;
@@ -41,19 +76,5 @@ body {
       max-height: 250px;
       max-width: 200px;
     }
-  }
-
-  background: transparent;
-
-  * {
-    font-family: $font-stack;
-    font-size: small;
-  }
-
-  .padding-10 {
-    padding: 10px;
-  }
-  .width-250 {
-    width: 250px;
   }
 }

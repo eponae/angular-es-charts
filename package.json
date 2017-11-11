@@ -27,7 +27,6 @@
   "description": "## Usage ### Requirements * [NodeJS](http://nodejs.org/) (with [NPM](https://www.npmjs.org/)) * [Gulp](http://gulpjs.com)",
   "main": "gulpfile.js",
   "scripts": {
-    "webpack": "webpack",
     "format": "prettier-eslint \"src/**/*.js\"",
     "clean": "rm -fr ./dist && mkdir ./dist",
     "copy-fonts": "mkdir -p ./dist/fonts && cp ./node_modules/material-design-icons/iconfont/MaterialIcons-Regular.{eot,ijmap,svg,ttf,woff,woff2} ./dist/fonts/",
@@ -38,7 +37,7 @@
     "copy": "npm run copy-templates && npm run copy-assets",
     "prebuild": "npm run clean && npm run copy && npm run format",
     "start": "npm run prebuild && webpack-dev-server --port 4242 --hot --open --content-base dist/",
-    "build": "npm install && npm run prebuild && npm run webpack"
+    "build": "webpack"
   },
   "author": "Alice R",
   "license": "ISC",

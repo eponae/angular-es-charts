@@ -19,10 +19,25 @@
 
 </head>
 
-<body>
+<body class="main-view overflow-hidden">
 
-<!-- Navigation -->
-<md-fab-toolbar class="responsive-layout-xs" md-direction="right" md-open="isOpen">
+<md-nav-bar class="responsive-layout-lg" layout-gt-xs md-selected-nav-item="currentNavItem" aria-label="navigationBar">
+    <md-nav-item md-nav-sref="dashboard" name="dashboard" aria-label="dashboard">
+        Conservatoires
+    </md-nav-item>
+    <md-nav-item md-nav-sref="charts" name="charts" aria-label="charts">
+        Analyse
+    </md-nav-item>
+    <md-nav-item md-nav-sref="contact" name="contact" aria-label="contact">
+        Contact
+    </md-nav-item>
+</md-nav-bar>
+
+<div class="row layout-padding overflow-auto">
+    <div class="height-auto" ui-view></div>
+</div>
+
+<md-fab-toolbar class="responsive-layout-xs fixed-bottom-left" md-direction="right">
     <md-fab-trigger class="align-with-text">
         <md-button aria-label="Naviguer" class="md-fab md-primary">
             <md-icon md-font-set="material-icons">view_headline</md-icon>
@@ -45,22 +60,6 @@
         </md-fab-actions>
     </md-toolbar>
 </md-fab-toolbar>
-
-<md-nav-bar class="responsive-layout-lg" layout-gt-xs md-selected-nav-item="currentNavItem" aria-label="navigationBar">
-    <md-nav-item md-nav-sref="dashboard" name="dashboard" aria-label="dashboard">
-        Conservatoires
-    </md-nav-item>
-    <md-nav-item md-nav-sref="charts" name="charts" aria-label="charts">
-        Analyse
-    </md-nav-item>
-    <md-nav-item md-nav-sref="contact" name="contact" aria-label="contact">
-        Contact
-    </md-nav-item>
-</md-nav-bar>
-
-<div class="row layout-padding">
-    <div ui-view></div>
-</div>
 
 </body>
 
