@@ -1,0 +1,11 @@
+@import '../../assets/sass/mixins';
+
+.conservatory-name {
+  margin: 0 0 3px 0;
+}
+
+.images {
+  @include flex-row;
+  width: 100%;
+  justify-content: center;
+}

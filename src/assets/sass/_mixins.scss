@@ -1,0 +1,10 @@
+@mixin margins($top, $bottom, $left) {
+  margin-top: $top;
+  margin-bottom: $bottom;
+  margin-left: $left;
+}
+
+@mixin flex-row {
+  display: inline-flex;
+  flex-flow: row nowrap;
+}

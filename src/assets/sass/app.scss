@@ -1,67 +1,47 @@
+@import 'mixins';
+@import 'variables';
 @import '../../scripts/conservatory/conservatory';
+@import "../../scripts/dashboard/dashboard";
 @import '../../../node_modules/material-design-icons/iconfont/material-icons.css';
 @import './material';
 @import '../../../node_modules/angular-material/angular-material.min.css';
 
-$font-stack: arial;
-$main-color: #8B668B;
-$responsive-width: 500px;
-
-@mixin margins($top, $bottom, $left) {
-  margin-top: $top;
-  margin-bottom: $bottom;
-  margin-left: $left;
-}
-
-@mixin flex-row {
-  display: inline-flex;
-  flex-flow: row nowrap;
-}
-
-.center {
-  text-align: center;
-}
-
-.clickable {
-  cursor: pointer;
-}
-
-a {
-  color: $main-color;
-}
-
-h2 {
-  font-weight: bold;
-}
-
-.responsive-layout-lg {
-  @media screen and (max-width: 600px) {
-    display: none;
-  }
-}
-
-.responsive-layout-xs {
-  @media screen and (min-width: 600px) {
-    display: none;
-  }
-}
-
-md-dialog {
-  max-width: 100%;
-}
-
-.header-img {
-  @media screen and (max-width: $responsive-width) {
-    max-height: 200px;
-    max-width: 150px;
-  }
-  @media screen and (min-width: $responsive-width) {
-    max-height: 250px;
-    max-width: 200px;
-  }
-}
-
 body {
+
+  a {
+    color: $main-color;
+  }
+
+  h2 {
+    font-weight: bold;
+  }
+
+  .responsive-layout-lg {
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+  }
+
+  .responsive-layout-xs {
+    @media screen and (min-width: 600px) {
+      display: none;
+    }
+  }
+
+  md-dialog {
+    max-width: 100%;
+  }
+
+  .header-img {
+    @media screen and (max-width: $responsive-width) {
+      max-height: 200px;
+      max-width: 150px;
+    }
+    @media screen and (min-width: $responsive-width) {
+      max-height: 250px;
+      max-width: 200px;
+    }
+  }
 
   background: transparent;
 

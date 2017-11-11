@@ -2,11 +2,11 @@ import zingchart from '../../../../node_modules/zingchart/client/zingchart.min.j
 import conservatoryDrilldownTemplate from './conservatory-drilldown.html';
 
 class ConservatoryDrilldownController {
-  constructor(conservatoryService, $mdToast) {
+  constructor(conservatoryService, errorService) {
     this.conservatoryService = conservatoryService;
-    this.$mdToast = $mdToast;
+    this.errorService = errorService;
     this.chartData = {
-      type: 'bar',
+      type: 'hbar',
       title: {
         backgroundColor: 'transparent',
         fontColor: 'black',
@@ -47,15 +47,16 @@ class ConservatoryDrilldownController {
 
   $onInit() {
     this.conservatoryService.getAggregateByDepartment()
-      .then((response) => {
-        this.formatData(response.data || {});
-        zingchart.node_click = () => {};
+      .then((data) => {
+        this.formatData(data);
+        zingchart.node_click = () => {
+        };
       })
-      .catch(() => this.$mdToast.showSimple('Une erreur est survenue.'));
+      .catch(() => this.errorService.showSimpleToast('Une erreur est survenue.'));
   }
 }
 
-ConservatoryDrilldownController.$inject = ['conservatoryService', '$mdToast'];
+ConservatoryDrilldownController.$inject = ['conservatoryService', 'errorService'];
 
 const conservatoryDrilldown = {
   controllerAs: '$ctrl',
