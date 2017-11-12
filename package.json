@@ -29,7 +29,7 @@
   "scripts": {
     "format": "prettier-eslint \"src/**/*.js\"",
     "clean": "rm -fr ./dist && mkdir ./dist",
-    "copy-fonts": "mkdir -p ./dist/fonts && cp ./node_modules/material-design-icons/iconfont/MaterialIcons-Regular.{eot,ijmap,svg,ttf,woff,woff2} ./dist/fonts/",
+    "copy-fonts": "mkdir -p ./dist/fonts && ls -al ./node_modules/material-design-icons/iconfont/ && cp ./node_modules/material-design-icons/iconfont/MaterialIcons-Regular.{eot,ijmap,svg,ttf,woff,woff2} ./dist/fonts/",
     "copy-icon": "cp -a ./src/assets/favicon/. ./dist/",
     "copy-img": "cp -a ./src/assets/img/. ./dist/img/",
     "copy-assets": "npm run copy-fonts && npm run copy-icon && npm run copy-img",
