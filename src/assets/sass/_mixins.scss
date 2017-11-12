@@ -1,7 +1,7 @@
 @mixin margins($top, $bottom, $left) {
-  margin-top: $top;
   margin-bottom: $bottom;
   margin-left: $left;
+  margin-top: $top;
 }
 
 @mixin flex-row {

@@ -1,11 +1,17 @@
-export default function routing(
+export default function configuration(
   $stateProvider, $urlRouterProvider, $httpProvider,
-  uiGmapGoogleMapApiProvider, $mdAriaProvider, $mdThemingProvider
+  $mdAriaProvider, $mdThemingProvider, uiGmapGoogleMapApiProvider
 ) {
-  uiGmapGoogleMapApiProvider.configure({
-    key: 'AIzaSyDOaHhIXyhaoX9I692e6YUBVYCicLvED5A',
-    libraries: 'geometry,visualization'
-  });
+  const $injector = angular.injector(['ng']);
+  const $http = $injector.get('$http');
+
+  $http.get('/env')
+    .then(response => {
+      uiGmapGoogleMapApiProvider.configure({
+        key: response.data.GOOGLE_MAPS_KEY,
+        libraries: 'geometry,visualization'
+      });
+    });
 
   $mdThemingProvider.theme('altTheme')
     .primaryPalette('purple')
@@ -32,7 +38,7 @@ export default function routing(
     });
 }
 
-routing.$inject = [
+configuration.$inject = [
   '$stateProvider', '$urlRouterProvider', '$httpProvider',
-  'uiGmapGoogleMapApiProvider', '$mdAriaProvider', '$mdThemingProvider'
+  '$mdAriaProvider', '$mdThemingProvider', 'uiGmapGoogleMapApiProvider'
 ];

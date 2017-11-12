@@ -2,6 +2,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const SassLintPlugin = require('sasslint-webpack-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname, './src/scripts/app.js'),
@@ -49,7 +50,12 @@ module.exports = {
       {
         test: /\.(html)$/,
         exclude: /node_modules/,
-        loader: 'html-loader'
+        loader: 'html-loader',
+        options: {
+          minimize: true,
+          removeComments: false,
+          collapseWhitespace: true
+        }
       },
       {
         test: /\.scss$/,
@@ -68,6 +74,14 @@ module.exports = {
     ]
   },
   plugins: [
+    new SassLintPlugin({
+      configFile: '.sass-lint.yml',
+      glob: 'src/**/*.scss',
+      quiet: false,
+      failOnWarning: false,
+      failOnError: true,
+      testing: false
+    }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
@@ -78,10 +92,18 @@ module.exports = {
     new UglifyJSPlugin({
       test: /\.js($|\?)/i,
       exclude: '/node_modules/',
-      sourceMap: true,
       uglifyOptions: {
         ecma: 8
       }
     })
-  ]
+  ],
+  devServer: {
+    setup: (app) => {
+      app.get('/env', (req, res) => {
+        res.json({
+          GOOGLE_MAPS_KEY: process.env.GOOGLE_MAPS_KEY
+        });
+      });
+    }
+  }
 };

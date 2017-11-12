@@ -9,7 +9,7 @@ import 'angular-aria';
 import 'angular-messages';
 import 'angular-material';
 
-import routing from './app-routing.js';
+import configuration from './app-config.js';
 
 import '../assets/sass/app.scss';
 
@@ -32,5 +32,5 @@ export default angular.module('conservatories', [
 ])
   .service('errorInterceptor', ErrorInterceptor)
   .service('errorService', ErrorService)
-  .config(routing)
-  .constant('API_URL', 'https://api.eponae.fr/conservatories/');
+  .constant('API_URL', 'https://api.eponae.fr/conservatories/')
+  .config(configuration);
