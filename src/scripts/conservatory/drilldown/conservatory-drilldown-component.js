@@ -25,7 +25,24 @@ class ConservatoryDrilldownController {
         item: {
           visible: false
         }
-      }
+      },
+      shapes: [
+        {
+          x: 25,
+          y: 20,
+          size: 10,
+          angle: -90,
+          type: 'triangle',
+          'background-color': '#c4c4c4',
+          padding: 5,
+          cursor: 'hand',
+          id: 'backwards',
+          'hover-state': {
+            'border-width': 1,
+            'border-color': '#000'
+          }
+        }
+      ]
     };
   }
 
@@ -44,12 +61,18 @@ class ConservatoryDrilldownController {
 
     this.chartData.series = series;
     this.chartData.title.text = resultsKeys.length + ' départements';
+    this.originalData = angular.copy(this.chartData);
   }
 
   setDrilldownData(dataId) {
     this.chartData.title.text = 'Département ' + dataId;
-    zingchart.exec('myChart', 'setseriesdata', {
-      data: this.drillDownDataStructure[dataId].series
+    this.chartData.series = this.drillDownDataStructure[dataId].series;
+
+    zingchart.render({
+      id: 'myChart',
+      data: this.chartData,
+      height: '100%',
+      width: '100%'
     });
   }
 
@@ -69,14 +92,7 @@ class ConservatoryDrilldownController {
     this.setDrilldownData(dataId);
   }
 
-  $onInit() {
-    this.conservatoryService
-      .getAggregateByDepartment()
-      .then(data => {
-        this.formatDepartments(data);
-      })
-      .catch(() => this.errorService.showSimpleToast('Une erreur est survenue.'));
-
+  initChartClickEvent() {
     zingchart.node_click = p => {
       const dataId = p['data-id'];
       if (this.drillDownDataStructure[dataId]) {
@@ -88,7 +104,34 @@ class ConservatoryDrilldownController {
             this.formatPostalCodes(aggregatedData, dataId);
           });
       }
+      zingchart.node_click = null;
     };
+  }
+
+  initChartEvents() {
+    this.initChartClickEvent();
+
+    zingchart.shape_click = () => {
+      zingchart.exec('myChart', 'destroy');
+      zingchart.render({
+        id: 'myChart',
+        data: this.originalData,
+        height: '100%',
+        width: '100%'
+      });
+      this.initChartClickEvent();
+    };
+  }
+
+  $onInit() {
+    this.conservatoryService
+      .getAggregateByDepartment()
+      .then(data => {
+        this.formatDepartments(data);
+      })
+      .catch(() => this.errorService.showSimpleToast('Une erreur est survenue.'));
+
+    this.initChartEvents();
   }
 }
 
