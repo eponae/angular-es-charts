@@ -20,16 +20,17 @@ import charts from './charts/_charts-module.js';
 import ErrorInterceptor from './interceptor.js';
 import ErrorService from './error-service.js';
 
-export default angular.module('conservatories', [
-  'ui.router',
-  'zingchart-angularjs',
-  'uiGmapgoogle-maps',
-  'ngMaterial',
-  conservatory.name,
-  charts.name,
-  dashboard.name,
-  contact.name
-])
+export default angular
+  .module('conservatories', [
+    'ui.router',
+    'zingchart-angularjs',
+    'uiGmapgoogle-maps',
+    'ngMaterial',
+    conservatory.name,
+    charts.name,
+    dashboard.name,
+    contact.name
+  ])
   .service('errorInterceptor', ErrorInterceptor)
   .service('errorService', ErrorService)
   .constant('API_URL', 'https://api.eponae.fr/conservatories/')

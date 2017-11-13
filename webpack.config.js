@@ -1,6 +1,5 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SassLintPlugin = require('sasslint-webpack-plugin');
 
@@ -10,7 +9,7 @@ module.exports = {
     filename: '[name].[hash].bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
-  devtool: 'eval-source-map',
+  devtool: process.env.PROD ? 'none' : 'eval-source-map',
   resolve: {
     modules: ['node_modules'],
     extensions: ['.js']
@@ -88,13 +87,6 @@ module.exports = {
     new ExtractTextPlugin({
       filename: '[name].[hash].bundle.css',
       allChunks: true
-    }),
-    new UglifyJSPlugin({
-      test: /\.js($|\?)/i,
-      exclude: '/node_modules/',
-      uglifyOptions: {
-        ecma: 8
-      }
     })
   ],
   devServer: {

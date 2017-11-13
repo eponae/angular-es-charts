@@ -33,7 +33,6 @@ class DashboardController {
     });
   }
 
-
   clearResults() {
     this.totalItems = 0;
     this.conservatories = [];
@@ -56,10 +55,13 @@ class DashboardController {
   }
 
   changePage(params) {
-    this.conservatoryService.getConservatories(params).then((data) => {
-      this.totalItems = data.total;
-      this.conservatories = data.results;
-    }).catch(() => this.errorService.showSimpleToast('Une erreur est survenue.'));
+    this.conservatoryService
+      .getConservatories(params)
+      .then(data => {
+        this.totalItems = data.total;
+        this.conservatories = data.results;
+      })
+      .catch(() => this.errorService.showSimpleToast('Une erreur est survenue.'));
   }
 
   openDetails($event, conservatory) {
@@ -68,17 +70,18 @@ class DashboardController {
       this.$mdDialog.cancel();
     };
 
-    this.$mdDialog.show({
-      template: '<conservatory-details' +
-      ' conservatory="$ctrl.conservatory"' +
-      ' close-dialog="$ctrl.closeDialog()"></conservatory-details>',
-      targetEvent: $event,
-      clickOutsideToClose: true,
-      controller: () => this,
-      controllerAs: '$ctrl'
-    }).then(() => {
-    }, () => {
-    });
+    this.$mdDialog
+      .show({
+        template:
+          '<conservatory-details' +
+          ' conservatory="$ctrl.conservatory"' +
+          ' close-dialog="$ctrl.closeDialog()"></conservatory-details>',
+        targetEvent: $event,
+        clickOutsideToClose: true,
+        controller: () => this,
+        controllerAs: '$ctrl'
+      })
+      .then(() => {}, () => {});
   }
 }
 

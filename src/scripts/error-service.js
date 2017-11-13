@@ -4,7 +4,8 @@ export default class ErrorService {
   }
 
   showSimpleToast(message) {
-    this.$mdToast.show(this.$mdToast.simple()
+    this.$mdToast.show(this.$mdToast
+      .simple()
       .textContent(message)
       .position('top left')
       .hideDelay(3000));

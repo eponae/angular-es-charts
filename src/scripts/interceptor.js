@@ -3,11 +3,11 @@ const errorInterceptor = class ErrorInterceptor {
     this.$q = $q;
     this.$injector = $injector;
 
-    this.requestError = (rejection) => {
+    this.requestError = rejection => {
       return this.$q.reject(rejection);
     };
 
-    this.responseError = (rejection) => {
+    this.responseError = rejection => {
       return this.$q.reject(rejection);
     };
   }

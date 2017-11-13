@@ -1,19 +1,23 @@
 export default function configuration(
-  $stateProvider, $urlRouterProvider, $httpProvider,
-  $mdAriaProvider, $mdThemingProvider, uiGmapGoogleMapApiProvider
+  $stateProvider,
+  $urlRouterProvider,
+  $httpProvider,
+  $mdAriaProvider,
+  $mdThemingProvider,
+  uiGmapGoogleMapApiProvider
 ) {
   const $injector = angular.injector(['ng']);
   const $http = $injector.get('$http');
 
-  $http.get('/env')
-    .then(response => {
-      uiGmapGoogleMapApiProvider.configure({
-        key: response.data.GOOGLE_MAPS_KEY,
-        libraries: 'geometry,visualization'
-      });
+  $http.get('/env').then(response => {
+    uiGmapGoogleMapApiProvider.configure({
+      key: response.data.GOOGLE_MAPS_KEY,
+      libraries: 'geometry,visualization'
     });
+  });
 
-  $mdThemingProvider.theme('altTheme')
+  $mdThemingProvider
+    .theme('altTheme')
     .primaryPalette('purple')
     .accentPalette('orange');
   $mdThemingProvider.setDefaultTheme('altTheme');
@@ -39,6 +43,10 @@ export default function configuration(
 }
 
 configuration.$inject = [
-  '$stateProvider', '$urlRouterProvider', '$httpProvider',
-  '$mdAriaProvider', '$mdThemingProvider', 'uiGmapGoogleMapApiProvider'
+  '$stateProvider',
+  '$urlRouterProvider',
+  '$httpProvider',
+  '$mdAriaProvider',
+  '$mdThemingProvider',
+  'uiGmapGoogleMapApiProvider'
 ];

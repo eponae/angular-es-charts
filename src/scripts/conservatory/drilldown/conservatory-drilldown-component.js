@@ -34,7 +34,7 @@ class ConservatoryDrilldownController {
 
     const resultsKeys = Object.keys(results);
 
-    resultsKeys.forEach((key) => {
+    resultsKeys.forEach(key => {
       series.push({
         values: [results[key]],
         text: 'Dep ' + key.toString(),
@@ -58,7 +58,7 @@ class ConservatoryDrilldownController {
 
     const resultsKeys = Object.keys(results);
 
-    resultsKeys.forEach((key) => {
+    resultsKeys.forEach(key => {
       series.push({
         values: [results[key]],
         text: key.toString()
@@ -70,19 +70,21 @@ class ConservatoryDrilldownController {
   }
 
   $onInit() {
-    this.conservatoryService.getAggregateByDepartment()
-      .then((data) => {
+    this.conservatoryService
+      .getAggregateByDepartment()
+      .then(data => {
         this.formatDepartments(data);
       })
       .catch(() => this.errorService.showSimpleToast('Une erreur est survenue.'));
 
-    zingchart.node_click = (p) => {
+    zingchart.node_click = p => {
       const dataId = p['data-id'];
       if (this.drillDownDataStructure[dataId]) {
         this.setDrilldownData(dataId);
       } else {
-        this.conservatoryService.getAggregateByZipForADepartment(p['data-id'])
-          .then((aggregatedData) => {
+        this.conservatoryService
+          .getAggregateByZipForADepartment(p['data-id'])
+          .then(aggregatedData => {
             this.formatPostalCodes(aggregatedData, dataId);
           });
       }
@@ -99,4 +101,3 @@ const conservatoryDrilldown = {
 };
 
 export default conservatoryDrilldown;
-
