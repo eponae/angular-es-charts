@@ -13,7 +13,6 @@
 1. Clone the repository: `git clone ...`
 2. Install the NodeJS dependencies: `npm install`.
 3. Start project: `npm start`
-4. Run tests: `npm test`
 
 ### Development
 
@@ -22,12 +21,12 @@
 [`angular-material`](https://material.angularjs.org/latest/)
 [`zingchart-angularjs`](https://www.zingchart.com/)
 [`ui-router`](https://github.com/angular-ui/ui-router)
-[`google-maps`](http://angular-ui.github.io/angular-google-maps/#!/)
+[`angular-google-maps`](http://angular-ui.github.io/angular-google-maps/#!/)
 
 ## Project
 ### Modules, Routes
 Modules are declared in `src/scripts/app.js`
-Routes are declared in `src/scripts/app-routing.js`
+Others configuration aspects are declared in `src/scripts/app-config.js`
 
 ### Ressources
 Go to `src/assets` :
