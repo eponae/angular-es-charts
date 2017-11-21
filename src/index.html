@@ -1,4 +1,4 @@
-<html lang="fr" ng-app="conservatories" ng-strict-di="true">
+<html ng-app="conservatories" ng-strict-di="true">
 
 <head>
     <base href="/">
@@ -21,9 +21,9 @@
 
 <body class="main-view overflow-hidden">
 
-<md-nav-bar class="responsive-layout-lg" layout-gt-xs md-selected-nav-item="currentNavItem" aria-label="navigationBar">
+<md-nav-bar class="responsive-layout-lg" layout-gt-xs md-selected-nav-item="currentNavItem" aria-label="navigationbar">
     <md-nav-item md-nav-sref="dashboard" name="dashboard" aria-label="dashboard">
-        Conservatoires
+        {{'conservatories' | translate}}
     </md-nav-item>
     <md-nav-item md-nav-sref="charts" name="charts" aria-label="charts">
         Analyse
@@ -39,7 +39,7 @@
 
 <md-fab-toolbar class="responsive-layout-xs fixed-bottom-left" md-direction="right">
     <md-fab-trigger class="align-with-text">
-        <md-button aria-label="Naviguer" class="md-fab md-primary">
+        <md-button aria-label="navigate" class="md-fab md-primary">
             <md-icon md-font-set="material-icons">view_headline</md-icon>
         </md-button>
     </md-fab-trigger>
@@ -47,13 +47,13 @@
     <md-toolbar>
         <md-fab-actions class="md-toolbar-tools">
 
-            <md-button ui-sref="dashboard" aria-label="Conservatoires" class="md-icon-button">
+            <md-button ui-sref="dashboard" aria-label="conservatories" class="md-icon-button">
                 <md-icon md-font-set="material-icons">list</md-icon>
             </md-button>
-            <md-button ui-sref="charts" aria-label="Analyse" class="md-icon-button">
+            <md-button ui-sref="charts" aria-label="analyse" class="md-icon-button">
                 <md-icon md-font-set="material-icons">equalizer</md-icon>
             </md-button>
-            <md-button ui-sref="contact" aria-label="Contact" class="md-icon-button">
+            <md-button ui-sref="contact" aria-label="contact" class="md-icon-button">
                 <md-icon md-font-set="material-icons">contacts</md-icon>
             </md-button>
 

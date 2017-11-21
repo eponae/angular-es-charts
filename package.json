@@ -25,15 +25,20 @@
     "sass-loader": "6.0.6",
     "file-loader": "1.1.5"
   },
-  "description": "## Usage ### Requirements * [NodeJS](http://nodejs.org/) (with [NPM](https://www.npmjs.org/)) * [Gulp](http://gulpjs.com)",
+  "description": "## Usage ### Requirements * [NodeJS](http://nodejs.org/) (with [NPM](https://www.npmjs.org/)) * [Webpack](https://webpack.github.io/docs/)",
   "main": "gulpfile.js",
   "scripts": {
     "format": "prettier-eslint --write \"src/**/*.js\"",
     "clean": "rm -fr ./dist && mkdir ./dist",
+    "copy-translations": "mkdir -p ./dist/locales && cp -a ./src/assets/locales/*.json ./dist/locales/",
+    "copy-en-locale": "cp -a ./node_modules/angular-i18n/angular-locale_fr.js ./dist/locales/angular-i18n/",
+    "copy-fr-locale": "cp -a ./node_modules/angular-i18n/angular-locale_en.js ./dist/locales/angular-i18n/",
+    "copy-locales": "mkdir -p ./dist/locales/angular-i18n && npm run copy-fr-locale && npm run copy-en-locale",
+    "copy-internationalization": "npm run copy-translations && npm run copy-locales",
     "copy-fonts": "mkdir -p ./dist/fonts && cp ./node_modules/material-design-icons/iconfont/MaterialIcons-Regular.* ./dist/fonts/",
     "copy-icon": "cp -a ./src/assets/favicon/. ./dist/",
     "copy-img": "cp -a ./src/assets/img/. ./dist/img/",
-    "copy-assets": "npm run copy-fonts && npm run copy-icon && npm run copy-img",
+    "copy-assets": "npm run copy-internationalization && npm run copy-fonts && npm run copy-icon && npm run copy-img",
     "copy-templates": "mkdir -p ./dist/templates && cp ./src/scripts/**/**/marker-window.html ./dist/templates/marker-window.html",
     "copy": "npm run copy-templates && npm run copy-assets",
     "prebuild": "npm run clean && npm run copy && npm run format",
@@ -64,6 +69,12 @@
     "angular-aria": "1.6.6",
     "angular-messages": "1.6.6",
     "angular-material": "1.1.5",
-    "material-design-icons": "3.0.1"
+    "material-design-icons": "3.0.1",
+    "angular-dynamic-locale": "0.1.32",
+    "angular-translate": "2.16.0",
+    "angular-translate-loader-static-files": "2.16.0",
+    "angular-translate-storage-cookie": "2.16.0",
+    "angular-translate-storage-local": "2.16.0",
+    "angular-cookies": "1.6.6"
   }
 }

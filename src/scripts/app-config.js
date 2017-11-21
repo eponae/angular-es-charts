@@ -4,7 +4,9 @@ export default function configuration(
   $httpProvider,
   $mdAriaProvider,
   $mdThemingProvider,
-  uiGmapGoogleMapApiProvider
+  uiGmapGoogleMapApiProvider,
+  tmhDynamicLocaleProvider,
+  $translateProvider
 ) {
   const $injector = angular.injector(['ng']);
   const $http = $injector.get('$http');
@@ -15,6 +17,17 @@ export default function configuration(
       libraries: 'geometry,visualization'
     });
   });
+
+  $translateProvider.useStaticFilesLoader({
+    prefix: '/locales/',
+    suffix: '.json'
+  });
+  $translateProvider.preferredLanguage('fr').fallbackLanguage('fr');
+  $translateProvider.useSanitizeValueStrategy('sceParameters');
+  $translateProvider.useLocalStorage();
+
+  tmhDynamicLocaleProvider.localeLocationPattern('/locales/angular-i18n/angular-locale_{{locale}}.js');
+  tmhDynamicLocaleProvider.defaultLocale('fr');
 
   $mdThemingProvider
     .theme('altTheme')
@@ -48,5 +61,7 @@ configuration.$inject = [
   '$httpProvider',
   '$mdAriaProvider',
   '$mdThemingProvider',
-  'uiGmapGoogleMapApiProvider'
+  'uiGmapGoogleMapApiProvider',
+  'tmhDynamicLocaleProvider',
+  '$translateProvider'
 ];

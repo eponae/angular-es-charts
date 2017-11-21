@@ -1,6 +1,3 @@
 /dist/
 /node_modules/
-/src/assets/css/
-/nbproject/
-**/npm-debug.log
 .idea/

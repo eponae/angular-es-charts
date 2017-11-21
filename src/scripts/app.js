@@ -8,15 +8,21 @@ import 'angular-animate';
 import 'angular-aria';
 import 'angular-messages';
 import 'angular-material';
+import 'angular-translate';
+import 'angular-translate-storage-cookie';
+import 'angular-translate-loader-static-files';
+import 'angular-dynamic-locale';
+import 'angular-cookies';
+import 'angular-translate-storage-local';
 
 import configuration from './app-config.js';
 
 import '../assets/sass/app.scss';
 
-import conservatory from './conservatory/_conservatory-module.js';
-import dashboard from './dashboard/_dashboard-module.js';
-import contact from './contact/_contact-module.js';
-import charts from './charts/_charts-module.js';
+import conservatory from './conservatory/conservatory.module.js';
+import dashboard from './dashboard/dashboard.module.js';
+import contact from './contact/contact.module.js';
+import charts from './charts/charts.module.js';
 import ErrorInterceptor from './interceptor.js';
 import ErrorService from './error-service.js';
 
@@ -26,6 +32,9 @@ export default angular
     'zingchart-angularjs',
     'uiGmapgoogle-maps',
     'ngMaterial',
+    'pascalprecht.translate',
+    'tmh.dynamicLocale',
+    'ngCookies',
     conservatory.name,
     charts.name,
     dashboard.name,
@@ -34,4 +43,9 @@ export default angular
   .service('errorInterceptor', ErrorInterceptor)
   .service('errorService', ErrorService)
   .constant('API_URL', 'https://api.eponae.fr/conservatories/')
-  .config(configuration);
+  .config(configuration)
+  .run([
+    'tmhDynamicLocale', (tmhDynamicLocale) => {
+      tmhDynamicLocale.set('fr');
+    }
+  ]);

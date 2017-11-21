@@ -1,7 +1,8 @@
 <md-grid-list md-cols="12" md-row-height="fit">
     <md-input-container class="width-250">
-        <input type="text" placeholder="Trouver un conservatoire"
+        <input type="text" placeholder="Rechercher un conservatoire"
                ng-model="$ctrl.filter"
+               ng-model-options='{ debounce: 500 }'
                ng-change="$ctrl.changePage({
                            page: 1,
                            sort: $ctrl.currentCriteria,
@@ -23,7 +24,7 @@
                 </div>
                 <md-button class="md-secondary md-icon-button"
                            ng-click="$ctrl.openDetails($event, conservatory)">
-                    <md-icon class="" md-font-set="material-icons" aria-label="Coordonnées">
+                    <md-icon class="" md-font-set="material-icons" aria-label="coordinates">
                         location_on
                     </md-icon>
                 </md-button>
@@ -37,20 +38,6 @@
     </th>
     <th class="clickable" ng-click="$ctrl.sortByColumn('city')">TOWN</th>
     <th class="clickable" ng-click="$ctrl.sortByColumn('zip')">POSTCODE</th>-->
-
-    <!--<ul uib-pagination id="custPagination" class="pagination-sm" boundary-links="true"
-        boundary-link-numbers="true" total-items="$ctrl.totalItems"
-        num-pages="$ctrl.numPages"
-        max-size="$ctrl.maxSize" ng-model="$ctrl.currentPage"
-        ng-change="$ctrl.changePage({
-                   page: $ctrl.currentPage,
-                   sort: $ctrl.currentCriteria,
-                   order: $ctrl.orders[$ctrl.currentCriteria],
-                   filter: $ctrl.filter
-                   })"
-        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
-        last-text="&raquo;"
-        items-per-page="$ctrl.itemsPerPage"></ul>-->
 </md-grid-list>
 <md-grid-list md-cols="12" md-row-height="fit">
     <div class="images">

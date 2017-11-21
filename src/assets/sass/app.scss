@@ -56,13 +56,13 @@ body {
   }
 
   .responsive-layout-lg {
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: $responsive-width) {
       display: none;
     }
   }
 
   .responsive-layout-xs {
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: $responsive-width) {
       display: none;
     }
   }
