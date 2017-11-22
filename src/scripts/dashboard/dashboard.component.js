@@ -1,16 +1,17 @@
 import dashboardTemplate from './dashboard.html';
 
 class DashboardController {
-  constructor($mdDialog, conservatoryService, errorService) {
+  constructor($mdDialog, conservatoryService, errorService, $translate) {
     this.$mdDialog = $mdDialog;
     this.conservatoryService = conservatoryService;
     this.errorService = errorService;
+    this.$translate = $translate;
 
     /* Parameters for pagination */
     this.currentPage = 1;
-    this.maxSize = 2;
-    this.numPages = 5;
-    this.itemsPerPage = 5;
+    // this.maxSize = 2;
+    // this.numPages = 5;
+    // this.itemsPerPage = 5;
 
     this.filter = '';
 
@@ -61,7 +62,11 @@ class DashboardController {
         this.totalItems = data.total;
         this.conservatories = data.results;
       })
-      .catch(() => this.errorService.showSimpleToast('Une erreur est survenue.'));
+      .catch(() => {
+        this.$translate('error.main')
+          .then(error => this.errorService.showSimpleToast(error))
+          .catch(() => this.errorService.showSimpleToast('ERROR'));
+      });
   }
 
   openDetails($event, conservatory) {
@@ -85,7 +90,7 @@ class DashboardController {
   }
 }
 
-DashboardController.$inject = ['$mdDialog', 'conservatoryService', 'errorService'];
+DashboardController.$inject = ['$mdDialog', 'conservatoryService', 'errorService', '$translate'];
 
 let dashboard = {
   controllerAs: '$ctrl',

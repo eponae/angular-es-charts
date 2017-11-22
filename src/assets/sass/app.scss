@@ -51,6 +51,12 @@ body {
     padding: 10px;
   }
 
+  .upper-first-letter {
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+
   .width-250 {
     width: 250px;
   }

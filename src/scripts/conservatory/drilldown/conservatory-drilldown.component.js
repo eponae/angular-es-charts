@@ -2,16 +2,17 @@ import zingchart from '../../../../node_modules/zingchart/index.js';
 import conservatoryDrilldownTemplate from './conservatory-drilldown.html';
 
 class ConservatoryDrilldownController {
-  constructor(conservatoryService, errorService) {
+  constructor(conservatoryService, errorService, $translate, $filter) {
     this.conservatoryService = conservatoryService;
     this.errorService = errorService;
+    this.$translate = $translate;
+    this.$filter = $filter;
     this.drillDownDataStructure = {};
     this.chartData = {
       type: 'hbar',
       title: {
         backgroundColor: 'transparent',
-        fontColor: 'black',
-        text: 'Departments'
+        fontColor: 'black'
       },
       backgroundColor: 'transparent',
       plot: {
@@ -60,20 +61,39 @@ class ConservatoryDrilldownController {
     });
 
     this.chartData.series = series;
-    this.chartData.title.text = resultsKeys.length + ' départements';
-    this.originalData = angular.copy(this.chartData);
+
+    this.$translate('department.list')
+      .then(departments => {
+        this.chartData.title.text = resultsKeys.length + ' ' + departments;
+        this.originalData = angular.copy(this.chartData);
+      })
+      .catch(() => {
+        this.chartData.title.text = resultsKeys.length;
+        this.originalData = angular.copy(this.chartData);
+      });
   }
 
   setDrilldownData(dataId) {
-    this.chartData.title.text = 'Département ' + dataId;
+    const renderChart = () => {
+      zingchart.render({
+        id: 'myChart',
+        data: this.chartData,
+        height: '100%',
+        width: '100%'
+      });
+    };
+
     this.chartData.series = this.drillDownDataStructure[dataId].series;
 
-    zingchart.render({
-      id: 'myChart',
-      data: this.chartData,
-      height: '100%',
-      width: '100%'
-    });
+    this.$translate('department.title')
+      .then(department => {
+        this.chartData.title.text = this.$filter('upperFirstLetter')(department) + ' ' + dataId;
+        renderChart();
+      })
+      .catch(() => {
+        this.chartData.title.text = dataId;
+        renderChart();
+      });
   }
 
   formatPostalCodes(results, dataId) {
@@ -129,13 +149,22 @@ class ConservatoryDrilldownController {
       .then(data => {
         this.formatDepartments(data);
       })
-      .catch(() => this.errorService.showSimpleToast('Une erreur est survenue.'));
+      .catch(() => {
+        this.$translate('error.main')
+          .then(error => this.errorService.showSimpleToast(error))
+          .catch(() => this.errorService.showSimpleToast('ERROR'));
+      });
 
     this.initChartEvents();
   }
 }
 
-ConservatoryDrilldownController.$inject = ['conservatoryService', 'errorService'];
+ConservatoryDrilldownController.$inject = [
+  'conservatoryService',
+  'errorService',
+  '$translate',
+  '$filter'
+];
 
 const conservatoryDrilldown = {
   controllerAs: '$ctrl',

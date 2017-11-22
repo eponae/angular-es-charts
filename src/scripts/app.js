@@ -25,6 +25,7 @@ import contact from './contact/contact.module.js';
 import charts from './charts/charts.module.js';
 import ErrorInterceptor from './interceptor.js';
 import ErrorService from './error-service.js';
+import upperFirstLetter from './utils/upper-first-letter.filter.js';
 
 export default angular
   .module('conservatories', [
@@ -40,12 +41,14 @@ export default angular
     dashboard.name,
     contact.name
   ])
+  .filter('upperFirstLetter', () => upperFirstLetter)
   .service('errorInterceptor', ErrorInterceptor)
   .service('errorService', ErrorService)
   .constant('API_URL', 'https://api.eponae.fr/conservatories/')
   .config(configuration)
   .run([
-    'tmhDynamicLocale', (tmhDynamicLocale) => {
+    'tmhDynamicLocale',
+    tmhDynamicLocale => {
       tmhDynamicLocale.set('fr');
     }
   ]);

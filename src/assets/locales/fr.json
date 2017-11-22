@@ -1,3 +1,22 @@
 {
-  "conservatories": "Conservatoires"
+  "analysis": "analyse",
+  "conservatories": {
+    "find": "rechercher un conservatoire",
+    "title": "conservatoires"
+  },
+  "contact": {
+    "backend": "infrastructure et Backend",
+    "icons": "illustrations",
+    "ihm": "développement de l'IHM",
+    "thanks": "remerciements à",
+    "title": "contact"
+  },
+  "department": {
+    "title": "département",
+    "list": "département(s)"
+  },
+  "error": {
+    "main": "Une erreur est survenue."
+  },
+  "navbar": "barre de navigation"
 }
