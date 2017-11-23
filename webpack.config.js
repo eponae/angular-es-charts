@@ -43,7 +43,7 @@ module.exports = {
         loader: 'file-loader?name=[name].[ext]&outputPath=/fonts/'
       },
       {
-        test: /instruments_musique_.*(\.(jpe?g|png|gif|svg)$)/i,
+        test: /(\.(jpe?g|png|gif|svg)$)/i,
         loader: 'file-loader?name=[name].[ext]&outputPath=/img/'
       },
       {

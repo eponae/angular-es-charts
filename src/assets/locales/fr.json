@@ -1,16 +1,19 @@
 {
   "analysis": "analyse",
+  "close": "fermer",
   "conservatories": {
+    "detail": "informations sur le conservatoire",
     "find": "rechercher un conservatoire",
     "title": "conservatoires"
   },
   "contact": {
-    "backend": "infrastructure et Backend",
+    "backend": "infrastructure et backend",
     "icons": "illustrations",
     "ihm": "développement de l'IHM",
     "thanks": "remerciements à",
     "title": "contact"
   },
+  "coordinates": "coordonnées",
   "department": {
     "title": "département",
     "list": "département(s)"
@@ -18,5 +21,8 @@
   "error": {
     "main": "Une erreur est survenue."
   },
-  "navbar": "barre de navigation"
+  "navbar": {
+    "navigate": "naviguer",
+    "title": "barre de navigations"
+  }
 }

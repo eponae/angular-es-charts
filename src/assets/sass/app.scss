@@ -23,6 +23,26 @@ body {
     max-width: 100%;
   }
 
+  .display-row {
+    @include flex-row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .icon-img {
+    height: 20px;
+  }
+
+  .icon-btn {
+    background: none;
+    border: 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
   &.main-view {
     position: relative;
 
@@ -34,13 +54,13 @@ body {
     }
   }
 
+  .height-auto {
+    height: auto;
+  }
+
   .overflow-hidden {
     height: 100%;
     overflow: hidden;
-  }
-
-  .height-auto {
-    height: auto;
   }
 
   .overflow-auto {
@@ -75,11 +95,11 @@ body {
 
   .header-img {
     @media screen and (max-width: $responsive-width) {
-      max-height: 200px;
+      max-height: 150px;
       max-width: 150px;
     }
     @media screen and (min-width: $responsive-width) {
-      max-height: 250px;
+      max-height: 200px;
       max-width: 200px;
     }
   }

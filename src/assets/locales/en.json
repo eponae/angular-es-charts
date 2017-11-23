@@ -1,0 +1,28 @@
+{
+  "analysis": "analysis",
+  "close": "close",
+  "conservatories": {
+    "detail": "details about conservatory",
+    "find": "find a conservatory",
+    "title": "conservatories"
+  },
+  "contact": {
+    "backend": "backend and infrastructure",
+    "icons": "illustrations",
+    "ihm": "IHM development",
+    "thanks": "many thanks to",
+    "title": "contact"
+  },
+  "coordinates": "coordinates",
+  "department": {
+    "title": "department",
+    "list": "departement(s)"
+  },
+  "error": {
+    "main": "An error happened."
+  },
+  "navbar": {
+    "navigate": "navigate",
+    "title": "navigation bar"
+  }
+}

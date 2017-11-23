@@ -1,4 +1,4 @@
-<html ng-app="conservatories" ng-strict-di="true">
+<html ng-app="conservatories" ng-controller="appController as $ctrl" ng-strict-di="true">
 
 <head>
     <base href="/">
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 
-    <title>Conservatoires</title>
+    <title>{{'conservatories.title' | translate}}</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
@@ -21,21 +21,34 @@
 
 <body class="main-view overflow-hidden">
 
-<md-nav-bar class="responsive-layout-lg" layout-gt-xs md-selected-nav-item="currentNavItem"
-            aria-label="{{'navbar' | translate}}">
-    <md-nav-item md-nav-sref="dashboard" name="dashboard"
-                 aria-label="{{'conservatories.title' | translate}}" class="upper-first-letter">
-        {{'conservatories.title' | translate}}
-    </md-nav-item>
-    <md-nav-item md-nav-sref="charts" name="charts" aria-label="{{'analysis' | translate}}"
-                 class="upper-first-letter">
-        {{'analysis' | translate}}
-    </md-nav-item>
-    <md-nav-item md-nav-sref="contact" name="contact" aria-label="{{'contact.title' | translate}}"
-                 class="upper-first-letter">
-        {{'contact.title' | translate}}
-    </md-nav-item>
-</md-nav-bar>
+<div class="display-row responsive-layout-lg">
+    <md-nav-bar layout-gt-xs md-selected-nav-item="currentNavItem"
+                aria-label="{{'navigate.title' | translate}}">
+        <md-nav-item md-nav-sref="dashboard" name="dashboard"
+                     aria-label="{{'conservatories.title' | translate}}" class="upper-first-letter">
+            {{'conservatories.title' | translate}}
+        </md-nav-item>
+        <md-nav-item md-nav-sref="charts" name="charts" aria-label="{{'analysis' | translate}}"
+                     class="upper-first-letter">
+            {{'analysis' | translate}}
+        </md-nav-item>
+        <md-nav-item md-nav-sref="contact" name="contact"
+                     aria-label="{{'contact.title' | translate}}"
+                     class="upper-first-letter">
+            {{'contact.title' | translate}}
+        </md-nav-item>
+    </md-nav-bar>
+
+    <div>
+        <button class="icon-btn" ng-click="$ctrl.setLocale('fr')">
+            <img class="icon-img" src="./assets/img/france-logo.svg">
+        </button>
+        <button class="icon-btn" ng-click="$ctrl.setLocale('en')">
+            <img class="icon-img" src="./assets/img/angleterre-logo.svg">
+        </button>
+    </div>
+
+</div>
 
 <div class="row layout-padding overflow-auto">
     <div class="height-auto" ui-view></div>
@@ -43,7 +56,7 @@
 
 <md-fab-toolbar class="responsive-layout-xs fixed-bottom-left" md-direction="right">
     <md-fab-trigger class="align-with-text">
-        <md-button aria-label="navigate" class="md-fab md-primary">
+        <md-button aria-label="{{'navigate.navigate' | translate}}" class="md-fab md-primary">
             <md-icon md-font-set="material-icons">view_headline</md-icon>
         </md-button>
     </md-fab-trigger>
@@ -63,6 +76,12 @@
                        class="md-icon-button">
                 <md-icon md-font-set="material-icons">contacts</md-icon>
             </md-button>
+            <button ng-click="$ctrl.setLocale('fr')">
+                <img class="icon-img" src="./assets/img/france-logo.svg">
+            </button>
+            <button ng-click="$ctrl.setLocale('en')">
+                <img class="icon-img" src="./assets/img/angleterre-logo.svg">
+            </button>
 
         </md-fab-actions>
     </md-toolbar>
