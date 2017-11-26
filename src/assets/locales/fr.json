@@ -1,5 +1,8 @@
 {
   "analysis": "analyse",
+  "chart": {
+    "download": "clic droit pour télécharger le graphique"
+  },
   "close": "fermer",
   "conservatories": {
     "detail": "informations sur le conservatoire",
@@ -24,5 +27,6 @@
   "navbar": {
     "navigate": "naviguer",
     "title": "barre de navigations"
-  }
+  },
+  "title": "Conservatoires"
 }

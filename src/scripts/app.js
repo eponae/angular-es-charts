@@ -15,7 +15,6 @@ import 'angular-dynamic-locale';
 import 'angular-cookies';
 import 'angular-translate-storage-local';
 
-
 import '../assets/sass/app.scss';
 
 import configuration from './app-config.js';

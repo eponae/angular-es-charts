@@ -2,52 +2,82 @@ import zingchart from '../../../../node_modules/zingchart/index.js';
 import conservatoryDrilldownTemplate from './conservatory-drilldown.html';
 
 class ConservatoryDrilldownController {
-  constructor(conservatoryService, errorService, $translate, $filter) {
+  constructor(conservatoryService, errorService, $translate, $filter, $rootScope) {
+    this.zingchart = zingchart;
     this.conservatoryService = conservatoryService;
     this.errorService = errorService;
     this.$translate = $translate;
     this.$filter = $filter;
+    this.$rootScope = $rootScope;
+
     this.drillDownDataStructure = {};
-    this.chartData = {
-      type: 'hbar',
-      title: {
+    this.originalData = {};
+    this.chartConfig = {
+      id: 'myChart',
+      height: '100%',
+      width: '100%',
+      data: {
+        type: 'hbar',
+        title: {
+          backgroundColor: 'transparent',
+          fontColor: 'black'
+        },
         backgroundColor: 'transparent',
-        fontColor: 'black'
-      },
-      backgroundColor: 'transparent',
-      plot: {
-        cursor: 'pointer',
-        valueBox: {
-          text: '%t'
-        }
-      },
-      series: [],
-      scaleX: {
-        item: {
-          visible: false
-        }
-      },
-      shapes: [
-        {
-          x: 25,
-          y: 20,
-          size: 10,
-          angle: -90,
-          type: 'triangle',
-          'background-color': '#c4c4c4',
-          padding: 5,
-          cursor: 'hand',
-          id: 'backwards',
-          'hover-state': {
-            'border-width': 1,
-            'border-color': '#000'
+        plot: {
+          cursor: 'pointer',
+          valueBox: {
+            text: '%t'
           }
-        }
-      ]
+        },
+        series: [],
+        level: 0,
+        scaleX: {
+          item: {
+            visible: false
+          }
+        },
+        shapes: [
+          {
+            x: 25,
+            y: 20,
+            size: 10,
+            angle: -90,
+            type: 'triangle',
+            'background-color': '#c4c4c4',
+            padding: 5,
+            cursor: 'hand',
+            id: 'backwards',
+            'hover-state': {
+              'border-width': 1,
+              'border-color': '#000'
+            }
+          }
+        ]
+      }
     };
   }
 
+  translateDepartmentList(numOfDeps = 0, callback = () => {
+  }) {
+    this.$translate('department.list')
+      .then(departments => {
+        this.chartConfig.data.title.text = numOfDeps + ' ' + departments;
+        callback();
+      })
+      .catch(() => {
+        this.chartConfig.data.title.text = numOfDeps;
+        callback();
+      });
+  }
+
   formatDepartments(results) {
+    const saveOriginalData = (numOfDeps) => {
+      this.originalData = {
+        numOfDeps: numOfDeps,
+        series: angular.copy(this.chartConfig.data.series)
+      };
+    };
+
     let series = [];
 
     const resultsKeys = Object.keys(results);
@@ -60,39 +90,29 @@ class ConservatoryDrilldownController {
       });
     });
 
-    this.chartData.series = series;
+    this.chartConfig.data.series = series;
+    saveOriginalData(resultsKeys.length);
 
-    this.$translate('department.list')
-      .then(departments => {
-        this.chartData.title.text = resultsKeys.length + ' ' + departments;
-        this.originalData = angular.copy(this.chartData);
-      })
-      .catch(() => {
-        this.chartData.title.text = resultsKeys.length;
-        this.originalData = angular.copy(this.chartData);
-      });
+    this.translateDepartmentList(resultsKeys.length);
+
+    this.$rootScope.$on('$translateChangeEnd', () => {
+      if (!this.chartConfig.level) {
+        this.translateDepartmentList(resultsKeys.length);
+      }
+    });
   }
 
   setDrilldownData(dataId) {
-    const renderChart = () => {
-      zingchart.render({
-        id: 'myChart',
-        data: this.chartData,
-        height: '100%',
-        width: '100%'
-      });
-    };
-
-    this.chartData.series = this.drillDownDataStructure[dataId].series;
+    this.chartConfig.data.series = this.drillDownDataStructure[dataId].series;
+    this.chartConfig.level = 1;
 
     this.$translate('department.title')
       .then(department => {
-        this.chartData.title.text = this.$filter('upperFirstLetter')(department) + ' ' + dataId;
-        renderChart();
+        this.chartConfig.data.title.text =
+          this.$filter('upperFirstLetter')(department) + ' ' + dataId;
       })
       .catch(() => {
-        this.chartData.title.text = dataId;
-        renderChart();
+        this.chartConfig.data.title.text = dataId;
       });
   }
 
@@ -112,34 +132,35 @@ class ConservatoryDrilldownController {
     this.setDrilldownData(dataId);
   }
 
-  initChartClickEvent() {
-    zingchart.node_click = p => {
+  initChartNodeClickEvent() {
+    this.zingchart.node_click = p => {
       const dataId = p['data-id'];
       if (this.drillDownDataStructure[dataId]) {
         this.setDrilldownData(dataId);
+        this.zingchart.node_click = null;
       } else {
         this.conservatoryService
           .getAggregateByZipForADepartment(p['data-id'])
           .then(aggregatedData => {
             this.formatPostalCodes(aggregatedData, dataId);
+            this.zingchart.node_click = null;
           });
       }
-      zingchart.node_click = null;
     };
   }
 
   initChartEvents() {
-    this.initChartClickEvent();
+    this.initChartNodeClickEvent();
 
-    zingchart.shape_click = () => {
-      zingchart.exec('myChart', 'destroy');
-      zingchart.render({
-        id: 'myChart',
-        data: this.originalData,
-        height: '100%',
-        width: '100%'
+    this.zingchart.shape_click = () => {
+      this.initChartNodeClickEvent();
+      this.chartConfig.data.series = this.originalData.series;
+      this.chartConfig.level = 0;
+      this.translateDepartmentList(this.originalData.numOfDeps, () => {
+        this.zingchart.exec('myChart', 'setdata', {
+          data: this.chartConfig.data
+        });
       });
-      this.initChartClickEvent();
     };
   }
 
@@ -157,13 +178,18 @@ class ConservatoryDrilldownController {
 
     this.initChartEvents();
   }
+
+  $onDestroy() {
+    this.zingchart.exec('myChart', 'destroy');
+  }
 }
 
 ConservatoryDrilldownController.$inject = [
   'conservatoryService',
   'errorService',
   '$translate',
-  '$filter'
+  '$filter',
+  '$rootScope'
 ];
 
 const conservatoryDrilldown = {

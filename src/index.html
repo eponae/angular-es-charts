@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 
-    <title>{{'conservatories.title' | translate}}</title>
+    <title translate="title"></title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
@@ -23,7 +23,7 @@
 
 <div class="display-row responsive-layout-lg">
     <md-nav-bar layout-gt-xs md-selected-nav-item="currentNavItem"
-                aria-label="{{'navigate.title' | translate}}">
+                aria-label="{{'navigate.title' | translate}}" ng-cloak>
         <md-nav-item md-nav-sref="dashboard" name="dashboard"
                      aria-label="{{'conservatories.title' | translate}}" class="upper-first-letter">
             {{'conservatories.title' | translate}}

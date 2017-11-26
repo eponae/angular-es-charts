@@ -1,5 +1,8 @@
 {
   "analysis": "analysis",
+  "chart": {
+    "download": "right click on the chart to download it"
+  },
   "close": "close",
   "conservatories": {
     "detail": "details about conservatory",
@@ -16,7 +19,7 @@
   "coordinates": "coordinates",
   "department": {
     "title": "department",
-    "list": "departement(s)"
+    "list": "department(s)"
   },
   "error": {
     "main": "An error happened."
@@ -24,5 +27,6 @@
   "navbar": {
     "navigate": "navigate",
     "title": "navigation bar"
-  }
+  },
+  "title": "Conservatories"
 }
