@@ -6,51 +6,36 @@ class DashboardController {
     this.conservatoryService = conservatoryService;
     this.errorService = errorService;
     this.$translate = $translate;
-
-    /* Parameters for pagination */
-    this.currentPage = 1;
-    // this.maxSize = 2;
-    // this.numPages = 5;
-    // this.itemsPerPage = 5;
-
-    this.filter = '';
-
-    this.orders = {
-      city: 'asc',
-      name: 'asc',
-      zip: 'asc'
-    };
-
-    this.currentCriteria = 'name';
   }
 
   $onInit() {
     this.clearResults();
     this.changePage({
       page: this.currentPage,
-      sort: this.currentCriteria,
-      order: this.orders[this.currentCriteria],
       filter: this.filter
     });
   }
 
   clearResults() {
+    this.currentPage = 1;
+    this.pageCount = 1;
     this.totalItems = 0;
     this.conservatories = [];
+    this.filter = '';
   }
 
-  sortByColumn(criteria) {
-    this.currentCriteria = criteria;
-    if (this.orders[this.currentCriteria] === 'asc') {
-      this.orders[this.currentCriteria] = 'desc';
-    } else {
-      this.orders[this.currentCriteria] = 'asc';
-    }
-
+  previousPage() {
+    this.currentPage = this.currentPage - 1;
     this.changePage({
       page: this.currentPage,
-      sort: this.currentCriteria,
-      order: this.orders[this.currentCriteria],
+      filter: this.filter
+    });
+  }
+
+  nextPage() {
+    this.currentPage = this.currentPage + 1;
+    this.changePage({
+      page: this.currentPage,
       filter: this.filter
     });
   }
@@ -60,6 +45,7 @@ class DashboardController {
       .getConservatories(params)
       .then(data => {
         this.totalItems = data.total;
+        this.pageCount = data.pageCount;
         this.conservatories = data.results;
       })
       .catch(() => {
@@ -76,14 +62,18 @@ class DashboardController {
         template: `<conservatory-details conservatory="conservatory" 
             close-dialog="closeDialog()"></conservatory-details>`,
         clickOutsideToClose: true,
-        controller: ['$scope', '$mdDialog', ($scope, $mdDialog) => {
-          $scope.conservatory = conservatory;
-          $scope.closeDialog = () => {
-            $mdDialog.cancel();
-          };
-        }]
+        controller: [
+          '$scope', '$mdDialog', ($scope, $mdDialog) => {
+            $scope.conservatory = conservatory;
+            $scope.closeDialog = () => {
+              $mdDialog.cancel();
+            };
+          }
+        ]
       })
-      .then(() => {}, () => {});
+      .then(() => {
+      }, () => {
+      });
   }
 }
 

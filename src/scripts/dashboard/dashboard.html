@@ -5,8 +5,6 @@
                ng-model-options='{ debounce: 500 }'
                ng-change="$ctrl.changePage({
                            page: 1,
-                           sort: $ctrl.currentCriteria,
-                           order: $ctrl.orders[$ctrl.currentCriteria],
                            filter: $ctrl.filter
                            })">
     </md-input-container>
@@ -24,7 +22,7 @@
                 </div>
                 <md-button class="md-secondary md-icon-button"
                            ng-click="$ctrl.openDetails($event, conservatory)">
-                    <md-icon class="" md-font-set="material-icons"
+                    <md-icon md-font-set="material-icons"
                              aria-label="{{'coordinates' | translate}}">
                         location_on
                     </md-icon>
@@ -34,11 +32,13 @@
             </md-list-item>
         </md-list>
     </md-content>
-
-    <!--<th class="clickable" ng-click="$ctrl.sortByColumn('name')">COMPANY NAME
-    </th>
-    <th class="clickable" ng-click="$ctrl.sortByColumn('city')">TOWN</th>
-    <th class="clickable" ng-click="$ctrl.sortByColumn('zip')">POSTCODE</th>-->
+    <md-button class="md-icon-button" ng-click="$ctrl.previousPage()" ng-if="$ctrl.currentPage > 1">
+        <md-icon md-font-set="material-icons">keyboard_arrow_left</md-icon>
+    </md-button>
+    <md-button class="md-icon-button" ng-click="$ctrl.nextPage()"
+               ng-if="$ctrl.currentPage < $ctrl.pageCount">
+        <md-icon md-font-set="material-icons">keyboard_arrow_right</md-icon>
+    </md-button>
 </md-grid-list>
 <md-grid-list md-cols="12" md-row-height="fit">
     <div class="images">

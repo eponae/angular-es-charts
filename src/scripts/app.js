@@ -45,5 +45,5 @@ angular
   .filter('upperFirstLetter', () => upperFirstLetterFilter)
   .service('errorInterceptor', ErrorInterceptor)
   .service('errorService', ErrorService)
-  .constant('API_URL', 'https://api.eponae.fr/conservatories/')
+  .constant('API_URL', 'https://api.eponae.fr/conservatories')
   .config(configuration);
