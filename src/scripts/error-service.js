@@ -1,4 +1,4 @@
-export default class ErrorService {
+class ErrorService {
   constructor($mdToast) {
     this.$mdToast = $mdToast;
   }
@@ -13,3 +13,5 @@ export default class ErrorService {
 }
 
 ErrorService.$inject = ['$mdToast'];
+
+export { ErrorService };

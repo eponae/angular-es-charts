@@ -17,17 +17,17 @@ import 'angular-translate-storage-local';
 
 import '../assets/sass/app.scss';
 
-import configuration from './app-config.js';
-import conservatory from './conservatory/conservatory.module.js';
-import dashboard from './dashboard/dashboard.module.js';
-import contact from './contact/contact.module.js';
-import charts from './charts/charts.module.js';
-import ErrorInterceptor from './interceptor.js';
-import ErrorService from './error-service.js';
-import upperFirstLetter from './utils/upper-first-letter.filter.js';
-import AppController from './app.controller.js';
+import { configuration } from './app-config.js';
+import { conservatoryModule } from './conservatory/conservatory.module.js';
+import { dashboardModule } from './dashboard/dashboard.module.js';
+import { contactModule } from './contact/contact.module.js';
+import { chartsModule } from './charts/charts.module.js';
+import { ErrorInterceptor } from './interceptor.js';
+import { ErrorService } from './error-service.js';
+import { upperFirstLetterFilter } from './utils/upper-first-letter.filter.js';
+import { AppController } from './app.controller.js';
 
-export default angular
+angular
   .module('conservatories', [
     'ui.router',
     'zingchart-angularjs',
@@ -36,13 +36,13 @@ export default angular
     'pascalprecht.translate',
     'tmh.dynamicLocale',
     'ngCookies',
-    conservatory.name,
-    charts.name,
-    dashboard.name,
-    contact.name
+    conservatoryModule.name,
+    chartsModule.name,
+    dashboardModule.name,
+    contactModule.name
   ])
   .controller('appController', AppController)
-  .filter('upperFirstLetter', () => upperFirstLetter)
+  .filter('upperFirstLetter', () => upperFirstLetterFilter)
   .service('errorInterceptor', ErrorInterceptor)
   .service('errorService', ErrorService)
   .constant('API_URL', 'https://api.eponae.fr/conservatories/')

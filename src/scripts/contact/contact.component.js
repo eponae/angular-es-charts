@@ -7,4 +7,4 @@ const contact = {
   controller: ContactController
 };
 
-export default contact;
+export { contact };

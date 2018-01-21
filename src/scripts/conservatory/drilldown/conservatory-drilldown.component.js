@@ -113,4 +113,4 @@ const conservatoryDrilldown = {
   template: conservatoryDrilldownTemplate
 };
 
-export default conservatoryDrilldown;
+export { conservatoryDrilldown };

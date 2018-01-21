@@ -1,4 +1,4 @@
-export default class AppController {
+class AppController {
   constructor(tmhDynamicLocale, $translate) {
     this.tmhDynamicLocale = tmhDynamicLocale;
     this.$translate = $translate;
@@ -10,3 +10,5 @@ export default class AppController {
   }
 }
 AppController.$inject = ['tmhDynamicLocale', '$translate'];
+
+export { AppController };

@@ -54,4 +54,4 @@ const conservatoryDetails = {
   template: conservatoryDetailsTemplate
 };
 
-export default conservatoryDetails;
+export { conservatoryDetails };

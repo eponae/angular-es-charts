@@ -1,3 +1,4 @@
-import contact from './contact.component.js';
+import { contact } from './contact.component.js';
 
-export default angular.module('conservatories.contact', []).component('contact', contact);
+const contactModule = angular.module('conservatories.contact', []).component('contact', contact);
+export { contactModule };

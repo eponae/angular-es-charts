@@ -1,4 +1,4 @@
-const errorInterceptor = class ErrorInterceptor {
+class ErrorInterceptor {
   constructor($q, $injector) {
     this.$q = $q;
     this.$injector = $injector;
@@ -11,8 +11,7 @@ const errorInterceptor = class ErrorInterceptor {
       return this.$q.reject(rejection);
     };
   }
-};
+}
+ErrorInterceptor.$inject = ['$q', '$injector'];
 
-errorInterceptor.$inject = ['$q', '$injector'];
-
-export default errorInterceptor;
+export { ErrorInterceptor };

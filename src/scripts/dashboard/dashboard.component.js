@@ -70,20 +70,18 @@ class DashboardController {
   }
 
   openDetails($event, conservatory) {
-    this.conservatory = conservatory;
-    this.closeDialog = () => {
-      this.$mdDialog.cancel();
-    };
-
     this.$mdDialog
       .show({
-        template:
-          '<conservatory-details' +
-          ' conservatory="$ctrl.conservatory"' +
-          ' close-dialog="$ctrl.closeDialog()"></conservatory-details>',
         targetEvent: $event,
+        template: `<conservatory-details conservatory="conservatory" 
+            close-dialog="closeDialog()"></conservatory-details>`,
         clickOutsideToClose: true,
-        controller: () => this
+        controller: ['$scope', '$mdDialog', ($scope, $mdDialog) => {
+          $scope.conservatory = conservatory;
+          $scope.closeDialog = () => {
+            $mdDialog.cancel();
+          };
+        }]
       })
       .then(() => {}, () => {});
   }
@@ -91,9 +89,9 @@ class DashboardController {
 
 DashboardController.$inject = ['$mdDialog', 'conservatoryService', 'errorService', '$translate'];
 
-let dashboard = {
+const dashboard = {
   controller: DashboardController,
   template: dashboardTemplate
 };
 
-export default dashboard;
+export { dashboard };

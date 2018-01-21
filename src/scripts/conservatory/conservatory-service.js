@@ -1,4 +1,4 @@
-export default class ConservatoryService {
+class ConservatoryService {
   constructor($http, API_URL) {
     this.$http = $http;
     this.API_URL = API_URL;
@@ -28,5 +28,6 @@ export default class ConservatoryService {
       .then(response => response.data);
   }
 }
-
 ConservatoryService.$inject = ['$http', 'API_URL'];
+
+export { ConservatoryService };

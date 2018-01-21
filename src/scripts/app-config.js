@@ -1,4 +1,4 @@
-export default function configuration(
+function configuration(
   $stateProvider,
   $urlRouterProvider,
   $httpProvider,
@@ -65,3 +65,5 @@ configuration.$inject = [
   'tmhDynamicLocaleProvider',
   '$translateProvider'
 ];
+
+export { configuration };

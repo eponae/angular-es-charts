@@ -7,4 +7,4 @@ const charts = {
   controller: ChartsController
 };
 
-export default charts;
+export { charts };
