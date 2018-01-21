@@ -7,3 +7,5 @@ files:
     - "node_modules/**/*.s+(a|c)ss"
 rules:
   no-duplicate-properties: 0
+  force-pseudo-nesting: 0
+  force-element-nesting: 0

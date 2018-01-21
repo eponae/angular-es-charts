@@ -6,14 +6,12 @@ class DashboardController {
     this.conservatoryService = conservatoryService;
     this.errorService = errorService;
     this.$translate = $translate;
+
+    this.criterias = ['city', 'name', 'zip'];
   }
 
   $onInit() {
     this.clearResults();
-    this.changePage({
-      page: this.currentPage,
-      filter: this.filter
-    });
   }
 
   clearResults() {
@@ -22,21 +20,39 @@ class DashboardController {
     this.totalItems = 0;
     this.conservatories = [];
     this.filter = '';
+    this.criteria = {
+      key: 'name',
+      order: 'asc'
+    };
+    this.getDataInCurrentPage();
+  }
+
+  changeOrder() {
+    this.criteria.order = this.criteria.order === 'asc' ? 'desc' : 'asc';
+    this.getDataInCurrentPage();
   }
 
   previousPage() {
     this.currentPage = this.currentPage - 1;
-    this.changePage({
-      page: this.currentPage,
-      filter: this.filter
-    });
+    this.getDataInCurrentPage();
   }
 
   nextPage() {
     this.currentPage = this.currentPage + 1;
+    this.getDataInCurrentPage();
+  }
+
+  searchConservatory() {
+    this.currentPage = 1;
+    this.getDataInCurrentPage();
+  }
+
+  getDataInCurrentPage() {
     this.changePage({
       page: this.currentPage,
-      filter: this.filter
+      filter: this.filter,
+      sort: this.criteria.key,
+      order: this.criteria.order
     });
   }
 
@@ -63,7 +79,9 @@ class DashboardController {
             close-dialog="closeDialog()"></conservatory-details>`,
         clickOutsideToClose: true,
         controller: [
-          '$scope', '$mdDialog', ($scope, $mdDialog) => {
+          '$scope',
+          '$mdDialog',
+          ($scope, $mdDialog) => {
             $scope.conservatory = conservatory;
             $scope.closeDialog = () => {
               $mdDialog.cancel();
@@ -71,9 +89,7 @@ class DashboardController {
           }
         ]
       })
-      .then(() => {
-      }, () => {
-      });
+      .then(() => {}, () => {});
   }
 }
 

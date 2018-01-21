@@ -4,10 +4,13 @@
     "download": "right click on the chart to download it"
   },
   "close": "close",
-  "conservatories": {
+  "conservatory": {
+    "city": "city",
     "detail": "details about conservatory",
     "find": "find a conservatory",
-    "title": "conservatories"
+    "name": "name",
+    "title": "conservatories",
+    "zip": "zip"
   },
   "contact": {
     "backend": "backend and infrastructure",
@@ -27,5 +30,6 @@
     "navigate": "navigate",
     "title": "navigation bar"
   },
+  "sortBy": "sort by",
   "title": "Conservatories"
 }

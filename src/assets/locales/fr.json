@@ -4,10 +4,13 @@
     "download": "clic droit pour télécharger le graphique"
   },
   "close": "fermer",
-  "conservatories": {
+  "conservatory": {
+    "city": "ville",
     "detail": "informations sur le conservatoire",
     "find": "rechercher un conservatoire",
-    "title": "conservatoires"
+    "name": "nom",
+    "title": "conservatoires",
+    "zip": "code postal"
   },
   "contact": {
     "backend": "infrastructure et backend",
@@ -27,5 +30,6 @@
     "navigate": "naviguer",
     "title": "barre de navigations"
   },
+  "sortBy": "trier par",
   "title": "Conservatoires"
 }

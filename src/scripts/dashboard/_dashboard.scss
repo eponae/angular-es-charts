@@ -1,4 +1,5 @@
 @import '../../assets/sass/mixins';
+@import '../../assets/sass/variables';
 
 .conservatory-name {
   margin: 0 0 3px;
@@ -8,4 +9,22 @@
   @include flex-row;
   justify-content: center;
   width: 100%;
+}
+
+.pagination-btn {
+  background-color: $main-color;
+
+  &.md-button:not([disabled]).md-icon-button:hover {
+    background-color: $red;
+  }
+}
+
+.search-bar {
+  @include flex-row;
+  width: 100%;
+
+  .search-select {
+    margin: 0;
+    width: 80%;
+  }
 }

@@ -6,7 +6,14 @@ class ConservatoryService {
 
   getConservatories(params) {
     return this.$http
-      .get(this.API_URL, { params: { page: params.page, pageSize: 5, q: params.filter } })
+      .get(`${this.API_URL}?${params.order}`, {
+        params: {
+          sort: params.sort,
+          page: params.page,
+          pageSize: 5,
+          q: params.filter
+        }
+      })
       .then(response => response.data);
   }
 
