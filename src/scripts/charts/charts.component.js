@@ -4,7 +4,6 @@ class ChartsController {}
 
 const charts = {
   template: chartTemplate,
-  controllerAs: '$ctrl',
   controller: ChartsController
 };
 

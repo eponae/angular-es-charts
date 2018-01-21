@@ -18,8 +18,7 @@
   },
   "coordinates": "coordonnées",
   "department": {
-    "title": "département",
-    "list": "département(s)"
+    "select": "Sélectionner un département"
   },
   "error": {
     "main": "Une erreur est survenue."

@@ -83,8 +83,7 @@ class DashboardController {
           ' close-dialog="$ctrl.closeDialog()"></conservatory-details>',
         targetEvent: $event,
         clickOutsideToClose: true,
-        controller: () => this,
-        controllerAs: '$ctrl'
+        controller: () => this
       })
       .then(() => {}, () => {});
   }
@@ -93,7 +92,6 @@ class DashboardController {
 DashboardController.$inject = ['$mdDialog', 'conservatoryService', 'errorService', '$translate'];
 
 let dashboard = {
-  controllerAs: '$ctrl',
   controller: DashboardController,
   template: dashboardTemplate
 };

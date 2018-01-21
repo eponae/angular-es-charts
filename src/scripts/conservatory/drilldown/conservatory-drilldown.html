@@ -1,4 +1,14 @@
-<md-tooltip class="upper-first-letter responsive-layout-lg" md-direction="top">{{'chart.download' | translate}}</md-tooltip>
+<div>
+    <md-tooltip class="upper-first-letter responsive-layout-lg" md-direction="top">
+        {{'chart.download' | translate}}
+    </md-tooltip>
+    <md-select ng-model="departments" placeholder="{{'department.select' | translate }}">
+        <md-option value="" ng-click="$ctrl.resetChart()"></md-option>
+        <md-option ng-repeat="currentDep in $ctrl.departmentOptions" value="{{currentDep}}"
+                   ng-click="$ctrl.selectDepartment(currentDep)">{{currentDep}}</md-option>
+    </md-select>
+</div>
+
 <div class="resizable">
     <div zingchart id="myChart" zc-render="$ctrl.chartConfig"></div>
 </div>

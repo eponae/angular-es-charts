@@ -50,7 +50,6 @@ const conservatoryDetails = {
     conservatory: '<',
     closeDialog: '&'
   },
-  controllerAs: '$ctrl',
   controller: ConservatoryDetailsController,
   template: conservatoryDetailsTemplate
 };

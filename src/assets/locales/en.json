@@ -18,8 +18,7 @@
   },
   "coordinates": "coordinates",
   "department": {
-    "title": "department",
-    "list": "department(s)"
+    "select": "Select a department"
   },
   "error": {
     "main": "An error happened."
