@@ -23,6 +23,16 @@
             call_received
         </md-icon>
     </md-button>
+    <div class="pagination-content">
+        <md-button class="md-icon-button pagination-btn" ng-click="$ctrl.previousPage()"
+                   ng-if="$ctrl.currentPage > 1">
+            <md-icon md-font-set="material-icons">keyboard_arrow_left</md-icon>
+        </md-button>
+        <md-button class="md-icon-button pagination-btn" ng-click="$ctrl.nextPage()"
+                   ng-if="$ctrl.currentPage < $ctrl.pageCount">
+            <md-icon md-font-set="material-icons">keyboard_arrow_right</md-icon>
+        </md-button>
+    </div>
 </div>
 
 <div class="md-title" ng-if="$ctrl.totalItems === 0">No result</div>
@@ -46,14 +56,6 @@
         </md-list-item>
     </md-list>
 </md-content>
-<md-button class="md-icon-button pagination-btn" ng-click="$ctrl.previousPage()"
-           ng-if="$ctrl.currentPage > 1">
-    <md-icon md-font-set="material-icons">keyboard_arrow_left</md-icon>
-</md-button>
-<md-button class="md-icon-button pagination-btn" ng-click="$ctrl.nextPage()"
-           ng-if="$ctrl.currentPage < $ctrl.pageCount">
-    <md-icon md-font-set="material-icons">keyboard_arrow_right</md-icon>
-</md-button>
 <div class="images">
     <img class="header-img" src="../../assets/img/instruments_musique_trompette.svg">
     <img class="header-img" src="../../assets/img/instruments_musique_piano.svg">

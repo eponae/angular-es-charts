@@ -11,20 +11,29 @@
   width: 100%;
 }
 
-.pagination-btn {
-  background-color: $main-color;
-
-  &.md-button:not([disabled]).md-icon-button:hover {
-    background-color: $red;
-  }
-}
-
 .search-bar {
   @include flex-row;
+  align-items: center;
   width: 100%;
 
+  .search-select,
+  .pagination-content {
+    padding-bottom: 10px;
+  }
+
   .search-select {
+    flex: 1;
     margin: 0;
-    width: 80%;
+  }
+
+  .pagination-content {
+
+    .pagination-btn {
+      background-color: $main-color;
+
+      &.md-button:not([disabled]).md-icon-button:hover {
+        background-color: $red;
+      }
+    }
   }
 }
