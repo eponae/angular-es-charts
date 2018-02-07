@@ -13,9 +13,9 @@ services:
       traefik.frontend.rule: 'Host: charts.eponae.fr'
       traefik.port: '1080'
       traefik.frontend.rateLimit.extractorFunc: 'client.ip'
-      traefik.frontend.rateLimit.rateSet.first.period: 60
-      traefik.frontend.rateLimit.rateSet.first.average: 100
-      traefik.frontend.rateLimit.rateSet.first.burst: 200
+      traefik.frontend.rateLimit.rateSet.first.period: '60'
+      traefik.frontend.rateLimit.rateSet.first.average: '100'
+      traefik.frontend.rateLimit.rateSet.first.burst: '200'
     environment:
       GOOGLE_MAPS_KEY: '${GOOGLE_MAPS_KEY}'
     logging:
