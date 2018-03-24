@@ -8,7 +8,7 @@ script: |
   docker build -t ${DOCKER_USER}/charts .
 after_success: |
   if [ "${TRAVIS_BRANCH}" == "master" ]; then
-    docker login -u ${DOCKER_USER} -p ${DOCKER_PASS} && docker push ${DOCKER_USER}/charts
+    echo $(DOCKER_PASS) | docker login -u $(DOCKER_USER) --password-stdin && docker push ${DOCKER_USER}/charts
 
     sed \
           -e "s|\${GOOGLE_MAPS_KEY}|${GOOGLE_MAPS_KEY}|g" \
