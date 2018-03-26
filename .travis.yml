@@ -1,24 +1,36 @@
-language: node_js
-sudo: required
-services:
-- docker
-node_js: 8
-script: |
-  npm run build &&
-  docker build -t ${DOCKER_USER}/charts .
-after_success: |
-  if [ "${TRAVIS_BRANCH}" == "master" ]; then
-    echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin && docker push ${DOCKER_USER}/charts
+jobs:
+  include:
+  - stage: Build
 
-    sed \
-          -e "s|\${GOOGLE_MAPS_KEY}|${GOOGLE_MAPS_KEY}|g" \
-          docker-compose.yml > docker-compose-env.yml
-  fi
+    language: node_js
+    sudo: required
+    services:
+    - docker
+    node_js: 8
+    script: |
+      npm run build && \
+      docker build -t ${DOCKER_USER}/charts .
+    after_success: |
+      if [ "${TRAVIS_BRANCH}" == "master" ]; then
+        echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin && \
+        docker push ${DOCKER_USER}/charts
+      fi
+
+  - stage: Deploy
+
+    script: |
+      sed \
+        -e "s|\${GOOGLE_MAPS_KEY}|${GOOGLE_MAPS_KEY}|g" \
+        docker-compose.yml > docker-compose-env.yml
+    deploy:
+      provider: script
+      skip_cleanup: true
+      script: 'curl -H "Authorization: GitHub ${GITHUB_OAUTH_TOKEN}" -X POST https://dashboard-api.vibioh.fr/containers/charts/ --data-binary @docker-compose.yml'
+
+stages:
+  - Build
+  - name: Deploy
+    if: branch = master
+
 notifications:
   email: false
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: 'curl -H "Authorization: GitHub ${GITHUB_OAUTH_TOKEN}" -X POST https://dashboard-api.vibioh.fr/containers/charts/ --data-binary @docker-compose-env.yml'
-  on:
-    branch: master
